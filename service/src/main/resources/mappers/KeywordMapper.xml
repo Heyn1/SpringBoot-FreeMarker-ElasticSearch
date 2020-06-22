@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.KeywordMapper">
+    <resultMap id="BaseResultMap" type="com.example.entity.Keyword">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="heat_keyword" jdbcType="VARCHAR" property="heatKeyword"/>
+        <result column="heat" jdbcType="INTEGER" property="heat"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, heat_keyword, heat
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from demand_keyword
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from demand_keyword
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.example.entity.Keyword">
+        insert into demand_keyword (id, heat_keyword, heat
+        )
+        values (#{id,jdbcType=INTEGER}, #{heatKeyword,jdbcType=VARCHAR}, #{heat,jdbcType=INTEGER}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.example.entity.Keyword">
+        insert into demand_keyword
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="heatKeyword != null">
+                heat_keyword,
+            </if>
+            <if test="heat != null">
+                heat,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="heatKeyword != null">
+                #{heatKeyword,jdbcType=VARCHAR},
+            </if>
+            <if test="heat != null">
+                #{heat,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.example.entity.Keyword">
+        update demand_keyword
+        <set>
+            <if test="heatKeyword != null">
+                heat_keyword = #{heatKeyword,jdbcType=VARCHAR},
+            </if>
+            <if test="heat != null">
+                heat = #{heat,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.example.entity.Keyword">
+        update demand_keyword
+        set heat_keyword = #{heatKeyword,jdbcType=VARCHAR},
+        heat = #{heat,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from demand_keyword
+        where heat > 1
+        order by heat desc
+        LIMIT 4
+    </select>
+</mapper>

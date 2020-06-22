@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.DemandMapper">
+    <resultMap id="BaseResultMap" type="com.example.entity.Demand">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="demand_title" jdbcType="VARCHAR" property="demandTitle"/>
+        <result column="category_id" jdbcType="INTEGER" property="categoryId"/>
+        <result column="demand_type" jdbcType="VARCHAR" property="demandType"/>
+        <result column="company_name" jdbcType="VARCHAR" property="companyName"/>
+        <result column="money" jdbcType="VARCHAR" property="money"/>
+        <result column="create_time" jdbcType="DATE" property="createTime"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="category" jdbcType="VARCHAR" property="category"/>
+        <result column="demand_detail" jdbcType="VARCHAR" property="demandDetail"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, demand_title, category_id, demand_type, company_name, money, create_time, phone,
+        category, demand_detail
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from demand_info
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from demand_info
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.example.entity.Demand">
+        insert into demand_info (id, demand_title, category_id,
+        demand_type, company_name, money,
+        create_time, phone, category,
+        demand_detail)
+        values (#{id,jdbcType=INTEGER}, #{demandTitle,jdbcType=VARCHAR}, #{categoryId,jdbcType=INTEGER},
+        #{demandType,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, #{money,jdbcType=VARCHAR},
+        #{createTime,jdbcType=DATE}, #{phone,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR},
+        #{demandDetail,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.example.entity.Demand">
+        insert into demand_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="demandTitle != null">
+                demand_title,
+            </if>
+            <if test="categoryId != null">
+                category_id,
+            </if>
+            <if test="demandType != null">
+                demand_type,
+            </if>
+            <if test="companyName != null">
+                company_name,
+            </if>
+            <if test="money != null">
+                money,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="category != null">
+                category,
+            </if>
+            <if test="demandDetail != null">
+                demand_detail,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="demandTitle != null">
+                #{demandTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="categoryId != null">
+                #{categoryId,jdbcType=INTEGER},
+            </if>
+            <if test="demandType != null">
+                #{demandType,jdbcType=VARCHAR},
+            </if>
+            <if test="companyName != null">
+                #{companyName,jdbcType=VARCHAR},
+            </if>
+            <if test="money != null">
+                #{money,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=DATE},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="category != null">
+                #{category,jdbcType=VARCHAR},
+            </if>
+            <if test="demandDetail != null">
+                #{demandDetail,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.example.entity.Demand">
+        update demand_info
+        <set>
+            <if test="demandTitle != null">
+                demand_title = #{demandTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="categoryId != null">
+                category_id = #{categoryId,jdbcType=INTEGER},
+            </if>
+            <if test="demandType != null">
+                demand_type = #{demandType,jdbcType=VARCHAR},
+            </if>
+            <if test="companyName != null">
+                company_name = #{companyName,jdbcType=VARCHAR},
+            </if>
+            <if test="money != null">
+                money = #{money,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=DATE},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="category != null">
+                category = #{category,jdbcType=VARCHAR},
+            </if>
+            <if test="demandDetail != null">
+                demand_detail = #{demandDetail,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.example.entity.Demand">
+        update demand_info
+        set demand_title = #{demandTitle,jdbcType=VARCHAR},
+        category_id = #{categoryId,jdbcType=INTEGER},
+        demand_type = #{demandType,jdbcType=VARCHAR},
+        company_name = #{companyName,jdbcType=VARCHAR},
+        money = #{money,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=DATE},
+        phone = #{phone,jdbcType=VARCHAR},
+        category = #{category,jdbcType=VARCHAR},
+        demand_detail = #{demandDetail,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectByCategoryId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from demand_info
+        where category_id = #{categoryId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectByKeyWord" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <bind name="pattern" value="'%' + keyword + '%'"/>
+        select
+        <include refid="Base_Column_List"/>
+        from demand_info
+        where demand_title like #{pattern,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectByIdList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from demand_info
+        where id in
+        <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+        order by field(
+        id,
+        <foreach collection="list" separator="," item="id">
+            #{id}
+        </foreach>
+        )
+    </select>
+
+
+</mapper>
