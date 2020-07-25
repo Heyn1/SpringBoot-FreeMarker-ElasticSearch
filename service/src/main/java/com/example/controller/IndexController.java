@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.entity.Demand;
 import com.example.service.ICategoryService;
 import com.example.service.IDemandService;
 import com.example.service.IUserService;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -66,9 +69,25 @@ public class IndexController {
         /**
          * 这部分是es搜索，再采取再MySQL中取值的方式
          */
+        System.out.println(keyword);
         ResponseVo<PageInfo> result = demandService.searchByEs(keyword, pageNum, pageSize);
+        List<Demand> resultHotSpot = demandService.searchByEs4HotSpot(keyword);
+        List<String> resultTimeStamp = new ArrayList<>();
+        List<String> resultCategory = new ArrayList<>();
+        SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
+        for(int i = 0; i < resultHotSpot.size(); i++) {
+            resultTimeStamp.add((ft.format(resultHotSpot.get(i).getCreateTime())).substring(0, 10));
+            String[] categoryStr = resultHotSpot.get(i).getCategory().split(",");
+            for(int j = 0; j < categoryStr.length; j++) {
+                resultCategory.add(categoryStr[j].trim());
+            }
+//            resultCategory.add(resultHotSpot.get(i).getCategory());
+        }
         modelAndView.addObject("result", result);
+        modelAndView.addObject("resultTimeStamp", resultTimeStamp);
+        modelAndView.addObject("resultCategory", resultCategory);
         modelAndView.addObject("keyword", keyword);
+        modelAndView.addObject("formKeyword", keyword);
         return modelAndView;
     }
 

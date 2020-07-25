@@ -107,7 +107,12 @@ public class DemandServiceImpl implements IDemandService {
         return ResponseVo.success(pageInfo);
     }
 
-
+    @Override
+    public List<Demand> searchByEs4HotSpot(String keyword) throws IOException {
+        List<Integer> demandIdList = searchByEsPreStep(keyword);
+        List<Demand> demandList = demandMapper.selectByIdList(demandIdList);
+        return demandList;
+    }
 
     @Override
     public List<Demand> test(List idList) {

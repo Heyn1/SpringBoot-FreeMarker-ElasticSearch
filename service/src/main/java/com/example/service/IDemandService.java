@@ -50,6 +50,8 @@ public interface IDemandService {
      */
     ResponseVo<PageInfo> searchByEs(String keyword, Integer pageNum, Integer pageSize) throws IOException;
 
+    List<Demand> searchByEs4HotSpot(String keyword) throws IOException;
+
     List<Demand> test(List idList);
 
 }

@@ -10,7 +10,8 @@ Coded by Creative Tim
 =========================================================
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sys="http://www.w3.org/1999/XSL/Transform"
+      xmlns:form="http://www.w3.org/1999/xhtml" xmlns:c="http://mybatis.org/schema/mybatis-mapper">
 
 <head>
     <meta charset="utf-8" />
@@ -21,6 +22,7 @@ The above copyright notice and this permission notice shall be included in all c
         企业需求搜索
     </title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
@@ -71,6 +73,7 @@ The above copyright notice and this permission notice shall be included in all c
             </ul>
         </div>
     </div>
+
     <div class="main-panel">
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg bg-blue" >
@@ -106,7 +109,6 @@ The above copyright notice and this permission notice shall be included in all c
                                     企业需求搜索
                                 </h2>
                             </div>
-
                         </div>
                         <div class="col-md-4">
                         </div>
@@ -132,7 +134,7 @@ The above copyright notice and this permission notice shall be included in all c
                                 <div class="row">
                                     <div class="col-md-8">
                                         <div class="form-group">
-                                            <input id="keyword" name="keyword" type="text" class="form-control" placeholder="">
+                                            <input id="keyword" name="keyword" type="text" class="form-control" placeholder="" value="${formKeyword}">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -158,57 +160,277 @@ The above copyright notice and this permission notice shall be included in all c
                     </div>
                     <div class="col-md-3"></div>
                 </div>
+                </div>
                 <!--正在热搜-->
             </div>
 
+
+
             <div>
-                <#list result.data.list as item>
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-header card-header-text card-header-blue">
-                                    <div class="card-text">
-                                        <h4 class="card-title"> ${item.demandTitle}</h4>
-                                    </div>
-                                </div>
-                                <div class="card-body">
+                <div style="width:70%;float:left;">
+                            <#list result.data.list as item>
+                                <div class="col-md-12">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <a href="CompanyTabels.html" class="card-text text-blue" target="_blank">需求来源：${item.companyName}</a>
+                                            <div class="card">
+                                                <div class="card-header card-header-text card-header-blue">
+                                                    <div class="card-text">
+                                                        <h4 class="card-title"> ${item.demandTitle}</h4>
+                                                    </div>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <p class="card-text">资助金额：${item.money}</p>
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="row">
+                                                                <div class="col-md-8">
+                                                                    <a href="CompanyTabels.html" class="card-text text-blue" target="_blank">需求来源：${item.companyName}</a>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <p class="card-text">资助金额：${item.money}</p>
+                                                                </div>
+                                                            </div>
+                                                            <p class="card-text">需求摘要：
+                                                                <#if (item.demandDetail??&&item.demandDetail?length>100) >
+                                                                    ${item.demandDetail?substring(0,99)}...
+                                                                <#else>
+                                                                    ${item.demandDetail}
+                                                                </#if>
+                                                            </p>
+                                                            <p class="card-text">
+                                                                <p>发布日期：${item.createTime?string('yyyy-MM-dd')}</p>
+                                                                <span class="pull-right"> 联系方式：${item.phone}</span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <p class="card-text">需求摘要：
-                                                <#if (item.demandDetail??&&item.demandDetail?length>100) >
-                                                ${item.demandDetail?substring(0,99)}...
-                                                <#else>
-                                                ${item.demandDetail}
-                                            </#if>
-                                            </p>
-                                            <p class="card-text">
-                                            <p>发布日期：2020-04-01</p>
-                                            <span class="pull-right"> 联系方式：${item.phone}</span>
-                                            </p>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </#list>
+                        </div>
+
+                <div class="col-md-12" style="width:30%;float:right;">
+                    <div>
+                        <div class="card">
+                            <div id="main1" style="width: 100%;height:400px;"></div>
+                            <script type="text/javascript">
+                                // 基于准备好的dom，初始化echarts实例
+                                var myChart = echarts.init(document.getElementById('main1'));
+
+                                // 指定图表的配置项和数据
+                                var obj = {}
+
+                                <#list resultTimeStamp as item>
+                                    if(obj['${item}'])
+                                        obj['${item}']++
+                                    else
+                                        obj['${item}'] = 1
+                                </#list>
+                                console.log(obj)
+
+                                var base = +new Date(1968, 9, 3);
+                                var oneDay = 24 * 3600 * 1000;
+                                var date = [];
+
+                                var data = [Math.random() * 300];
+
+                                var arr = []
+                                for (var key in obj) {
+                                    arr.push(key)
+                                }
+                                arr = arr.sort()
+                                var newobj = {}
+                                for (var i in arr) {
+                                    var tmp = arr[i]
+                                    newobj[tmp] = obj[tmp]
+                                }
+                                for (var i in newobj) {
+                                    date.push(i)
+                                    data.push(newobj[i])
+                                }
+
+                                option = {
+                                    tooltip: {
+                                        trigger: 'axis',
+                                        position: function (pt) {
+                                            return [pt[0], '10%'];
+                                        }
+                                    },
+                                    title: {
+                                        left: 'center',
+                                        text: '${keyword}热度图',
+                                    },
+                                    toolbox: {
+                                        feature: {
+                                            dataZoom: {
+                                                yAxisIndex: 'none'
+                                            },
+                                            restore: {},
+                                            saveAsImage: {}
+                                        }
+                                    },
+                                    xAxis: {
+                                        type: 'category',
+                                        boundaryGap: false,
+                                        data: date
+                                    },
+                                    yAxis: {
+                                        type: 'value',
+                                        boundaryGap: [0, '100%']
+                                    },
+                                    dataZoom: [{
+                                        type: 'inside',
+                                        start: 0,
+                                        end: 10
+                                    }, {
+                                        start: 0,
+                                        end: 10,
+                                        handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                                        handleSize: '80%',
+                                        handleStyle: {
+                                            color: '#fff',
+                                            shadowBlur: 3,
+                                            shadowColor: 'rgba(0, 0, 0, 0.6)',
+                                            shadowOffsetX: 2,
+                                            shadowOffsetY: 2
+                                        }
+                                    }],
+                                    series: [
+                                        {
+                                            name: '热度数据',
+                                            type: 'line',
+                                            smooth: true,
+                                            symbol: 'none',
+                                            sampling: 'average',
+                                            itemStyle: {
+                                                color: 'rgb(255, 70, 131)'
+                                            },
+                                            areaStyle: {
+                                                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                                    offset: 0,
+                                                    color: 'rgb(255, 158, 68)'
+                                                }, {
+                                                    offset: 1,
+                                                    color: 'rgb(255, 70, 131)'
+                                                }])
+                                            },
+                                            data: data
+                                        }
+                                    ]
+
+                                };
+
+                                // 使用刚指定的配置项和数据显示图表。
+                                myChart.setOption(option);
+                            </script>
+
                         </div>
                     </div>
-                </div>
-            </#list>
+
+                    <div class="card">
+                                <div id="main"  style="height: 100%;min-height:400px;"></div>
+                                <script type="text/javascript">
+                                    // 基于准备好的dom，初始化ECharts实例
+                                    var myChart = echarts.init(document.getElementById('main'));
+                                    var app = {};
+                                    option = null;
+                                    // 指定图表的配置项和数据
+
+                                    var data1 = []
+                                    var data2 = []
+                                    var obj = {}
+                                    <#list resultCategory as item>
+                                        if(obj['${item}'])
+                                            obj['${item}']++
+                                        else
+                                            obj['${item}'] = 1
+                                    </#list>
+                                    for (var key in obj) {
+                                        data1.push(key)
+                                    }
+                                    for (var i in obj) {
+                                        var tmp = {}
+                                        tmp['value'] = obj[i]
+                                        tmp['name'] = i
+                                        data2.push(tmp)
+                                    }
+
+                                    console.log(data1)
+                                    console.log(data2)
+
+                                    var option = {
+                                        title : {
+                                            text: '${keyword}领域分布',
+                                            x: 'center'
+                                        },
+                                        tooltip: {
+                                            trigger: 'item',
+                                            formatter: "{a} <br/>{b} : {c} ({d}%)"
+                                        },
+                                        legend: {
+                                            orient: 'vertical',
+                                            left: 'left',
+                                            data: data1
+                                        },
+                                        series : [
+                                            {
+                                                name: '领域分布',
+                                                type: 'pie',
+                                                radius : '55%',
+                                                center: ['50%', '60%'],
+                                                data: data2,
+                                                itemStyle: {
+                                                    emphasis: {
+                                                        shadowBlur: 10,
+                                                        shadowOffsetX: 0,
+                                                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    };
+
+                                    app.currentIndex = -1;
+
+                                    setInterval(function () {
+                                        var dataLen = option.series[0].data.length;
+                                        // 取消之前高亮的图形
+                                        myChart.dispatchAction({
+                                            type: 'downplay',
+                                            seriesIndex: 0,
+                                            dataIndex: app.currentIndex
+                                        });
+                                        app.currentIndex = (app.currentIndex + 1) % dataLen;
+                                        // 高亮当前图形
+                                        myChart.dispatchAction({
+                                            type: 'highlight',
+                                            seriesIndex: 0,
+                                            dataIndex: app.currentIndex
+                                        });
+                                        // 显示 tooltip
+                                        myChart.dispatchAction({
+                                            type: 'showTip',
+                                            seriesIndex: 0,
+                                            dataIndex: app.currentIndex
+                                        });
+                                    }, 1000);
+                                    if (option && typeof option === "object") {
+                                        myChart.setOption(option, true);
+                                    }
+                                </script>
+                            </div>
+                        </div>
+            </div>
+
         </div>
 
-        <div class="message">
+        <div class="message" style="clear:both;">
             共<i class="blue">${result.data.total}</i>条记录，当前显示第&nbsp;<i
                 class="blue">${result.data.pageNum}/${result.data.pages}</i>&nbsp;页
         </div>
-        <div class="button-container" style="text-align: center">
+
+        <div class="button-container" style="text-align:center;clear:both;">
             <#if result.data.isFirstPage==false>
             <a href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}">
                 <button class="btn btn-blue">第一页</button>
@@ -325,58 +547,6 @@ The above copyright notice and this permission notice shall be included in all c
 
     });
 </script>
-
-<!--<script>-->
-<!--    var myChart=echarts.init(document.getElementById("box"));-->
-<!--    //指定图表的配置项和数据-->
-<!--    var option={-->
-<!--        title: {-->
-<!--            text: '需求趋势图',-->
-<!--            textStyle: {-->
-<!--                color:'#ffffff'-->
-<!--            }-->
-<!--        },-->
-<!--        tooltip: {-->
-<!--            trigger: 'axis'-->
-<!--        },-->
-<!--        xAxis: {-->
-<!--            name:'月(2019年）',-->
-<!--            nameLocation:'middle',-->
-<!--            nameGap:'25',-->
-<!--            data:["2","4","6","8","10","12"],-->
-<!--            axisLine:{-->
-<!--                lineStyle:{-->
-<!--                    color:'#FFFFFF'-->
-<!--                }-->
-<!--            }-->
-<!--        },-->
-<!--        yAxis: {-->
-<!--            type: 'value',-->
-<!--            name:'热度',-->
-<!--            axisLine:{-->
-<!--                lineStyle:{-->
-<!--                    color:'#FFFFFF'-->
-<!--                }-->
-<!--            }-->
-<!--        },-->
-<!--        series: [-->
-<!--            {-->
-<!--                name: '2019年',-->
-<!--                type: 'line',-->
-<!--                // stack: '总量',-->
-<!--                color:'white',-->
-<!--                data: [120, 160, 240, 200, 280, 310]-->
-<!--            },-->
-<!--        ]-->
-<!--    };-->
-<!--    //使用刚刚指定的配置项和数据项显示图表-->
-<!--    myChart.setOption(option);-->
-<!--</script>-->
-
-
-
-
-
 
 </body>
 
