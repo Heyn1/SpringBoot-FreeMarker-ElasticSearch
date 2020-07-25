@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.entity.Plot;
 import com.github.pagehelper.PageInfo;
 import com.example.entity.Demand;
 import com.example.vo.DemandVo;
@@ -7,6 +8,7 @@ import com.example.vo.ResponseVo;
 //import com.sun.org.apache.xerces.internal.xs.StringList;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface IDemandService {
@@ -32,13 +34,16 @@ public interface IDemandService {
      */
     ResponseVo<PageInfo> searchByKeyword(String keyWord, Integer pageNum, Integer pageSize);
 
+    List<Demand> searchByEs4HotSpot(String keyword, String categoryId, Integer order, BigDecimal latitude, BigDecimal longitude) throws IOException;
+
+
     /**
      * 通过es进行搜索，分成两个阶段，首先从es中检索到要用的数据，返回一个主键的list，再传递给mysql进行查询
      * @param keyword 关键词
      * @return list，内容为检索到的记录的主键
      * @throws IOException IO异常
      */
-    List<Integer> searchByEsPreStep(String keyword) throws IOException;
+    List<Integer> searchByEsPreStep(String keyword, String categoryId, Integer order, BigDecimal latitude, BigDecimal longitude) throws IOException;
 
     /**
      * 通过es搜索的第二个阶段，在mysql中查询需要的数据
@@ -48,10 +53,9 @@ public interface IDemandService {
      * @return 需求
      * @throws IOException IO异常
      */
-    ResponseVo<PageInfo> searchByEs(String keyword, Integer pageNum, Integer pageSize) throws IOException;
+    ResponseVo<PageInfo> searchByEs(String keyword, String categoryId, Integer pageNum, Integer pageSize,
+                                    BigDecimal longitude, BigDecimal latitude, Integer order) throws IOException;
 
-    List<Demand> searchByEs4HotSpot(String keyword) throws IOException;
-
-    List<Demand> test(List idList);
+    List<Plot> plot();
 
 }

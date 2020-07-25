@@ -18,6 +18,10 @@
         id, demand_title, category_id, demand_type, company_name, money, create_time, phone,
         category, demand_detail
     </sql>
+    <sql id="search_distance">
+        demand_info.id, demand_title, category_id, demand_type,demand_info.company_name,money, create_time, phone,
+        category, demand_detail
+    </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -169,32 +173,31 @@
 
     <select id="selectByIdList" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List"/>
-        from demand_info
-        <where>
-            <if test="list != null and list.size() > 0">
-                AND id IN
-                <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
-                    #{id}
-                </foreach>
-                ORDER BY field(
-                    id,
-                    <foreach collection="list" separator="," item="id">
-                        #{id}
-                    </foreach>
-                )
-            </if>
-        </where>
-<!--        where id in-->
-<!--        <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">-->
-<!--            #{id}-->
-<!--        </foreach>-->
-<!--        order by field(-->
-<!--        id,-->
-<!--        <foreach collection="list" separator="," item="id">-->
-<!--            #{id}-->
-<!--        </foreach>-->
-<!--        )-->
+        <include refid="search_distance"/>,
+        ceil(1 + 1000*(2 * 6378.137* ASIN(SQRT(POW(SIN(PI() * (#{latitude}- latitude) / 360), 2)
+        + COS(PI() * #{latitude} / 180)
+        * COS(latitude* PI() / 180) * POW(SIN(PI() * (#{longitude} - longitude) / 360), 2))))) AS distance
+        FROM company_info
+        INNER JOIN demand_info ON company_info.company_name = demand_info.company_name
+        where demand_info.id in
+        <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+        order by field(
+        demand_info.id,
+        <foreach collection="list" separator="," item="id">
+            #{id}
+        </foreach>
+        )
+    </select>
+
+    <select id="selectPlotData" resultType="com.example.entity.Plot">
+        SELECT  demand_category.category as category,DATE_FORMAT(demand_info.create_time,"%Y") AS dates ,COUNT(*) AS count
+				FROM demand_info INNER JOIN demand_category
+				ON demand_info.category_id = demand_category.category_id
+				where demand_info.create_time between "2016-01-01" and "2020-05-01"
+        GROUP BY category, DATE_FORMAT(demand_info.create_time,"%Y"), demand_category.category_id
+        ORDER BY demand_category.category_id,DATE_FORMAT(demand_info.create_time,"%Y");
     </select>
 
 

@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import com.example.entity.Demand;
+import com.example.entity.Plot;
 import com.example.service.ICategoryService;
 import com.example.service.IDemandService;
 import com.example.service.IUserService;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,40 +56,43 @@ public class IndexController {
 
     @RequestMapping("/search")
     public ModelAndView search(@RequestParam(required = false, name = "keyword") String keyword,
+                               @RequestParam(required = false, name = "category") String category,
                                @RequestParam(required = false, defaultValue = "1") Integer pageNum,
-                               @RequestParam(required = false, defaultValue = "10") Integer pageSize) throws IOException {
+                               @RequestParam(required = false, defaultValue = "10") Integer pageSize,
+                               @RequestParam(required = false, defaultValue = "116.23") BigDecimal longitude,
+                               @RequestParam(required = false, defaultValue = "40.22") BigDecimal latitude,
+                               @RequestParam(required = false, defaultValue = "1") Integer order) throws IOException {
 
-        /**
-         * 这部分代码是最初的只通过数据库进行搜索然后返回
-         */
-        System.out.println("keyword: " + keyword);
+
         ModelAndView modelAndView = new ModelAndView("SearchByKeyword");
-
-        ResponseVo<List<CategoryVo>> category = categoryService.selectAll();
-        List<CategoryVo> categoryData = category.getData();
+        ResponseVo<List<CategoryVo>> categoryList = categoryService.selectAll();
+        List<CategoryVo> categoryData = categoryList.getData();
         modelAndView.addObject("category", categoryData);
         /**
          * 这部分是es搜索，再采取再MySQL中取值的方式
          */
-        System.out.println(keyword);
-        ResponseVo<PageInfo> result = demandService.searchByEs(keyword, pageNum, pageSize);
-        List<Demand> resultHotSpot = demandService.searchByEs4HotSpot(keyword);
+        ResponseVo<PageInfo> result = demandService.searchByEs(keyword, category, pageNum, pageSize, longitude, latitude, order);
+        List<Demand> resultHotSpot = demandService.searchByEs4HotSpot(keyword,category, order, latitude, longitude);
         List<String> resultTimeStamp = new ArrayList<>();
         List<String> resultCategory = new ArrayList<>();
         SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
         for(int i = 0; i < resultHotSpot.size(); i++) {
             resultTimeStamp.add((ft.format(resultHotSpot.get(i).getCreateTime())).substring(0, 10));
-            String[] categoryStr = resultHotSpot.get(i).getCategory().split(",");
-            for(int j = 0; j < categoryStr.length; j++) {
-                resultCategory.add(categoryStr[j].trim());
+            if (resultHotSpot.get(i).getCategory() != null) {
+                String[] categoryStr = resultHotSpot.get(i).getCategory().split(",");
+                for(int j = 0; j < categoryStr.length; j++) {
+                    resultCategory.add(categoryStr[j].trim());
+                }
             }
-//            resultCategory.add(resultHotSpot.get(i).getCategory());
         }
         modelAndView.addObject("result", result);
+        modelAndView.addObject("keyword", keyword);
         modelAndView.addObject("resultTimeStamp", resultTimeStamp);
         modelAndView.addObject("resultCategory", resultCategory);
-        modelAndView.addObject("keyword", keyword);
         modelAndView.addObject("formKeyword", keyword);
+        modelAndView.addObject("order", order);
+        modelAndView.addObject("longitude", longitude);
+        modelAndView.addObject("latitude", latitude);
         return modelAndView;
     }
 
@@ -106,5 +111,10 @@ public class IndexController {
         modelAndView.addObject("currentId", categoryId);
         modelAndView.addObject("category", categoryData);
         return modelAndView;
+    }
+
+    @RequestMapping("/chart")
+    public List<Plot> test() {
+        return demandService.plot();
     }
 }

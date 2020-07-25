@@ -128,17 +128,33 @@ The above copyright notice and this permission notice shall be included in all c
                                 <button class="dropdown-item" type="button">需求类型</button>
                             </ul>
                         </div>
-
                         <div class="col-md-9">
-                            <form method="post" action="/search">
+                            <form method="get" action="/search">
                                 <div class="row">
                                     <div class="col-md-8">
                                         <div class="form-group">
-                                            <input id="keyword" name="keyword" type="text" class="form-control" placeholder="" value="${formKeyword}">
+                                            <input id="keyword" name="keyword" type="text" class="form-control" placeholder="">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <button class="btn btn-blue" type="submit">搜索一下</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div class="row">
+                                            <#list category as item>
+                                                <div class="form-check">
+                                                    <label class="form-check-label">
+                                                        <input class="form-check-input" type="checkbox" name="category" id="check" value=${item.category}>
+                                                        ${item.category} &nbsp; &nbsp;
+                                                        <span class="form-check-sign">
+                                                        <span class="check"></span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </#list>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
@@ -146,25 +162,58 @@ The above copyright notice and this permission notice shall be included in all c
                     </div>
 
                     <!--搜索框那一栏-->
-                    <!--行业分类-->
-                    <div class="row">
-                        <div class="col-md-3">
-                            <p class="text-blue pull-right " >行业分类:</p>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="row">
-                                <#list category as item>
-                                <a class="text-blue" href="/category?categoryId=${item.categoryId?c}&pageSize=${result.data.pageSize?c}" > &nbsp&nbsp ${item.category} &nbsp&nbsp</a>
-                            </#list>
-                        </div>
-                    </div>
-                    <div class="col-md-3"></div>
-                </div>
                 </div>
                 <!--正在热搜-->
             </div>
+            <div class="button-container" >
+                <#if order == 0>
+                    <a href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=0">
+                        <button class="btn btn-blue disabled">综合<i class="material-icons">south</i></button>
+                    </a>
+                <#else >
+                    <a href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=0">
+                        <button class="btn btn-blue">综合<i class="material-icons">south</i></button>
+                    </a>
+                </#if>
+                <#if order == 1>
+                    <a href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=1">
+                        <button class="btn btn-blue disabled">相关度<i class="material-icons">south</i></button>
+                    </a>
+                <#else >
+                    <a href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=1">
+                        <button class="btn btn-blue">相关度<i class="material-icons">south</i></button>
+                    </a>
+                </#if>
+                <#if order == 2>
+                    <a href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=2">
+                        <button class="btn btn-blue disabled">时间<i class="material-icons">south</i></button>
+                    </a>
+                <#else >
+                    <a href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=2">
+                        <button class="btn btn-blue">时间<i class="material-icons">south</i></button>
+                    </a>
+                </#if>
 
+                <#if order == 3>
+                    <a href="javascript:getlocation()">
+                        <button class="btn btn-blue disabled">距离<i class="material-icons">south</i></button>
+                    </a>
+                <#else >
+                    <a href="javascript:getlocation()">
+                        <button class="btn btn-blue">距离<i class="material-icons">south</i></button>
+                    </a>
+                </#if>
 
+                <#if order == 4>
+                    <a href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=4">
+                        <button class="btn btn-blue disabled">企业信用<i class="material-icons">south</i></button>
+                    </a>
+                <#else >
+                    <a href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=4">
+                        <button class="btn btn-blue">企业信用<i class="material-icons">south</i></button>
+                    </a>
+                </#if>
+            </div>
 
             <div>
                 <div style="width:70%;float:left;">
