@@ -217,6 +217,7 @@ The above copyright notice and this permission notice shall be included in all c
 
             <div>
                 <div style="width:70%;float:left;">
+                            <#if result.data.size != 0>
                             <#list result.data.list as item>
                                 <div class="col-md-12">
                                     <div class="row">
@@ -257,6 +258,9 @@ The above copyright notice and this permission notice shall be included in all c
                                     </div>
                                 </div>
                             </#list>
+                            <#else>
+                                 无相关需求
+                            </#if>
                         </div>
 
                 <div class="col-md-12" style="width:30%;float:right;">
@@ -478,7 +482,7 @@ The above copyright notice and this permission notice shall be included in all c
             共<i class="blue">${result.data.total}</i>条记录，当前显示第&nbsp;<i
                 class="blue">${result.data.pageNum}/${result.data.pages}</i>&nbsp;页
         </div>
-
+        <#if result.data.size != 0>
         <div class="button-container" style="text-align:center;clear:both;">
             <#if result.data.isFirstPage==false>
             <a href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}">
@@ -512,39 +516,8 @@ The above copyright notice and this permission notice shall be included in all c
 </a>
 </#if>
 </div>
+        </#if>
 
-
-<!--                <div class="col-md-4">-->
-<!--                <div class="card card-chart">-->
-<!--                    <div class="card-header card-header-blue">-->
-
-<!--                        <div  id="box" style="width: 300px;height: 300px;" ></div>-->
-<!--                    </div>-->
-<!--                    <div class="card-body">-->
-<!--                        <h4 class="card-title text-dark">需求趋势图</h4>-->
-<!--                    </div>-->
-<!--                    <div class="card-footer">-->
-<!--                        <div class="stats">-->
-<!--                            &lt;!&ndash;                                    <i class="material-icons">access_time</i> update 1 days ago&ndash;&gt;-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-
-<!--                <div class="card mb-3">-->
-<!--                    <img class="card-img-top" src="./img/kg1.jpg" rel="nofollow" alt="Card image cap">-->
-<!--                    <div class="card-body">-->
-<!--                        <h4 class="card-title">企业需求图</h4>-->
-<!--                        &lt;!&ndash;                                <p class="card-text"><small class="text-muted">updated 1 days ago</small></p>&ndash;&gt;-->
-<!--                    </div>-->
-<!--                </div>-->
-
-<!--            </div>-->
-
-</div>
-</div>
-</div>
-</div>
-</div>
 
 <!--   Core JS Files   -->
 <script src="./js/core/jquery.min.js"></script>
@@ -586,6 +559,7 @@ The above copyright notice and this permission notice shall be included in all c
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="./js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+<script src="http://api.map.baidu.com/api?v=2.0&ak=ol0KpqLuwSsAecB1gGPgOdRZeaqSofiP"></script>
 <script src="./demo/demo.js"></script>
 <script src="./js/echarts.min.js"></script>
 
@@ -596,6 +570,36 @@ The above copyright notice and this permission notice shall be included in all c
 
     });
 </script>
+<script>
+            window.onload = function() {
+            }
+
+            getFloat = function (number, n) {
+                n = n ? parseInt(n) : 0;
+                if (n <= 0) return Math.round(number);
+                number = Math.round(number * Math.pow(10, n)) / Math.pow(10, n);
+                return number;
+            };
+            function getlocation() {
+                var geolocation = new BMap.Geolocation();
+                geolocation.getCurrentPosition(function (r) {
+                    if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+                        var longitude = r.point.lng;
+                        var latitude = r.point.lat;
+                        $("#longitude").val(longitude);
+                        $("#latitude").val(latitude);
+
+                        window.location.href = "/search?keyword=${keyword}&longitude=" + longitude + "&latitude=" + latitude + "&order=3"
+                    } else {
+                        alert('failed' + this.getStatus());
+                    }
+                }, {enableHighAccuracy: true})
+            }
+
+
+
+        </script>
+
 
 </body>
 

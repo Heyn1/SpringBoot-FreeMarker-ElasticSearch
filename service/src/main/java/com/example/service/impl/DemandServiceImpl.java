@@ -34,6 +34,8 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+import static com.example.consts.OrderConst.*;
+
 @Service
 @Slf4j
 public class DemandServiceImpl implements IDemandService {
@@ -119,13 +121,23 @@ public class DemandServiceImpl implements IDemandService {
 
 
         //排序字段
-        jsonRequestObj.put("sort",new JSONArray());
-        jsonRequestObj.getJSONArray("sort").add(new JSONObject());
-        jsonRequestObj.getJSONArray("sort").getJSONObject(0).put("_score",new JSONObject());
-        if(order == 0){
-            jsonRequestObj.getJSONArray("sort").getJSONObject(0).getJSONObject("_score").put("order","desc");
-        }else{
-            jsonRequestObj.getJSONArray("sort").getJSONObject(0).getJSONObject("_score").put("order","asc");
+        if (order.equals(ORDER_BY_RELEVANT)) {
+            log.info("order by relevant");
+        } else if (order.equals(ORDER_BY_TIME)) {
+
+        } else if (order.equals(ORDER_BY_DISTANCE)) {
+            jsonRequestObj.put("sort",new JSONArray());
+            jsonRequestObj.getJSONArray("sort").add(new JSONObject());
+            jsonRequestObj.getJSONArray("sort").getJSONObject(0).put("_score",new JSONObject());
+            if(order == 0){
+                jsonRequestObj.getJSONArray("sort").getJSONObject(0).getJSONObject("_score").put("order","desc");
+            }else{
+                jsonRequestObj.getJSONArray("sort").getJSONObject(0).getJSONObject("_score").put("order","asc");
+            }
+        } else if (order.equals(ORDER_BY_CREDIT)) {
+            jsonRequestObj.put("sort", new JSONObject());
+            jsonRequestObj.getJSONObject("sort").put("credit", new JSONObject());
+            jsonRequestObj.getJSONObject("sort").getJSONObject("credit").put("order", "desc");
         }
 
         String reqJson = jsonRequestObj.toJSONString();
@@ -150,6 +162,9 @@ public class DemandServiceImpl implements IDemandService {
     public ResponseVo<PageInfo> searchByEs(String keyword,String categoryId, Integer pageNum, Integer pageSize,
                                            BigDecimal longitude, BigDecimal latitude, Integer order) throws IOException {
         List<Integer> demandIdList = searchByEsPreStep(keyword, categoryId, order, longitude, latitude);
+        if (demandIdList.size() == 0) {
+            return ResponseVo.success(new PageInfo<>());
+        }
         log.info("demand Id List len {}", demandIdList.size());
         PageHelper.startPage(pageNum, pageSize);
         List<Demand> demandList = demandMapper.selectByIdList(demandIdList,
@@ -169,6 +184,9 @@ public class DemandServiceImpl implements IDemandService {
     @Override
     public List<Demand> searchByEs4HotSpot(String keyword, String categoryId, Integer order, BigDecimal latitude, BigDecimal longitude) throws IOException {
         List<Integer> demandIdList = searchByEsPreStep(keyword,categoryId,order,latitude,longitude);
+        if (demandIdList.size() == 0) {
+            return new ArrayList<Demand>();
+        }
         List<Demand> demandList = demandMapper.selectByIdList(demandIdList,longitude,latitude,order);
         return demandList;
     }
