@@ -280,7 +280,7 @@ The above copyright notice and this permission notice shall be included in all c
                                     else
                                         obj['${item}'] = 1
                                 </#list>
-                                console.log(obj)
+                                // console.log(obj)
 
                                 var base = +new Date(1968, 9, 3);
                                 var oneDay = 24 * 3600 * 1000;
@@ -288,15 +288,240 @@ The above copyright notice and this permission notice shall be included in all c
 
                                 var data = [Math.random() * 300];
 
+                                function itostring(a) {
+                                    switch (a) {
+                                        case 1:
+                                            return '01'
+                                        case 2:
+                                            return '02'
+                                        case 3:
+                                            return '03'
+                                        case 4:
+                                            return '04'
+                                        case 5:
+                                            return '05'
+                                        case 6:
+                                            return '06'
+                                        case 7:
+                                            return '07'
+                                        case 8:
+                                            return '08'
+                                        case 9:
+                                            return '09'
+                                        case 10:
+                                            return '10'
+                                        case 11:
+                                            return '11'
+                                        case 12:
+                                            return '12'
+                                        case 13:
+                                            return '13'
+                                        case 14:
+                                            return '14'
+                                        case 15:
+                                            return '15'
+                                        case 16:
+                                            return '16'
+                                        case 17:
+                                            return '17'
+                                        case 18:
+                                            return '18'
+                                        case 19:
+                                            return '19'
+                                        case 20:
+                                            return '20'
+                                        case 21:
+                                            return '21'
+                                        case 22:
+                                            return '22'
+                                        case 23:
+                                            return '23'
+                                        case 24:
+                                            return '24'
+                                        case 25:
+                                            return '25'
+                                        case 26:
+                                            return '26'
+                                        case 27:
+                                            return '27'
+                                        case 28:
+                                            return '28'
+                                        case 29:
+                                            return '29'
+                                        case 30:
+                                            return '30'
+                                        case 31:
+                                            return '31'
+                                        case 2005:
+                                            return '2005'
+                                        case 2006:
+                                            return '2006'
+                                        case 2007:
+                                            return '2007'
+                                        case 2008:
+                                            return '2008'
+                                        case 2009:
+                                            return '2009'
+                                        case 2010:
+                                            return '2010'
+                                        case 2011:
+                                            return '2011'
+                                        case 2012:
+                                            return '2012'
+                                        case 2013:
+                                            return '2013'
+                                        case 2014:
+                                            return '2014'
+                                        case 2015:
+                                            return '2015'
+                                        case 2016:
+                                            return '2016'
+                                        case 2017:
+                                            return '2017'
+                                        case 2018:
+                                            return '2018'
+                                        case 2019:
+                                            return '2019'
+                                        case 2020:
+                                            return '2020'
+                                        case 2021:
+                                            return '2021'
+                                        case 2022:
+                                            return '2022'
+                                    }
+                                }
+                                
                                 var arr = []
                                 for (var key in obj) {
                                     arr.push(key)
                                 }
                                 arr = arr.sort()
                                 var newobj = {}
-                                for (var i in arr) {
-                                    var tmp = arr[i]
-                                    newobj[tmp] = obj[tmp]
+                                for (i = 0; i < arr.length - 1; i++) {
+                                    var start = arr[i]
+                                    var end = arr[i + 1]
+                                    var cur = start
+
+                                    while (cur != end) {
+                                        newobj[cur] = obj[start]
+                                        var year = cur.substr(0, 4)
+                                        var month = cur.substr(5, 2)
+                                        var day = cur.substr(8, 2)
+                                        switch (month) {
+                                            case '01':
+                                                if (day == '31') {
+                                                    day = '01'
+                                                    month = '02'
+                                                }
+                                                else {
+                                                    day = itostring(parseInt(day) + 1)
+                                                }
+                                                break;
+                                            case '02':
+                                                if (day == '28') {
+                                                    day = '01'
+                                                    month = '03'
+                                                }
+                                                else {
+                                                    day = itostring(parseInt(day) + 1)
+                                                }
+                                                break;
+                                            case '03':
+                                                if (day == '31') {
+                                                    day = '01'
+                                                    month = '04'
+                                                }
+                                                else {
+                                                    day = itostring(parseInt(day) + 1)
+                                                }
+                                                break;
+                                            case '04':
+                                                if (day == '30') {
+                                                    day = '01'
+                                                    month = '05'
+                                                }
+                                                else {
+                                                    day = itostring(parseInt(day) + 1)
+                                                }
+                                                break;
+                                            case '05':
+                                                if (day == '31') {
+                                                    day = '01'
+                                                    month = '06'
+                                                }
+                                                else {
+                                                    day = itostring(parseInt(day) + 1)
+                                                }
+                                                break;
+                                            case '06':
+                                                if (day == '30') {
+                                                    day = '01'
+                                                    month = '07'
+                                                }
+                                                else {
+                                                    day = itostring(parseInt(day) + 1)
+                                                }
+                                                break;
+                                            case '07':
+                                                if (day == '31') {
+                                                    day = '01'
+                                                    month = '08'
+                                                }
+                                                else {
+                                                    day = itostring(parseInt(day) + 1)
+                                                }
+                                                break;
+                                            case '08':
+                                                if (day == '31') {
+                                                    day = '01'
+                                                    month = '09'
+                                                }
+                                                else {
+                                                    day = itostring(parseInt(day) + 1)
+                                                }
+                                                break;
+                                            case '09':
+                                                if (day == '30') {
+                                                    day = '01'
+                                                    month = '10'
+                                                }
+                                                else {
+                                                    day = itostring(parseInt(day) + 1)
+                                                }
+                                                break;
+                                            case '10':
+                                                if (day == '31') {
+                                                    day = '01'
+                                                    month = '11'
+                                                }
+                                                else {
+                                                    day = itostring(parseInt(day) + 1)
+                                                }
+                                                break;
+                                            case '11':
+                                                if (day == '30') {
+                                                    day = '01'
+                                                    month = '12'
+                                                }
+                                                else {
+                                                    day = itostring(parseInt(day) + 1)
+                                                }
+                                                break;
+                                            case '12':
+                                                if (day == '31') {
+                                                    year = itostring(parseInt(year) + 1)
+                                                    day = '01'
+                                                    month = '01'
+                                                }
+                                                else {
+                                                    day = itostring(parseInt(day) + 1)
+                                                }
+                                                break;
+                                        }
+                                        cur = year + '-' + month + '-' + day
+                                    }
+                                    // var tmp = arr[i]
+                                    // newobj[tmp] = obj[tmp]
                                 }
                                 for (var i in newobj) {
                                     date.push(i)
@@ -330,7 +555,9 @@ The above copyright notice and this permission notice shall be included in all c
                                     },
                                     yAxis: {
                                         type: 'value',
-                                        boundaryGap: [0, '100%']
+                                        boundaryGap: [0, '100%'],
+                                        min: 0,
+                                        max: 20
                                     },
                                     dataZoom: [{
                                         type: 'inside',
@@ -399,14 +626,22 @@ The above copyright notice and this permission notice shall be included in all c
                                         else
                                             obj['${item}'] = 1
                                     </#list>
-                                    for (var key in obj) {
-                                        data1.push(key)
-                                    }
-                                    for (var i in obj) {
+
+                                    for (i = 0; i < 5; i++) {
+                                        var name
+                                        var value = 0
+                                        for (var key in obj) {
+                                            if (value < obj[key]) {
+                                                name = key
+                                                value = obj[key]
+                                            }
+                                        }
                                         var tmp = {}
-                                        tmp['value'] = obj[i]
-                                        tmp['name'] = i
+                                        tmp['value'] = value
+                                        tmp['name'] = name
+                                        data1.push(name)
                                         data2.push(tmp)
+                                        obj[name] = 0
                                     }
 
                                     console.log(data1)
