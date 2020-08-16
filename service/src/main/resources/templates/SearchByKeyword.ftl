@@ -397,135 +397,156 @@ The above copyright notice and this permission notice shall be included in all c
                                 }
                                 arr = arr.sort()
                                 var newobj = {}
-                                for (i = 0; i < arr.length - 1; i++) {
-                                    var start = arr[i]
-                                    var end = arr[i + 1]
-                                    var cur = start
 
-                                    while (cur != end) {
-                                        newobj[cur] = obj[start]
-                                        var year = cur.substr(0, 4)
-                                        var month = cur.substr(5, 2)
-                                        var day = cur.substr(8, 2)
-                                        switch (month) {
-                                            case '01':
-                                                if (day == '31') {
-                                                    day = '01'
-                                                    month = '02'
-                                                }
-                                                else {
-                                                    day = itostring(parseInt(day) + 1)
-                                                }
-                                                break;
-                                            case '02':
-                                                if (day == '28') {
-                                                    day = '01'
-                                                    month = '03'
-                                                }
-                                                else {
-                                                    day = itostring(parseInt(day) + 1)
-                                                }
-                                                break;
-                                            case '03':
-                                                if (day == '31') {
-                                                    day = '01'
-                                                    month = '04'
-                                                }
-                                                else {
-                                                    day = itostring(parseInt(day) + 1)
-                                                }
-                                                break;
-                                            case '04':
-                                                if (day == '30') {
-                                                    day = '01'
-                                                    month = '05'
-                                                }
-                                                else {
-                                                    day = itostring(parseInt(day) + 1)
-                                                }
-                                                break;
-                                            case '05':
-                                                if (day == '31') {
-                                                    day = '01'
-                                                    month = '06'
-                                                }
-                                                else {
-                                                    day = itostring(parseInt(day) + 1)
-                                                }
-                                                break;
-                                            case '06':
-                                                if (day == '30') {
-                                                    day = '01'
-                                                    month = '07'
-                                                }
-                                                else {
-                                                    day = itostring(parseInt(day) + 1)
-                                                }
-                                                break;
-                                            case '07':
-                                                if (day == '31') {
-                                                    day = '01'
-                                                    month = '08'
-                                                }
-                                                else {
-                                                    day = itostring(parseInt(day) + 1)
-                                                }
-                                                break;
-                                            case '08':
-                                                if (day == '31') {
-                                                    day = '01'
-                                                    month = '09'
-                                                }
-                                                else {
-                                                    day = itostring(parseInt(day) + 1)
-                                                }
-                                                break;
-                                            case '09':
-                                                if (day == '30') {
-                                                    day = '01'
-                                                    month = '10'
-                                                }
-                                                else {
-                                                    day = itostring(parseInt(day) + 1)
-                                                }
-                                                break;
-                                            case '10':
-                                                if (day == '31') {
-                                                    day = '01'
-                                                    month = '11'
-                                                }
-                                                else {
-                                                    day = itostring(parseInt(day) + 1)
-                                                }
-                                                break;
-                                            case '11':
-                                                if (day == '30') {
-                                                    day = '01'
-                                                    month = '12'
-                                                }
-                                                else {
-                                                    day = itostring(parseInt(day) + 1)
-                                                }
-                                                break;
-                                            case '12':
-                                                if (day == '31') {
-                                                    year = itostring(parseInt(year) + 1)
-                                                    day = '01'
-                                                    month = '01'
-                                                }
-                                                else {
-                                                    day = itostring(parseInt(day) + 1)
-                                                }
-                                                break;
-                                        }
-                                        cur = year + '-' + month + '-' + day
-                                    }
-                                    // var tmp = arr[i]
-                                    // newobj[tmp] = obj[tmp]
+                                // Accurate to day
+                                // for (i = 0; i < arr.length - 1; i++) {
+                                //     var start = arr[i]
+                                //     var end = arr[i + 1]
+                                //     var cur = start
+                                //
+                                //     while (cur != end) {
+                                //         var hotvalue = obj[start]
+                                //         for (j = 1; j <= 2; j++) {
+                                //             if (i - j >= 0)
+                                //                 hotvalue += obj[arr[i - j]]
+                                //             if (i + j < arr.length)
+                                //                 hotvalue += obj[arr[i + j]]
+                                //         }
+                                //         newobj[cur] = hotvalue
+                                //         var year = cur.substr(0, 4)
+                                //         var month = cur.substr(5, 2)
+                                //         var day = cur.substr(8, 2)
+                                //         switch (month) {
+                                //             case '01':
+                                //                 if (day == '31') {
+                                //                     day = '01'
+                                //                     month = '02'
+                                //                 }
+                                //                 else {
+                                //                     day = itostring(parseInt(day) + 1)
+                                //                 }
+                                //                 break;
+                                //             case '02':
+                                //                 if (day == '28') {
+                                //                     day = '01'
+                                //                     month = '03'
+                                //                 }
+                                //                 else {
+                                //                     day = itostring(parseInt(day) + 1)
+                                //                 }
+                                //                 break;
+                                //             case '03':
+                                //                 if (day == '31') {
+                                //                     day = '01'
+                                //                     month = '04'
+                                //                 }
+                                //                 else {
+                                //                     day = itostring(parseInt(day) + 1)
+                                //                 }
+                                //                 break;
+                                //             case '04':
+                                //                 if (day == '30') {
+                                //                     day = '01'
+                                //                     month = '05'
+                                //                 }
+                                //                 else {
+                                //                     day = itostring(parseInt(day) + 1)
+                                //                 }
+                                //                 break;
+                                //             case '05':
+                                //                 if (day == '31') {
+                                //                     day = '01'
+                                //                     month = '06'
+                                //                 }
+                                //                 else {
+                                //                     day = itostring(parseInt(day) + 1)
+                                //                 }
+                                //                 break;
+                                //             case '06':
+                                //                 if (day == '30') {
+                                //                     day = '01'
+                                //                     month = '07'
+                                //                 }
+                                //                 else {
+                                //                     day = itostring(parseInt(day) + 1)
+                                //                 }
+                                //                 break;
+                                //             case '07':
+                                //                 if (day == '31') {
+                                //                     day = '01'
+                                //                     month = '08'
+                                //                 }
+                                //                 else {
+                                //                     day = itostring(parseInt(day) + 1)
+                                //                 }
+                                //                 break;
+                                //             case '08':
+                                //                 if (day == '31') {
+                                //                     day = '01'
+                                //                     month = '09'
+                                //                 }
+                                //                 else {
+                                //                     day = itostring(parseInt(day) + 1)
+                                //                 }
+                                //                 break;
+                                //             case '09':
+                                //                 if (day == '30') {
+                                //                     day = '01'
+                                //                     month = '10'
+                                //                 }
+                                //                 else {
+                                //                     day = itostring(parseInt(day) + 1)
+                                //                 }
+                                //                 break;
+                                //             case '10':
+                                //                 if (day == '31') {
+                                //                     day = '01'
+                                //                     month = '11'
+                                //                 }
+                                //                 else {
+                                //                     day = itostring(parseInt(day) + 1)
+                                //                 }
+                                //                 break;
+                                //             case '11':
+                                //                 if (day == '30') {
+                                //                     day = '01'
+                                //                     month = '12'
+                                //                 }
+                                //                 else {
+                                //                     day = itostring(parseInt(day) + 1)
+                                //                 }
+                                //                 break;
+                                //             case '12':
+                                //                 if (day == '31') {
+                                //                     year = itostring(parseInt(year) + 1)
+                                //                     day = '01'
+                                //                     month = '01'
+                                //                 }
+                                //                 else {
+                                //                     day = itostring(parseInt(day) + 1)
+                                //                 }
+                                //                 break;
+                                //         }
+                                //         cur = year + '-' + month + '-' + day
+                                //     }
+                                //     // var tmp = arr[i]
+                                //     // newobj[tmp] = obj[tmp]
+                                // }
+
+                                // Accurate to month
+                                for (i = 0; i < arr.length; i++) {
+                                    if (newobj[arr[i].substr(0, 7)])
+                                        newobj[arr[i].substr(0, 7)] += obj[arr[i]]
+                                    else
+                                        newobj[arr[i].substr(0, 7)] = obj[arr[i]]
                                 }
+
+                                var xvalue = []
+                                var yvalue = []
+
                                 for (var i in newobj) {
-                                    date.push(i)
-                                    data.push(newobj[i])
+                                    xvalue.push(i)
+                                    yvalue.push(newobj[i])
                                 }
 
                                 option = {
@@ -551,7 +572,12 @@ The above copyright notice and this permission notice shall be included in all c
                                     xAxis: {
                                         type: 'category',
                                         boundaryGap: false,
-                                        data: date
+                                        axisLabel: {
+                                            show: true,
+                                            interval: 2,
+                                            rotate: 60
+                                        },
+                                        data: xvalue
                                     },
                                     yAxis: {
                                         type: 'value',
@@ -595,7 +621,7 @@ The above copyright notice and this permission notice shall be included in all c
                                                     color: 'rgb(255, 70, 131)'
                                                 }])
                                             },
-                                            data: data
+                                            data: yvalue
                                         }
                                     ]
 
@@ -681,28 +707,28 @@ The above copyright notice and this permission notice shall be included in all c
 
                                     app.currentIndex = -1;
 
-                                    setInterval(function () {
-                                        var dataLen = option.series[0].data.length;
-                                        // 取消之前高亮的图形
-                                        myChart.dispatchAction({
-                                            type: 'downplay',
-                                            seriesIndex: 0,
-                                            dataIndex: app.currentIndex
-                                        });
-                                        app.currentIndex = (app.currentIndex + 1) % dataLen;
-                                        // 高亮当前图形
-                                        myChart.dispatchAction({
-                                            type: 'highlight',
-                                            seriesIndex: 0,
-                                            dataIndex: app.currentIndex
-                                        });
-                                        // 显示 tooltip
-                                        myChart.dispatchAction({
-                                            type: 'showTip',
-                                            seriesIndex: 0,
-                                            dataIndex: app.currentIndex
-                                        });
-                                    }, 1000);
+                                    // setInterval(function () {
+                                    //     var dataLen = option.series[0].data.length;
+                                    //     // 取消之前高亮的图形
+                                    //     myChart.dispatchAction({
+                                    //         type: 'downplay',
+                                    //         seriesIndex: 0,
+                                    //         dataIndex: app.currentIndex
+                                    //     });
+                                    //     app.currentIndex = (app.currentIndex + 1) % dataLen;
+                                    //     // 高亮当前图形
+                                    //     myChart.dispatchAction({
+                                    //         type: 'highlight',
+                                    //         seriesIndex: 0,
+                                    //         dataIndex: app.currentIndex
+                                    //     });
+                                    //     // 显示 tooltip
+                                    //     myChart.dispatchAction({
+                                    //         type: 'showTip',
+                                    //         seriesIndex: 0,
+                                    //         dataIndex: app.currentIndex
+                                    //     });
+                                    // }, 1000);
                                     if (option && typeof option === "object") {
                                         myChart.setOption(option, true);
                                     }
