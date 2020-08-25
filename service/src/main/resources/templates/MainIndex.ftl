@@ -40,7 +40,8 @@ The above copyright notice and this permission notice shall be included in all c
 <body class="">
 
 <div class="wrapper ">
-    <div class="sidebar" data-color="blue" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+<#--    <div class="sidebar" data-color="blue" data-background-color="white" data-image="./img/sidebar-1.jpg">-->
+    <div class="sidebar" data-color="blue" data-background-color="white">
         <!--
           Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
           Tip 2: you can also add an image using data-image tag
@@ -168,6 +169,19 @@ The above copyright notice and this permission notice shall be included in all c
                 </div>
 
                 <div class="card">
+                    <div class="card-header card-header-text card-header-blue">
+                        <div class="card-text">
+                            <h4 class="card-title ">需求分类趋势</h4>
+                        </div>
+                    </div>
+                    <div class="card-body" >
+                        <div id="qushi" style="width: 100%;height:500px;">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
                     <ul class="nav nav-pills nav-pills-primary" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active text-black" data-toggle="tab" href="#link1" role="tablist" aria-expanded="true" style="color:black">
@@ -260,48 +274,53 @@ The above copyright notice and this permission notice shall be included in all c
 </div>
 
 <!--   Core JS Files   -->
-<script src="../assets/js/core/jquery.min.js"></script>
-<script src="../assets/js/core/popper.min.js"></script>
-<script src="../assets/js/core/bootstrap-material-design.min.js"></script>
-<script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+<script src="./js/core/jquery.min.js"></script>
+<script src="./js/core/popper.min.js"></script>
+<script src="./js/core/bootstrap-material-design.min.js"></script>
+<script src="./js/plugins/perfect-scrollbar.jquery.min.js"></script>
 <!-- Plugin for the momentJs  -->
-<script src="../assets/js/plugins/moment.min.js"></script>
+<script src="./js/plugins/moment.min.js"></script>
 <!--  Plugin for Sweet Alert -->
-<script src="../assets/js/plugins/sweetalert2.js"></script>
+<script src="./js/plugins/sweetalert2.js"></script>
 <!-- Forms Validations Plugin -->
-<script src="../assets/js/plugins/jquery.validate.min.js"></script>
+<script src="./js/plugins/jquery.validate.min.js"></script>
 <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
-<script src="../assets/js/plugins/jquery.bootstrap-wizard.js"></script>
+<script src="./js/plugins/jquery.bootstrap-wizard.js"></script>
 <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
-<script src="../assets/js/plugins/bootstrap-selectpicker.js"></script>
+<script src="./js/plugins/bootstrap-selectpicker.js"></script>
 <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
-<script src="../assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
+<script src="./js/plugins/bootstrap-datetimepicker.min.js"></script>
 <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
-<script src="../assets/js/plugins/jquery.dataTables.min.js"></script>
+<#--<script src="./js/plugins/jquery.dataTables.min.js"></script>-->
 <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
-<script src="../assets/js/plugins/bootstrap-tagsinput.js"></script>
+<script src="./js/plugins/bootstrap-tagsinput.js"></script>
 <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-<script src="../assets/js/plugins/jasny-bootstrap.min.js"></script>
+<script src="./js/plugins/jasny-bootstrap.min.js"></script>
 <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
-<script src="../assets/js/plugins/fullcalendar.min.js"></script>
+<script src="./js/plugins/fullcalendar.min.js"></script>
 <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
-<script src="../assets/js/plugins/jquery-jvectormap.js"></script>
+<script src="./js/plugins/jquery-jvectormap.js"></script>
 <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-<script src="../assets/js/plugins/nouislider.min.js"></script>
+<script src="./js/plugins/nouislider.min.js"></script>
 <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
 <!-- Library for adding dinamically elements -->
-<script src="../assets/js/plugins/arrive.min.js"></script>
+<script src="./js/plugins/arrive.min.js"></script>
 <!--  Google Maps Plugin    -->
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+<#--<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>-->
 <!-- Chartist JS -->
-<script src="../assets/js/plugins/chartist.min.js"></script>
+<script src="./js/plugins/chartist.min.js"></script>
 <!--  Notifications Plugin    -->
-<script src="../assets/js/plugins/bootstrap-notify.js"></script>
+<script src="./js/plugins/bootstrap-notify.js"></script>
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-<script src="../assets/js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>
+<script src="./js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-<script src="../assets/demo/demo.js"></script>
+<script src="./demo/demo.js"></script>
+<script src="./js/echarts.min.js"></script>
+<script src="./js/jquery.cookie.js"></script>
+<script src="http://api.map.baidu.com/api?v=2.0&ak=ol0KpqLuwSsAecB1gGPgOdRZeaqSofiP"></script>
+
+
 <script>
     $(document).ready(function() {
         $().ready(function() {
@@ -480,6 +499,114 @@ The above copyright notice and this permission notice shall be included in all c
 
     });
 </script>
+
+<script>
+    window.onload = function() {
+        console.log("write cookie")
+        var geolocation = new BMap.Geolocation();
+        geolocation.getCurrentPosition(function (r) {
+            if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+                var longitude = r.point.lng;
+                var latitude = r.point.lat;
+                $.cookie("the_longitude", longitude);
+                $.cookie("the_latitude", latitude);
+                console.log("cookie done ")
+            } else {
+                alert('failed' + this.getStatus());
+            }
+        }, {enableHighAccuracy: true})
+    }
+</script>
+
+<script type="text/javascript">
+    var myChart3= echarts.init(document.getElementById('qushi'));
+
+    var url4='/echartshow4?subname';
+    console.log(url4);
+
+    $.ajax({
+        method: 'get',
+        url: '/chart',
+        dataType: 'json',
+        success: function (data) {
+            var category=[];
+            var dataser=[];
+            $.each(data,function (i,obj) {
+                var t=[];
+                t.push(obj.dates);
+                t.push(obj.count);
+                t.push(obj.category);
+                dataser.push(t);
+                category.push(obj.category)
+            });
+            // console.log(category);
+            // console.log(dataser);
+            option = {
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'line',
+                        lineStyle: {
+                            color: 'rgba(0,0,0,0.2)',
+                            width: 1,
+                            type: 'solid'
+                        }
+                    }
+                },
+                title:{
+                    text:"",
+                    top: 100,
+                },
+                legend: {
+                    data: category,
+                    textStyle: { //图例文字的样式
+                        color: '#000000',
+                        fontSize: 15
+                    }
+                },
+                singleAxis: {
+                    top: 50,
+                    bottom: 50,
+                    axisTick: {},
+                    axisLabel: {},
+                    type: 'time',
+                    axisPointer: {
+                        animation: true,
+                        label: {
+                            show: false
+                        }
+                    },
+                    splitLine: {
+                        show: true,
+                        lineStyle: {
+                            type: 'dashed',
+                            opacity: 0.2
+                        }
+                    }
+                },
+                series: [
+                    {
+                        type: 'themeRiver',
+                        emphasis: {
+                            itemStyle: {
+                                shadowBlur: 20,
+                                shadowColor: 'rgba(0, 0, 0, 0.8)'
+                            }
+                        },
+                        data: dataser,
+                        label: {
+                            show: false
+                        },
+                    }
+                ]
+            };
+            myChart3.setOption(option);
+        }
+    });
+
+
+</script>
+
 
 </body>
 

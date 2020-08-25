@@ -35,7 +35,8 @@ The above copyright notice and this permission notice shall be included in all c
 <body class="">
 
 <div class="wrapper ">
-    <div class="sidebar" data-color="blue" data-background-color="white" data-image="./img/sidebar-1.jpg">
+<#--    <div class="sidebar" data-color="blue" data-background-color="white" data-image="./img/sidebar-1.jpg">-->
+    <div class="sidebar" data-color="blue" data-background-color="white">
         <!--
           Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
           Tip 2: you can also add an image using data-image tag
@@ -128,17 +129,33 @@ The above copyright notice and this permission notice shall be included in all c
                                 <button class="dropdown-item" type="button">需求类型</button>
                             </ul>
                         </div>
-
                         <div class="col-md-9">
-                            <form method="post" action="/search">
+                            <form method="get" action="/search">
                                 <div class="row">
                                     <div class="col-md-8">
                                         <div class="form-group">
-                                            <input id="keyword" name="keyword" type="text" class="form-control" placeholder="" value="${formKeyword}">
+                                            <input id="keyword" name="keyword" type="text" class="form-control" placeholder="">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <button class="btn btn-blue" type="submit">搜索一下</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div class="row">
+                                            <#list category as item>
+                                                <div class="form-check">
+                                                    <label class="form-check-label">
+                                                        <input class="form-check-input" type="checkbox" name="category" id="check" value=${item.category}>
+                                                        ${item.category} &nbsp; &nbsp;
+                                                        <span class="form-check-sign">
+                                                        <span class="check"></span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </#list>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
@@ -146,28 +163,62 @@ The above copyright notice and this permission notice shall be included in all c
                     </div>
 
                     <!--搜索框那一栏-->
-                    <!--行业分类-->
-                    <div class="row">
-                        <div class="col-md-3">
-                            <p class="text-blue pull-right " >行业分类:</p>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="row">
-                                <#list category as item>
-                                <a class="text-blue" href="/category?categoryId=${item.categoryId?c}&pageSize=${result.data.pageSize?c}" > &nbsp&nbsp ${item.category} &nbsp&nbsp</a>
-                            </#list>
-                        </div>
-                    </div>
-                    <div class="col-md-3"></div>
-                </div>
                 </div>
                 <!--正在热搜-->
             </div>
+            <div class="button-container" >
+                <#if order == 0>
+                    <a href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=0">
+                        <button class="btn btn-blue disabled">综合<i class="material-icons">south</i></button>
+                    </a>
+                <#else >
+                    <a href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=0">
+                        <button class="btn btn-blue">综合<i class="material-icons">south</i></button>
+                    </a>
+                </#if>
+                <#if order == 1>
+                    <a href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=1">
+                        <button class="btn btn-blue disabled">相关度<i class="material-icons">south</i></button>
+                    </a>
+                <#else >
+                    <a href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=1">
+                        <button class="btn btn-blue">相关度<i class="material-icons">south</i></button>
+                    </a>
+                </#if>
+                <#if order == 2>
+                    <a href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=2">
+                        <button class="btn btn-blue disabled">时间<i class="material-icons">south</i></button>
+                    </a>
+                <#else >
+                    <a href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=2">
+                        <button class="btn btn-blue">时间<i class="material-icons">south</i></button>
+                    </a>
+                </#if>
 
+                <#if order == 3>
+                    <a href="javascript:getlocation()">
+                        <button class="btn btn-blue disabled">距离<i class="material-icons">south</i></button>
+                    </a>
+                <#else >
+                    <a href="javascript:getlocation()">
+                        <button class="btn btn-blue">距离<i class="material-icons">south</i></button>
+                    </a>
+                </#if>
 
+                <#if order == 4>
+                    <a href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=4">
+                        <button class="btn btn-blue disabled">企业信用<i class="material-icons">south</i></button>
+                    </a>
+                <#else >
+                    <a href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=4">
+                        <button class="btn btn-blue">企业信用<i class="material-icons">south</i></button>
+                    </a>
+                </#if>
+            </div>
 
             <div>
                 <div style="width:70%;float:left;">
+                            <#if result.data.size != 0>
                             <#list result.data.list as item>
                                 <div class="col-md-12">
                                     <div class="row">
@@ -208,6 +259,9 @@ The above copyright notice and this permission notice shall be included in all c
                                     </div>
                                 </div>
                             </#list>
+                            <#else>
+                                 无相关需求
+                            </#if>
                         </div>
 
                 <div class="col-md-12" style="width:30%;float:right;">
@@ -227,7 +281,7 @@ The above copyright notice and this permission notice shall be included in all c
                                     else
                                         obj['${item}'] = 1
                                 </#list>
-                                console.log(obj)
+                                // console.log(obj)
 
                                 var base = +new Date(1968, 9, 3);
                                 var oneDay = 24 * 3600 * 1000;
@@ -235,19 +289,130 @@ The above copyright notice and this permission notice shall be included in all c
 
                                 var data = [Math.random() * 300];
 
+                                function itostring(a) {
+                                    switch (a) {
+                                        case 1:
+                                            return '01'
+                                        case 2:
+                                            return '02'
+                                        case 3:
+                                            return '03'
+                                        case 4:
+                                            return '04'
+                                        case 5:
+                                            return '05'
+                                        case 6:
+                                            return '06'
+                                        case 7:
+                                            return '07'
+                                        case 8:
+                                            return '08'
+                                        case 9:
+                                            return '09'
+                                        case 10:
+                                            return '10'
+                                        case 11:
+                                            return '11'
+                                        case 12:
+                                            return '12'
+                                        case 13:
+                                            return '13'
+                                        case 14:
+                                            return '14'
+                                        case 15:
+                                            return '15'
+                                        case 16:
+                                            return '16'
+                                        case 17:
+                                            return '17'
+                                        case 18:
+                                            return '18'
+                                        case 19:
+                                            return '19'
+                                        case 20:
+                                            return '20'
+                                        case 21:
+                                            return '21'
+                                        case 22:
+                                            return '22'
+                                        case 23:
+                                            return '23'
+                                        case 24:
+                                            return '24'
+                                        case 25:
+                                            return '25'
+                                        case 26:
+                                            return '26'
+                                        case 27:
+                                            return '27'
+                                        case 28:
+                                            return '28'
+                                        case 29:
+                                            return '29'
+                                        case 30:
+                                            return '30'
+                                        case 31:
+                                            return '31'
+                                        case 2005:
+                                            return '2005'
+                                        case 2006:
+                                            return '2006'
+                                        case 2007:
+                                            return '2007'
+                                        case 2008:
+                                            return '2008'
+                                        case 2009:
+                                            return '2009'
+                                        case 2010:
+                                            return '2010'
+                                        case 2011:
+                                            return '2011'
+                                        case 2012:
+                                            return '2012'
+                                        case 2013:
+                                            return '2013'
+                                        case 2014:
+                                            return '2014'
+                                        case 2015:
+                                            return '2015'
+                                        case 2016:
+                                            return '2016'
+                                        case 2017:
+                                            return '2017'
+                                        case 2018:
+                                            return '2018'
+                                        case 2019:
+                                            return '2019'
+                                        case 2020:
+                                            return '2020'
+                                        case 2021:
+                                            return '2021'
+                                        case 2022:
+                                            return '2022'
+                                    }
+                                }
+                                
                                 var arr = []
                                 for (var key in obj) {
                                     arr.push(key)
                                 }
                                 arr = arr.sort()
                                 var newobj = {}
-                                for (var i in arr) {
-                                    var tmp = arr[i]
-                                    newobj[tmp] = obj[tmp]
+
+                                // Accurate to month
+                                for (i = 0; i < arr.length; i++) {
+                                    if (newobj[arr[i].substr(0, 7)])
+                                        newobj[arr[i].substr(0, 7)] += obj[arr[i]]
+                                    else
+                                        newobj[arr[i].substr(0, 7)] = obj[arr[i]]
                                 }
+
+                                var xvalue = []
+                                var yvalue = []
+
                                 for (var i in newobj) {
-                                    date.push(i)
-                                    data.push(newobj[i])
+                                    xvalue.push(i)
+                                    yvalue.push(newobj[i])
                                 }
 
                                 option = {
@@ -273,11 +438,18 @@ The above copyright notice and this permission notice shall be included in all c
                                     xAxis: {
                                         type: 'category',
                                         boundaryGap: false,
-                                        data: date
+                                        axisLabel: {
+                                            show: true,
+                                            interval: 2,
+                                            rotate: 60
+                                        },
+                                        data: xvalue
                                     },
                                     yAxis: {
                                         type: 'value',
-                                        boundaryGap: [0, '100%']
+                                        boundaryGap: [0, '100%'],
+                                        min: 0,
+                                        max: 20
                                     },
                                     dataZoom: [{
                                         type: 'inside',
@@ -315,7 +487,7 @@ The above copyright notice and this permission notice shall be included in all c
                                                     color: 'rgb(255, 70, 131)'
                                                 }])
                                             },
-                                            data: data
+                                            data: yvalue
                                         }
                                     ]
 
@@ -327,7 +499,6 @@ The above copyright notice and this permission notice shall be included in all c
 
                         </div>
                     </div>
-
                     <div class="card">
                                 <div id="main"  style="height: 100%;min-height:400px;"></div>
                                 <script type="text/javascript">
@@ -346,14 +517,22 @@ The above copyright notice and this permission notice shall be included in all c
                                         else
                                             obj['${item}'] = 1
                                     </#list>
-                                    for (var key in obj) {
-                                        data1.push(key)
-                                    }
-                                    for (var i in obj) {
+
+                                    for (i = 0; i < 5; i++) {
+                                        var name
+                                        var value = 0
+                                        for (var key in obj) {
+                                            if (value < obj[key]) {
+                                                name = key
+                                                value = obj[key]
+                                            }
+                                        }
                                         var tmp = {}
-                                        tmp['value'] = obj[i]
-                                        tmp['name'] = i
+                                        tmp['value'] = value
+                                        tmp['name'] = name
+                                        data1.push(name)
                                         data2.push(tmp)
+                                        obj[name] = 0
                                     }
 
                                     console.log(data1)
@@ -393,28 +572,28 @@ The above copyright notice and this permission notice shall be included in all c
 
                                     app.currentIndex = -1;
 
-                                    setInterval(function () {
-                                        var dataLen = option.series[0].data.length;
-                                        // 取消之前高亮的图形
-                                        myChart.dispatchAction({
-                                            type: 'downplay',
-                                            seriesIndex: 0,
-                                            dataIndex: app.currentIndex
-                                        });
-                                        app.currentIndex = (app.currentIndex + 1) % dataLen;
-                                        // 高亮当前图形
-                                        myChart.dispatchAction({
-                                            type: 'highlight',
-                                            seriesIndex: 0,
-                                            dataIndex: app.currentIndex
-                                        });
-                                        // 显示 tooltip
-                                        myChart.dispatchAction({
-                                            type: 'showTip',
-                                            seriesIndex: 0,
-                                            dataIndex: app.currentIndex
-                                        });
-                                    }, 1000);
+                                    // setInterval(function () {
+                                    //     var dataLen = option.series[0].data.length;
+                                    //     // 取消之前高亮的图形
+                                    //     myChart.dispatchAction({
+                                    //         type: 'downplay',
+                                    //         seriesIndex: 0,
+                                    //         dataIndex: app.currentIndex
+                                    //     });
+                                    //     app.currentIndex = (app.currentIndex + 1) % dataLen;
+                                    //     // 高亮当前图形
+                                    //     myChart.dispatchAction({
+                                    //         type: 'highlight',
+                                    //         seriesIndex: 0,
+                                    //         dataIndex: app.currentIndex
+                                    //     });
+                                    //     // 显示 tooltip
+                                    //     myChart.dispatchAction({
+                                    //         type: 'showTip',
+                                    //         seriesIndex: 0,
+                                    //         dataIndex: app.currentIndex
+                                    //     });
+                                    // }, 1000);
                                     if (option && typeof option === "object") {
                                         myChart.setOption(option, true);
                                     }
@@ -429,7 +608,7 @@ The above copyright notice and this permission notice shall be included in all c
             共<i class="blue">${result.data.total}</i>条记录，当前显示第&nbsp;<i
                 class="blue">${result.data.pageNum}/${result.data.pages}</i>&nbsp;页
         </div>
-
+        <#if result.data.size != 0>
         <div class="button-container" style="text-align:center;clear:both;">
             <#if result.data.isFirstPage==false>
             <a href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}">
@@ -439,6 +618,7 @@ The above copyright notice and this permission notice shall be included in all c
             <a href="/search?keyword=${keyword}&pageNum=${result.data.prePage}&pageSize=${result.data.pageSize?c}">
                 <button class="btn btn-blue">上一页</button>
             </a>
+
         </#if>
 
         <#list result.data.navigatepageNums as element>
@@ -451,51 +631,20 @@ The above copyright notice and this permission notice shall be included in all c
     <a href="/search?keyword=${keyword}&pageNum=${element}&pageSize=${result.data.pageSize?c}">
         <button class="btn btn-blue">${element}</button>
     </a>
-</#if>
-</#list>
+    </#if>
+    </#list>
 
-<#if result.data.isLastPage==false>
-<a href="/search?keyword=${keyword}&pageNum=${result.data.nextPage}&pageSize=${result.data.pageSize?c}">
-    <button class="btn btn-blue">下一页</button>
-</a>
-<a href="/search?keyword=${keyword}&pageNum=${result.data.pages}&pageSize=${result.data.pageSize?c}">
-    <button class="btn btn-blue">最后一页</button>
-</a>
-</#if>
+    <#if result.data.isLastPage==false>
+    <a href="/search?keyword=${keyword}&pageNum=${result.data.nextPage}&pageSize=${result.data.pageSize?c}">
+        <button class="btn btn-blue">下一页</button>
+    </a>
+    <a href="/search?keyword=${keyword}&pageNum=${result.data.pages}&pageSize=${result.data.pageSize?c}">
+        <button class="btn btn-blue">最后一页</button>
+    </a>
+    </#if>
 </div>
+        </#if>
 
-
-<!--                <div class="col-md-4">-->
-<!--                <div class="card card-chart">-->
-<!--                    <div class="card-header card-header-blue">-->
-
-<!--                        <div  id="box" style="width: 300px;height: 300px;" ></div>-->
-<!--                    </div>-->
-<!--                    <div class="card-body">-->
-<!--                        <h4 class="card-title text-dark">需求趋势图</h4>-->
-<!--                    </div>-->
-<!--                    <div class="card-footer">-->
-<!--                        <div class="stats">-->
-<!--                            &lt;!&ndash;                                    <i class="material-icons">access_time</i> update 1 days ago&ndash;&gt;-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-
-<!--                <div class="card mb-3">-->
-<!--                    <img class="card-img-top" src="./img/kg1.jpg" rel="nofollow" alt="Card image cap">-->
-<!--                    <div class="card-body">-->
-<!--                        <h4 class="card-title">企业需求图</h4>-->
-<!--                        &lt;!&ndash;                                <p class="card-text"><small class="text-muted">updated 1 days ago</small></p>&ndash;&gt;-->
-<!--                    </div>-->
-<!--                </div>-->
-
-<!--            </div>-->
-
-</div>
-</div>
-</div>
-</div>
-</div>
 
 <!--   Core JS Files   -->
 <script src="./js/core/jquery.min.js"></script>
@@ -515,7 +664,7 @@ The above copyright notice and this permission notice shall be included in all c
 <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
 <script src="./js/plugins/bootstrap-datetimepicker.min.js"></script>
 <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
-<script src="./js/plugins/jquery.dataTables.min.js"></script>
+<#--<script src="./js/plugins/jquery.dataTables.min.js"></script>-->
 <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
 <script src="./js/plugins/bootstrap-tagsinput.js"></script>
 <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
@@ -537,16 +686,58 @@ The above copyright notice and this permission notice shall be included in all c
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="./js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+<script src="http://api.map.baidu.com/api?v=2.0&ak=ol0KpqLuwSsAecB1gGPgOdRZeaqSofiP"></script>
 <script src="./demo/demo.js"></script>
 <script src="./js/echarts.min.js"></script>
+<script src="./js/jquery.cookie.js"></script>
 
-<script>
+
+        <script>
     $(document).ready(function() {
         // Javascript method's body can be found in assets/js/demos.js
         md.initDashboardPageCharts();
 
     });
 </script>
+
+<script>
+    window.onload = function() {
+        console.log("the_longitude :", $.cookie("the_longitude"));
+        console.log("the_latitude :", $.cookie("the_latitude"));
+
+    }
+</script>
+
+
+<script>
+            getFloat = function (number, n) {
+                n = n ? parseInt(n) : 0;
+                if (n <= 0) return Math.round(number);
+                number = Math.round(number * Math.pow(10, n)) / Math.pow(10, n);
+                return number;
+            };
+
+            function getlocation() {
+                var longitude = $.cookie("the_longitude");
+                var latitude = $.cookie("the_latitude");
+                window.location.href = "/search?keyword=${keyword}&longitude=" + longitude + "&latitude=" + latitude + "&order=3"
+
+                <#--var geolocation = new BMap.Geolocation();-->
+                <#--geolocation.getCurrentPosition(function (r) {-->
+                <#--    if (this.getStatus() == BMAP_STATUS_SUCCESS) {-->
+                <#--        longitude = r.point.lng;-->
+                <#--        latitude = r.point.lat;-->
+                <#--        $("#longitude").val(longitude);-->
+                <#--        $("#latitude").val(latitude);-->
+
+                <#--        window.location.href = "/search?keyword=${keyword}&longitude=" + longitude + "&latitude=" + latitude + "&order=3"-->
+                <#--    } else {-->
+                <#--        alert('failed' + this.getStatus());-->
+                <#--    }-->
+                <#--}, {enableHighAccuracy: true})-->
+            }
+
+        </script>
 
 </body>
 
