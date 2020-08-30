@@ -505,7 +505,7 @@ The above copyright notice and this permission notice shall be included in all c
         console.log("write cookie")
         var geolocation = new BMap.Geolocation();
         geolocation.getCurrentPosition(function (r) {
-            if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+            if (this.getStatus() === BMAP_STATUS_SUCCESS) {
                 var longitude = r.point.lng;
                 var latitude = r.point.lat;
                 $.cookie("the_longitude", longitude);

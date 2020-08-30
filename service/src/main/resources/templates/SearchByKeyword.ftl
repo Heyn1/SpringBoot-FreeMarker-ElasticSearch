@@ -705,6 +705,7 @@ The above copyright notice and this permission notice shall be included in all c
         console.log("the_longitude :", $.cookie("the_longitude"));
         console.log("the_latitude :", $.cookie("the_latitude"));
 
+
     }
 </script>
 
@@ -718,23 +719,33 @@ The above copyright notice and this permission notice shall be included in all c
             };
 
             function getlocation() {
-                var longitude = $.cookie("the_longitude");
-                var latitude = $.cookie("the_latitude");
-                window.location.href = "/search?keyword=${keyword}&longitude=" + longitude + "&latitude=" + latitude + "&order=3"
+                var longitude
+                var latitude
+                if ($.cookie("the_latitude") !== undefined) {
+                    longitude = $.cookie("the_longitude");
+                    latitude = $.cookie("the_latitude");
+                }else {
+                    longitude = getLongAndLati()[0]
+                    latitude = getLongAndLati()[1]
+                }
+                window.location.href = "/search?keyword=${keyword}&longitude="
+                    + longitude + "&latitude=" + latitude + "&order=3"
+            }
 
-                <#--var geolocation = new BMap.Geolocation();-->
-                <#--geolocation.getCurrentPosition(function (r) {-->
-                <#--    if (this.getStatus() == BMAP_STATUS_SUCCESS) {-->
-                <#--        longitude = r.point.lng;-->
-                <#--        latitude = r.point.lat;-->
-                <#--        $("#longitude").val(longitude);-->
-                <#--        $("#latitude").val(latitude);-->
 
-                <#--        window.location.href = "/search?keyword=${keyword}&longitude=" + longitude + "&latitude=" + latitude + "&order=3"-->
-                <#--    } else {-->
-                <#--        alert('failed' + this.getStatus());-->
-                <#--    }-->
-                <#--}, {enableHighAccuracy: true})-->
+            function getLongAndLati() {
+                var long, lati
+                geolocation.getCurrentPosition(function (r) {
+                    if (this.getStatus() === BMAP_STATUS_SUCCESS) {
+                        long = r.point.lng;
+                        lati = r.point.lat;
+                        console.log("cookie done ")
+                    } else {
+                        alert('failed' + this.getStatus());
+                    }
+                }, {enableHighAccuracy: true})
+
+                return [long, lati]
             }
 
         </script>
