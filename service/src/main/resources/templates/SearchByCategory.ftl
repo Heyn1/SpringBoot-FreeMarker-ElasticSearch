@@ -207,6 +207,7 @@ The above copyright notice and this permission notice shall be included in all c
                     共<i class="blue">${result.data.total}</i>条记录，当前显示第&nbsp;<i
                             class="blue">${result.data.pageNum}/${result.data.pages}</i>&nbsp;页
                 </div>
+
                 <div class="button-container" style="text-align: center">
                     <#if result.data.isFirstPage==false>
                         <a href="/category?categoryId=${currentId?c}&pageNum=1&pageSize=${result.data.pageSize?c}">

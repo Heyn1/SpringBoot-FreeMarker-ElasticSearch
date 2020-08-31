@@ -124,7 +124,9 @@ public class DemandServiceImpl implements IDemandService {
         if (order.equals(ORDER_BY_RELEVANT)) {
             log.info("order by relevant");
         } else if (order.equals(ORDER_BY_TIME)) {
-
+            jsonRequestObj.put("sort", new JSONObject());
+            jsonRequestObj.getJSONObject("sort").put("create_time", new JSONObject());
+            jsonRequestObj.getJSONObject("sort").getJSONObject("create_time").put("order", "desc");
         } else if (order.equals(ORDER_BY_DISTANCE)) {
             jsonRequestObj.put("sort",new JSONArray());
             jsonRequestObj.getJSONArray("sort").add(new JSONObject());
