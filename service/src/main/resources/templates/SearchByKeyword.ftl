@@ -166,57 +166,76 @@ The above copyright notice and this permission notice shall be included in all c
                 </div>
                 <!--正在热搜-->
             </div>
+<#--            排序按钮-->
             <div class="container-fluid">
-            <div class="button-container" >
-                <#if order == 0>
-                    <a href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=0">
-                        <button class="btn btn-blue disabled">综合<i class="material-icons">south</i></button>
-                    </a>
-                <#else >
-                    <a href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=0">
-                        <button class="btn btn-blue">综合<i class="material-icons">south</i></button>
-                    </a>
-                </#if>
-                <#if order == 1>
-                    <a href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=1">
-                        <button class="btn btn-blue disabled">相关度<i class="material-icons">south</i></button>
-                    </a>
-                <#else >
-                    <a href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=1">
-                        <button class="btn btn-blue">相关度<i class="material-icons">south</i></button>
-                    </a>
-                </#if>
-                <#if order == 2>
-                    <a href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=2">
-                        <button class="btn btn-blue disabled">时间<i class="material-icons">south</i></button>
-                    </a>
-                <#else >
-                    <a href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=2">
-                        <button class="btn btn-blue">时间<i class="material-icons">south</i></button>
-                    </a>
-                </#if>
+                <nav class="navbar navbar-expand-lg bg-blue">
+                    <div class="container">
+                        <a class="navbar-brand" href="#">排序方式</a>
 
-                <#if order == 3>
-                    <a href="javascript:getlocation()">
-                        <button class="btn btn-blue disabled">距离<i class="material-icons">south</i></button>
-                    </a>
-                <#else >
-                    <a href="javascript:getlocation()">
-                        <button class="btn btn-blue">距离<i class="material-icons">south</i></button>
-                    </a>
-                </#if>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav">
+                                <#if order == 0>
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=0">
+                                            综合 <i class="material-icons">south</i></a>
+                                    </li>
+                                <#else >
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=0">
+                                            综合<i class="material-icons">south</i></a>
+                                    </li>
+                                </#if>
+                                <#if order == 1>
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=1">
+                                            相关度 <i class="material-icons">south</i></a>
+                                    </li>
+                                <#else >
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=1">
+                                            相关度<i class="material-icons">south</i></a>
+                                    </li>
+                                </#if>
+                                <#if order == 2>
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=2">
+                                            时间 <i class="material-icons">south</i></a>
+                                    </li>
+                                <#else >
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=2">
+                                            时间<i class="material-icons">south</i></a>
+                                    </li>
+                                </#if>
+                                <#if order == 3>
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=3">
+                                            距离 <i class="material-icons">south</i></a>
+                                    </li>
+                                <#else >
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=3">
+                                            距离<i class="material-icons">south</i></a>
+                                    </li>
+                                </#if>
+                                <#if order == 4>
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=4">
+                                            企业信用 <i class="material-icons">south</i></a>
+                                    </li>
+                                <#else >
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=4">
+                                            企业信用<i class="material-icons">south</i></a>
+                                    </li>
+                                </#if>
 
-                <#if order == 4>
-                    <a href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=4">
-                        <button class="btn btn-blue disabled">企业信用<i class="material-icons">south</i></button>
-                    </a>
-                <#else >
-                    <a href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=4">
-                        <button class="btn btn-blue">企业信用<i class="material-icons">south</i></button>
-                    </a>
-                </#if>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
             </div>
-            </div>
+
             <div>
                 <div style="width:70%;float:left;">
                             <#if result.data.size != 0>
