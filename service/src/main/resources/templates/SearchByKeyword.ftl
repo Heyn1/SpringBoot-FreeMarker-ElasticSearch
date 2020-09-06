@@ -166,6 +166,7 @@ The above copyright notice and this permission notice shall be included in all c
                 </div>
                 <!--正在热搜-->
             </div>
+            <div class="container-fluid">
             <div class="button-container" >
                 <#if order == 0>
                     <a href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=0">
@@ -215,7 +216,7 @@ The above copyright notice and this permission notice shall be included in all c
                     </a>
                 </#if>
             </div>
-
+            </div>
             <div>
                 <div style="width:70%;float:left;">
                             <#if result.data.size != 0>
@@ -234,7 +235,7 @@ The above copyright notice and this permission notice shall be included in all c
                                                         <div class="col-md-12">
                                                             <div class="row">
                                                                 <div class="col-md-8">
-                                                                    <a href="CompanyTabels.html" class="card-text text-blue" target="_blank">需求来源：${item.companyName}</a>
+                                                                    <a href="" class="card-text text-blue" target="_blank">需求来源：${item.companyName}</a>
                                                                 </div>
                                                                 <div class="col-md-4">
                                                                     <p class="card-text">资助金额：${item.money}</p>

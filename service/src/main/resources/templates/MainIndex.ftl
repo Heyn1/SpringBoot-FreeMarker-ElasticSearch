@@ -168,14 +168,14 @@ The above copyright notice and this permission notice shall be included in all c
                     <!--正在热搜-->
                 </div>
 
-                <div class="card">
+                <div class="card ">
                     <div class="card-header card-header-text card-header-blue">
                         <div class="card-text">
                             <h4 class="card-title ">需求分类趋势</h4>
                         </div>
                     </div>
                     <div class="card-body" >
-                        <div id="qushi" style="width: 100%;height:500px;">
+                        <div  id="qushi" style="width: 100%;height:500px;">
 
                         </div>
                     </div>
