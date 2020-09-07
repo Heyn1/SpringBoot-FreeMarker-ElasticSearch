@@ -14,22 +14,23 @@ The above copyright notice and this permission notice shall be included in all c
       xmlns:form="http://www.w3.org/1999/xhtml" xmlns:c="http://mybatis.org/schema/mybatis-mapper">
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <link rel="apple-touch-icon" sizes="76x76" href="./img/apple-icon.png">
     <link rel="icon" type="image/png" href="./img/favicon.png">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>
         企业需求搜索
     </title>
-    <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+    <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport'/>
     <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
     <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
-    <link href="../css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
+    <link href="../css/material-dashboard.css?v=2.1.2" rel="stylesheet"/>
     <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="demo/demo.css" rel="stylesheet" />
+    <link href="demo/demo.css" rel="stylesheet"/>
 </head>
 
 <body class="">
@@ -41,8 +42,8 @@ The above copyright notice and this permission notice shall be included in all c
           Tip 2: you can also add an image using data-image tag
       -->
         <div class="logo"><a href="#" class="simple-text logo-normal">
-            科技大数据检索查询系统
-        </a></div>
+                科技大数据检索查询系统
+            </a></div>
         <div class="sidebar-wrapper">
             <ul class="nav">
                 <li class="nav-item ">
@@ -76,9 +77,9 @@ The above copyright notice and this permission notice shall be included in all c
 
     <div class="main-panel">
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg bg-blue" >
+        <nav class="navbar navbar-expand-lg bg-blue">
             <div class="container">
-                <a class="navbar-brand" href="#" >企业需求搜索</a>
+                <a class="navbar-brand" href="#">企业需求搜索</a>
                 <div class="collapse navbar-collapse" id="navbarNav">
 
                     <ul class="navbar-nav ml-auto">
@@ -89,7 +90,7 @@ The above copyright notice and this permission notice shall be included in all c
                             <a class="nav-link" href="#">登陆</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="material-icons" >person</i></a>
+                            <a class="nav-link" href="#"><i class="material-icons">person</i></a>
                         </li>
                     </ul>
                 </div>
@@ -133,7 +134,8 @@ The above copyright notice and this permission notice shall be included in all c
                                 <div class="row">
                                     <div class="col-md-8">
                                         <div class="form-group">
-                                            <input id="keyword" name="keyword" type="text" class="form-control" placeholder="">
+                                            <input id="keyword" name="keyword" type="text" class="form-control"
+                                                   placeholder="">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -146,7 +148,8 @@ The above copyright notice and this permission notice shall be included in all c
                                             <#list category as item>
                                                 <div class="form-check">
                                                     <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" name="category" id="check" value=${item.category}>
+                                                        <input class="form-check-input" type="checkbox" name="category"
+                                                               id="check" value=${item.category}>
                                                         ${item.category} &nbsp; &nbsp;
                                                         <span class="form-check-sign">
                                                         <span class="check"></span>
@@ -165,7 +168,8 @@ The above copyright notice and this permission notice shall be included in all c
                 </div>
                 <!--正在热搜-->
             </div>
-            <div class="button-container" >
+
+            <div class="button-container">
                 <#if order == 0>
                     <a href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=0">
                         <button class="btn btn-blue disabled">综合<i class="material-icons">south</i></button>
@@ -217,55 +221,62 @@ The above copyright notice and this permission notice shall be included in all c
 
             <div>
                 <div style="width:70%;float:left;">
-                            <#if result.data.size != 0>
-                            <#list result.data.list as item>
-                                <div class="col-md-12">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="card">
-                                                <div class="card-header card-header-text card-header-blue">
-                                                    <div class="card-text">
-                                                        <h4 class="card-title"> ${item.demandTitle}</h4>
-                                                    </div>
+                    <#if result.data.size != 0>
+                        <#list result.data.list as item>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-header card-header-text card-header-blue">
+                                                <div class="card-text">
+                                                    <h4 class="card-title"> ${item.demandTitle}</h4>
                                                 </div>
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="row">
-                                                                <div class="col-md-8">
-                                                                    <a href="CompanyTabels.html" class="card-text text-blue" target="_blank">需求来源：${item.companyName}</a>
-                                                                </div>
-                                                                <div class="col-md-4">
-                                                                    <p class="card-text">资助金额：${item.money}</p>
-                                                                </div>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-md-8">
+                                                                <a href="CompanyTabels.html" class="card-text text-blue"
+                                                                   target="_blank">需求来源：${item.companyName}</a>
                                                             </div>
-                                                            <p class="card-text">需求摘要：
-                                                                <#if (item.demandDetail??&&item.demandDetail?length>100) >
-                                                                    ${item.demandDetail?substring(0,99)}...
-                                                                <#else>
-                                                                    ${item.demandDetail}
-                                                                </#if>
-                                                            </p>
-                                                            <p class="card-text">
-                                                                <p>发布日期：${item.createTime?string('yyyy-MM-dd')}</p>
-                                                                <span class="pull-right"> 联系方式：${item.phone}</span>
-                                                            </p>
+                                                            <div class="col-md-4">
+                                                                <p class="card-text">资助金额：${item.money}</p>
+                                                            </div>
                                                         </div>
+                                                        <p class="card-text">需求摘要：
+                                                            <#if (item.demandDetail??&&item.demandDetail?length>100) >
+                                                                ${item.demandDetail?substring(0,99)}...
+                                                            <#else>
+                                                                ${item.demandDetail}
+                                                            </#if>
+                                                        </p>
+                                                        <p class="card-text">
+                                                        <p>发布日期：${item.createTime?string('yyyy-MM-dd')}</p>
+                                                        <span class="pull-right"> 联系方式：${item.phone}</span>
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </#list>
-                            <#else>
-                                 无相关需求
-                            </#if>
-                        </div>
+                            </div>
+                        </#list>
+                    <#else>
+                        无相关需求
+                    </#if>
+                </div>
 
                 <div class="col-md-12" style="width:30%;float:right;">
                     <div>
+
                         <div class="card">
+                            <div class="card-header card-header-text card-header-blue">
+                                <div class="card-text">
+                                    <h4 class="card-title"> ${keyword}热度图 </h4>
+                                </div>
+                            </div>
                             <div id="main1" style="width: 100%;height:400px;"></div>
                             <script type="text/javascript">
                                 // 基于准备好的dom，初始化echarts实例
@@ -275,12 +286,11 @@ The above copyright notice and this permission notice shall be included in all c
                                 var obj = {}
 
                                 <#list resultTimeStamp as item>
-                                    if(obj['${item}'])
-                                        obj['${item}']++
-                                    else
-                                        obj['${item}'] = 1
+                                if (obj['${item}'])
+                                    obj['${item}']++
+                                else
+                                    obj['${item}'] = 1
                                 </#list>
-                                // console.log(obj)
 
                                 var base = +new Date(1968, 9, 3);
                                 var oneDay = 24 * 3600 * 1000;
@@ -390,7 +400,7 @@ The above copyright notice and this permission notice shall be included in all c
                                             return '2022'
                                     }
                                 }
-                                
+
                                 var arr = []
                                 for (var key in obj) {
                                     arr.push(key)
@@ -556,19 +566,6 @@ The above copyright notice and this permission notice shall be included in all c
                                             return [pt[0], '10%'];
                                         }
                                     },
-                                    title: {
-                                        left: 'center',
-                                        text: '${keyword}热度图',
-                                    },
-                                    toolbox: {
-                                        feature: {
-                                            dataZoom: {
-                                                yAxisIndex: 'none'
-                                            },
-                                            restore: {},
-                                            saveAsImage: {}
-                                        }
-                                    },
                                     xAxis: {
                                         type: 'category',
                                         boundaryGap: false,
@@ -635,204 +632,228 @@ The above copyright notice and this permission notice shall be included in all c
                     </div>
 
                     <div class="card">
-                                <div id="main"  style="height: 100%;min-height:400px;"></div>
-                                <script type="text/javascript">
-                                    // 基于准备好的dom，初始化ECharts实例
-                                    var myChart = echarts.init(document.getElementById('main'));
-                                    var app = {};
-                                    option = null;
-                                    // 指定图表的配置项和数据
-
-                                    var data1 = []
-                                    var data2 = []
-                                    var obj = {}
-                                    <#list resultCategory as item>
-                                        if(obj['${item}'])
-                                            obj['${item}']++
-                                        else
-                                            obj['${item}'] = 1
-                                    </#list>
-
-                                    for (i = 0; i < 5; i++) {
-                                        var name
-                                        var value = 0
-                                        for (var key in obj) {
-                                            if (value < obj[key]) {
-                                                name = key
-                                                value = obj[key]
-                                            }
-                                        }
-                                        var tmp = {}
-                                        tmp['value'] = value
-                                        tmp['name'] = name
-                                        data1.push(name)
-                                        data2.push(tmp)
-                                        obj[name] = 0
-                                    }
-
-                                    console.log(data1)
-                                    console.log(data2)
-
-                                    var option = {
-                                        title : {
-                                            text: '${keyword}领域分布',
-                                            x: 'center'
-                                        },
-                                        tooltip: {
-                                            trigger: 'item',
-                                            formatter: "{a} <br/>{b} : {c} ({d}%)"
-                                        },
-                                        legend: {
-                                            orient: 'vertical',
-                                            left: 'left',
-                                            data: data1
-                                        },
-                                        series : [
-                                            {
-                                                name: '领域分布',
-                                                type: 'pie',
-                                                radius : '55%',
-                                                center: ['50%', '60%'],
-                                                data: data2,
-                                                itemStyle: {
-                                                    emphasis: {
-                                                        shadowBlur: 10,
-                                                        shadowOffsetX: 0,
-                                                        shadowColor: 'rgba(0, 0, 0, 0.5)'
-                                                    }
-                                                }
-                                            }
-                                        ]
-                                    };
-
-                                    app.currentIndex = -1;
-
-                                    // setInterval(function () {
-                                    //     var dataLen = option.series[0].data.length;
-                                    //     // 取消之前高亮的图形
-                                    //     myChart.dispatchAction({
-                                    //         type: 'downplay',
-                                    //         seriesIndex: 0,
-                                    //         dataIndex: app.currentIndex
-                                    //     });
-                                    //     app.currentIndex = (app.currentIndex + 1) % dataLen;
-                                    //     // 高亮当前图形
-                                    //     myChart.dispatchAction({
-                                    //         type: 'highlight',
-                                    //         seriesIndex: 0,
-                                    //         dataIndex: app.currentIndex
-                                    //     });
-                                    //     // 显示 tooltip
-                                    //     myChart.dispatchAction({
-                                    //         type: 'showTip',
-                                    //         seriesIndex: 0,
-                                    //         dataIndex: app.currentIndex
-                                    //     });
-                                    // }, 1000);
-                                    if (option && typeof option === "object") {
-                                        myChart.setOption(option, true);
-                                    }
-                                </script>
+                        <div class="card-header card-header-text card-header-blue">
+                            <div class="card-text">
+                                <h4 class="card-title"> ${keyword}领域分布 </h4>
                             </div>
                         </div>
+                        <div id="main" style="height: 100%;min-height:400px;"></div>
+                        <script type="text/javascript">
+                            // 基于准备好的dom，初始化ECharts实例
+                            var myChart = echarts.init(document.getElementById('main'));
+                            var app = {};
+                            option = null;
+                            // 指定图表的配置项和数据
+
+                            var data1 = []
+                            var data2 = []
+                            var obj = {}
+                            <#list resultCategory as item>
+                            if (obj['${item}'])
+                                obj['${item}']++
+                            else
+                                obj['${item}'] = 1
+                            </#list>
+
+                            for (i = 0; i < 5; i++) {
+                                var name
+                                var value = 0
+                                for (var key in obj) {
+                                    if (value < obj[key]) {
+                                        name = key
+                                        value = obj[key]
+                                    }
+                                }
+                                var tmp = {}
+                                tmp['value'] = value
+                                tmp['name'] = name
+                                data1.push(name)
+                                data2.push(tmp)
+                                obj[name] = 0
+                            }
+
+                            var option = {
+                                tooltip: {
+                                    trigger: 'item',
+                                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                                },
+                                legend: {
+                                    orient: 'vertical',
+                                    left: 'left',
+                                    data: data1
+                                },
+                                series: [
+                                    {
+                                        name: '领域分布',
+                                        type: 'pie',
+                                        radius: '55%',
+                                        center: ['50%', '60%'],
+                                        data: data2,
+                                        itemStyle: {
+                                            emphasis: {
+                                                shadowBlur: 10,
+                                                shadowOffsetX: 0,
+                                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                            }
+                                        }
+                                    }
+                                ]
+                            };
+
+                            app.currentIndex = -1;
+
+                            if (option && typeof option === "object") {
+                                myChart.setOption(option, true);
+                            }
+                        </script>
+                    </div>
+                </div>
             </div>
 
         </div>
 
-        <div class="message" style="clear:both;">
-            共<i class="blue">${result.data.total}</i>条记录，当前显示第&nbsp;<i
-                class="blue">${result.data.pageNum}/${result.data.pages}</i>&nbsp;页
-        </div>
         <#if result.data.size != 0>
-        <div class="button-container" style="text-align:center;clear:both;">
-            <#if result.data.isFirstPage==false>
-            <a href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}">
-                <button class="btn btn-blue">第一页</button>
-            </a>
+            <div style="clear:both;">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1"> 共${result.data.total}条 </a>
+                        </li>
+                        <#if result.data.isFirstPage==false>
+                            <li class="page-item">
+                                <a class="page-link" href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}"> 第一页 </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="/search?keyword=${keyword}&pageNum=${result.data.prePage}&pageSize=${result.data.pageSize?c}">上一页</a>
+                            </li>
+                        </#if>
 
-            <a href="/search?keyword=${keyword}&pageNum=${result.data.prePage}&pageSize=${result.data.pageSize?c}">
-                <button class="btn btn-blue">上一页</button>
-            </a>
+                        <#list result.data.navigatepageNums as element>
+                            <#if element == result.data.pageNum>
+                                <li class="page-item active">
+                                    <span class="page-link">
+                                        ${element}
+                                        <span class="sr-only">
+                                            (current)
+                                        </span>
+                                    </span>
+<#--                                    <a class="page-link" href="/search?keyword=${keyword}&pageNum=${element}&pageSize=${result.data.pageSize?c}">${element}</a>-->
+                                </li>
+                            </#if>
+                            <#if element != result.data.pageNum>
+                                <li class="page-item">
+                                    <a class="page-link" href="/search?keyword=${keyword}&pageNum=${element}&pageSize=${result.data.pageSize?c}">${element}</a>
+                                </li>
+                            </#if>
+                        </#list>
+
+                        <#if result.data.isLastPage==false>
+                            <li class="page-item">
+                                <a class="page-link" href="/search?keyword=${keyword}&pageNum=${result.data.nextPage}&pageSize=${result.data.pageSize?c}">下一页</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="/search?keyword=${keyword}&pageNum=${result.data.pages}&pageSize=${result.data.pageSize?c}">最后一页</a>
+                            </li>
+                        </#if>
+                    </ul>
+                </nav>
+            </div>
         </#if>
 
-        <#list result.data.navigatepageNums as element>
-        <#if element == result.data.pageNum>
-        <a href="/search?keyword=${keyword}&pageNum=${element}&pageSize=${result.data.pageSize?c}">
-            <button class="btn btn-blue disabled">${element}</button>
-        </a>
-    </#if>
-    <#if element != result.data.pageNum>
-    <a href="/search?keyword=${keyword}&pageNum=${element}&pageSize=${result.data.pageSize?c}">
-        <button class="btn btn-blue">${element}</button>
-    </a>
-</#if>
-</#list>
+        <#--        <div class="message" style="clear:both;">-->
+        <#--            共<i class="blue">${result.data.total}</i>条记录，当前显示第&nbsp;<i-->
+        <#--                class="blue">${result.data.pageNum}/${result.data.pages}</i>&nbsp;页-->
+        <#--        </div>-->
+<#--        <#if result.data.size != 0>-->
+<#--            <div class="button-container" style="text-align:center;clear:both;">-->
+<#--                <#if result.data.isFirstPage==false>-->
+<#--                    <a href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}">-->
+<#--                        <button class="btn btn-blue">第一页</button>-->
+<#--                    </a>-->
 
-<#if result.data.isLastPage==false>
-<a href="/search?keyword=${keyword}&pageNum=${result.data.nextPage}&pageSize=${result.data.pageSize?c}">
-    <button class="btn btn-blue">下一页</button>
-</a>
-<a href="/search?keyword=${keyword}&pageNum=${result.data.pages}&pageSize=${result.data.pageSize?c}">
-    <button class="btn btn-blue">最后一页</button>
-</a>
-</#if>
-</div>
-        </#if>
+<#--                    <a href="/search?keyword=${keyword}&pageNum=${result.data.prePage}&pageSize=${result.data.pageSize?c}">-->
+<#--                        <button class="btn btn-blue">上一页</button>-->
+<#--                    </a>-->
+<#--                </#if>-->
+
+<#--                <#list result.data.navigatepageNums as element>-->
+<#--                    <#if element == result.data.pageNum>-->
+<#--                        <a href="/search?keyword=${keyword}&pageNum=${element}&pageSize=${result.data.pageSize?c}">-->
+<#--                            <button class="btn btn-blue disabled">${element}</button>-->
+<#--                        </a>-->
+<#--                    </#if>-->
+<#--                    <#if element != result.data.pageNum>-->
+<#--                        <a href="/search?keyword=${keyword}&pageNum=${element}&pageSize=${result.data.pageSize?c}">-->
+<#--                            <button class="btn btn-blue">${element}</button>-->
+<#--                        </a>-->
+<#--                    </#if>-->
+<#--                </#list>-->
+
+<#--                <#if result.data.isLastPage==false>-->
+<#--                    <a href="/search?keyword=${keyword}&pageNum=${result.data.nextPage}&pageSize=${result.data.pageSize?c}">-->
+<#--                        <button class="btn btn-blue">下一页</button>-->
+<#--                    </a>-->
+<#--                    <a href="/search?keyword=${keyword}&pageNum=${result.data.pages}&pageSize=${result.data.pageSize?c}">-->
+<#--                        <button class="btn btn-blue">最后一页</button>-->
+<#--                    </a>-->
+<#--                </#if>-->
+<#--            </div>-->
+<#--        </#if>-->
 
 
-<!--   Core JS Files   -->
-<script src="./js/core/jquery.min.js"></script>
-<script src="./js/core/popper.min.js"></script>
-<script src="./js/core/bootstrap-material-design.min.js"></script>
-<script src="./js/plugins/perfect-scrollbar.jquery.min.js"></script>
-<!-- Plugin for the momentJs  -->
-<script src="./js/plugins/moment.min.js"></script>
-<!--  Plugin for Sweet Alert -->
-<script src="./js/plugins/sweetalert2.js"></script>
-<!-- Forms Validations Plugin -->
-<script src="./js/plugins/jquery.validate.min.js"></script>
-<!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
-<script src="./js/plugins/jquery.bootstrap-wizard.js"></script>
-<!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
-<script src="./js/plugins/bootstrap-selectpicker.js"></script>
-<!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
-<script src="./js/plugins/bootstrap-datetimepicker.min.js"></script>
-<!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
-<script src="./js/plugins/jquery.dataTables.min.js"></script>
-<!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
-<script src="./js/plugins/bootstrap-tagsinput.js"></script>
-<!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-<script src="./js/plugins/jasny-bootstrap.min.js"></script>
-<!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
-<script src="./js/plugins/fullcalendar.min.js"></script>
-<!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
-<script src="./js/plugins/jquery-jvectormap.js"></script>
-<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-<script src="./js/plugins/nouislider.min.js"></script>
-<!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
-<!-- Library for adding dinamically elements -->
-<script src="./js/plugins/arrive.min.js"></script>
-<!-- Chartist JS -->
-<script src="./js/plugins/chartist.min.js"></script>
-<!--  Notifications Plugin    -->
-<script src="./js/plugins/bootstrap-notify.js"></script>
-<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-<script src="./js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>
-<!-- Material Dashboard DEMO methods, don't include it in your project! -->
-<script src="http://api.map.baidu.com/api?v=2.0&ak=ol0KpqLuwSsAecB1gGPgOdRZeaqSofiP"></script>
-<script src="./demo/demo.js"></script>
-<script src="./js/echarts.min.js"></script>
+        <!--   Core JS Files   -->
+        <script src="./js/core/jquery.min.js"></script>
+        <script src="./js/core/popper.min.js"></script>
+        <script src="./js/core/bootstrap-material-design.min.js"></script>
+        <script src="./js/plugins/perfect-scrollbar.jquery.min.js"></script>
+        <!-- Plugin for the momentJs  -->
+        <script src="./js/plugins/moment.min.js"></script>
+        <!--  Plugin for Sweet Alert -->
+        <script src="./js/plugins/sweetalert2.js"></script>
+        <!-- Forms Validations Plugin -->
+        <script src="./js/plugins/jquery.validate.min.js"></script>
+        <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
+        <script src="./js/plugins/jquery.bootstrap-wizard.js"></script>
+        <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+        <script src="./js/plugins/bootstrap-selectpicker.js"></script>
+        <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
+        <script src="./js/plugins/bootstrap-datetimepicker.min.js"></script>
+        <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
+        <script src="./js/plugins/jquery.dataTables.min.js"></script>
+        <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+        <script src="./js/plugins/bootstrap-tagsinput.js"></script>
+        <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+        <script src="./js/plugins/jasny-bootstrap.min.js"></script>
+        <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
+        <script src="./js/plugins/fullcalendar.min.js"></script>
+        <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
+        <script src="./js/plugins/jquery-jvectormap.js"></script>
+        <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+        <script src="./js/plugins/nouislider.min.js"></script>
+        <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+        <!-- Library for adding dinamically elements -->
+        <script src="./js/plugins/arrive.min.js"></script>
+        <!-- Chartist JS -->
+        <script src="./js/plugins/chartist.min.js"></script>
+        <!--  Notifications Plugin    -->
+        <script src="./js/plugins/bootstrap-notify.js"></script>
+        <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+        <script src="./js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>
+        <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+        <script src="http://api.map.baidu.com/api?v=2.0&ak=ol0KpqLuwSsAecB1gGPgOdRZeaqSofiP"></script>
+        <script src="./demo/demo.js"></script>
+        <script src="./js/echarts.min.js"></script>
 
-<script>
-    $(document).ready(function() {
-        // Javascript method's body can be found in assets/js/demos.js
-        md.initDashboardPageCharts();
+        <script>
+            $(document).ready(function () {
+                // Javascript method's body can be found in assets/js/demos.js
+                md.initDashboardPageCharts();
 
-    });
-</script>
-<script>
-            window.onload = function() {
+            });
+        </script>
+        <script>
+            window.onload = function () {
             }
 
             getFloat = function (number, n) {
@@ -841,6 +862,7 @@ The above copyright notice and this permission notice shall be included in all c
                 number = Math.round(number * Math.pow(10, n)) / Math.pow(10, n);
                 return number;
             };
+
             function getlocation() {
                 var geolocation = new BMap.Geolocation();
                 geolocation.getCurrentPosition(function (r) {
@@ -856,7 +878,6 @@ The above copyright notice and this permission notice shall be included in all c
                     }
                 }, {enableHighAccuracy: true})
             }
-
 
 
         </script>
