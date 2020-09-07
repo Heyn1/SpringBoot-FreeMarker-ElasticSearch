@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>折线图</title>
+    <script src="../assets/js/echarts.min.js"></script>
+</head>
+<body>
+<!--为echarts准备一个容器，画图就画在里面-->
+<div id="box" style="width: 600px;height: 600px;"></div>
+<script>
+    //初始化ehcharts实例
+    var myChart=echarts.init(document.getElementById("box"));
+    //指定图表的配置项和数据
+    var option={
+        //标题
+        title:{
+            text:'生鲜销量统计'
+        },
+        //工具箱
+        //保存图片
+        toolbox:{
+            show:true,
+            feature:{
+                saveAsImage:{
+                    show:true
+                }
+            }
+        },
+        //图例-每一条数据的名字叫销量
+        legend:{
+            data:['销量']
+        },
+        //x轴
+        xAxis:{
+            data:["苹果","橘子","橙子","香蕉","菠萝","榴莲"]
+        },
+        //y轴没有显式设置，根据值自动生成y轴
+        yAxis:{},
+        //数据-data是最终要显示的数据
+        series:[{
+            name:'销量',
+            type:'line',
+            data:[40,20,35,60,55,10]
+        }]
+    };
+    //使用刚刚指定的配置项和数据项显示图表
+    myChart.setOption(option);
+</script>
+</body>
+</html>

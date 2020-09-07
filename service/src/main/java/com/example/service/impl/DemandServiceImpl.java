@@ -109,22 +109,24 @@ public class DemandServiceImpl implements IDemandService {
         jsonRequestObj.getJSONObject("query").put("function_score", new JSONObject());
         jsonRequestObj.getJSONObject("query").getJSONObject("function_score").put("query", new JSONObject());
         jsonRequestObj.getJSONObject("query").getJSONObject("function_score").getJSONObject("query").put("bool",new JSONObject());
-        jsonRequestObj.getJSONObject("query").getJSONObject("function_score").getJSONObject("query").getJSONObject("bool").put("must",new JSONArray());
+        jsonRequestObj.getJSONObject("query").getJSONObject("function_score").getJSONObject("query").getJSONObject("bool").put("should",new JSONArray());
         jsonRequestObj.getJSONObject("query").getJSONObject("function_score").getJSONObject("query").getJSONObject("bool")
-                .getJSONArray("must").add(new JSONObject());
+                .getJSONArray("should").add(new JSONObject());
 
         int zeroIndex = 0;
         jsonRequestObj.getJSONObject("query").getJSONObject("function_score").getJSONObject("query").getJSONObject("bool")
-                .getJSONArray("must").getJSONObject(zeroIndex).put("match",new JSONObject());
+                .getJSONArray("should").getJSONObject(zeroIndex).put("match",new JSONObject());
         jsonRequestObj.getJSONObject("query").getJSONObject("function_score").getJSONObject("query").getJSONObject("bool")
-                .getJSONArray("must").getJSONObject(zeroIndex).getJSONObject("match").put("demand_title", keyword);
+                .getJSONArray("should").getJSONObject(zeroIndex).getJSONObject("match").put("demand_title", keyword);
 
 
         //排序字段
         if (order.equals(ORDER_BY_RELEVANT)) {
             log.info("order by relevant");
         } else if (order.equals(ORDER_BY_TIME)) {
-
+            jsonRequestObj.put("sort", new JSONObject());
+            jsonRequestObj.getJSONObject("sort").put("create_time", new JSONObject());
+            jsonRequestObj.getJSONObject("sort").getJSONObject("create_time").put("order", "desc");
         } else if (order.equals(ORDER_BY_DISTANCE)) {
             jsonRequestObj.put("sort",new JSONArray());
             jsonRequestObj.getJSONArray("sort").add(new JSONObject());

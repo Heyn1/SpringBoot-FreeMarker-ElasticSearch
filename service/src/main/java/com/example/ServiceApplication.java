@@ -16,7 +16,7 @@ public class ServiceApplication {
     public static void main(String[] args) {
 
         SpringApplication.run(ServiceApplication.class, args);
-        System.out.println("http://localhost:8080/main");
+        System.out.println("http://localhost:8085/main");
     }
 
 }
