@@ -31,4 +31,7 @@ public interface DemandMapper {
 
     List<Plot> selectPlotData();
 
+    Demand selectByTitle(@Param("title") String demandTitle,
+                         @Param("company") String companyName);
+
 }

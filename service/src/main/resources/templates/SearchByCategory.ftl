@@ -241,33 +241,6 @@ The above copyright notice and this permission notice shall be included in all c
                         </a>
                     </#if>
                 </div>
-
-                <!--                <div class="col-md-4">-->
-                <!--                <div class="card card-chart">-->
-                <!--                    <div class="card-header card-header-blue">-->
-
-                <!--                        <div  id="box" style="width: 300px;height: 300px;" ></div>-->
-                <!--                    </div>-->
-                <!--                    <div class="card-body">-->
-                <!--                        <h4 class="card-title text-dark">需求趋势图</h4>-->
-                <!--                    </div>-->
-                <!--                    <div class="card-footer">-->
-                <!--                        <div class="stats">-->
-                <!--                            &lt;!&ndash;                                    <i class="material-icons">access_time</i> update 1 days ago&ndash;&gt;-->
-                <!--                        </div>-->
-                <!--                    </div>-->
-                <!--                </div>-->
-
-                <!--                <div class="card mb-3">-->
-                <!--                    <img class="card-img-top" src="./img/kg1.jpg" rel="nofollow" alt="Card image cap">-->
-                <!--                    <div class="card-body">-->
-                <!--                        <h4 class="card-title">企业需求图</h4>-->
-                <!--                        &lt;!&ndash;                                <p class="card-text"><small class="text-muted">updated 1 days ago</small></p>&ndash;&gt;-->
-                <!--                    </div>-->
-                <!--                </div>-->
-
-                <!--            </div>-->
-
             </div>
         </div>
     </div>
@@ -324,55 +297,6 @@ The above copyright notice and this permission notice shall be included in all c
 
     });
 </script>
-
-<!--<script>-->
-<!--    var myChart=echarts.init(document.getElementById("box"));-->
-<!--    //指定图表的配置项和数据-->
-<!--    var option={-->
-<!--        title: {-->
-<!--            text: '需求趋势图',-->
-<!--            textStyle: {-->
-<!--                color:'#ffffff'-->
-<!--            }-->
-<!--        },-->
-<!--        tooltip: {-->
-<!--            trigger: 'axis'-->
-<!--        },-->
-<!--        xAxis: {-->
-<!--            name:'月(2019年）',-->
-<!--            nameLocation:'middle',-->
-<!--            nameGap:'25',-->
-<!--            data:["2","4","6","8","10","12"],-->
-<!--            axisLine:{-->
-<!--                lineStyle:{-->
-<!--                    color:'#FFFFFF'-->
-<!--                }-->
-<!--            }-->
-<!--        },-->
-<!--        yAxis: {-->
-<!--            type: 'value',-->
-<!--            name:'热度',-->
-<!--            axisLine:{-->
-<!--                lineStyle:{-->
-<!--                    color:'#FFFFFF'-->
-<!--                }-->
-<!--            }-->
-<!--        },-->
-<!--        series: [-->
-<!--            {-->
-<!--                name: '2019年',-->
-<!--                type: 'line',-->
-<!--                // stack: '总量',-->
-<!--                color:'white',-->
-<!--                data: [120, 160, 240, 200, 280, 310]-->
-<!--            },-->
-<!--        ]-->
-<!--    };-->
-<!--    //使用刚刚指定的配置项和数据项显示图表-->
-<!--    myChart.setOption(option);-->
-<!--</script>-->
-
-
 
 </body>
 

@@ -12,10 +12,6 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public interface IDemandService {
-
-
-
-
     /**
      * @param categoryId 分类id
      * @param pageNum    页数
@@ -55,6 +51,8 @@ public interface IDemandService {
      */
     ResponseVo<PageInfo> searchByEs(String keyword, String categoryId, Integer pageNum, Integer pageSize,
                                     BigDecimal longitude, BigDecimal latitude, Integer order) throws IOException;
+
+    Demand searchByTitle4Info(String demandTitle, String companyName) throws IOException;
 
     List<Plot> plot();
 

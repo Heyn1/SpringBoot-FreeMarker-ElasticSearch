@@ -113,6 +113,24 @@ public class IndexController {
         return modelAndView;
     }
 
+    @RequestMapping("/demandsinfo")
+    public ModelAndView demandsinfo(
+            @RequestParam(required = false, name = "demandtitle", defaultValue = "") String demandTitle,
+            @RequestParam(required = false, name = "demanddetail", defaultValue = "") String companyName) throws IOException {
+        ModelAndView modelAndView = new ModelAndView("DemandsInfo");
+        Demand demand = demandService.searchByTitle4Info(demandTitle, companyName);
+        modelAndView.addObject("demandTitle", demandTitle);
+        modelAndView.addObject("demandType", demand.getDemandType());
+        modelAndView.addObject("companyName", demand.getCompanyName());
+        modelAndView.addObject("money", demand.getMoney());
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        modelAndView.addObject("createTime", formatter.format(demand.getCreateTime()));
+        modelAndView.addObject("phoneNum", demand.getPhone());
+        modelAndView.addObject("category", demand.getCategory());
+        modelAndView.addObject("demandDetail", demand.getDemandDetail());
+        return modelAndView;
+    }
+
     @RequestMapping("/chart")
     public List<Plot> test() {
         return demandService.plot();
