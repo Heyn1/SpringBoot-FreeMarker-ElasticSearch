@@ -2,6 +2,7 @@ package com.example.controller;
 
 import com.example.entity.Demand;
 import com.example.entity.Plot;
+import com.example.entity.Term;
 import com.example.service.ICategoryService;
 import com.example.service.IDemandService;
 import com.example.service.IUserService;
@@ -128,6 +129,17 @@ public class IndexController {
         modelAndView.addObject("phoneNum", demand.getPhone());
         modelAndView.addObject("category", demand.getCategory());
         modelAndView.addObject("demandDetail", demand.getDemandDetail());
+        Term term = demandService.searchById4Intro(demand.getId());
+        if (term != null) {
+            modelAndView.addObject("termName", term.getTermName());
+            modelAndView.addObject("termIntro", term.getTermIntro());
+            modelAndView.addObject("termImage", term.getTermImage());
+        }
+        else {
+            modelAndView.addObject("termName", "暂无内容");
+            modelAndView.addObject("termIntro", "暂无内容");
+            modelAndView.addObject("termImage", "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1599645250064&di=590dae138e37ea5f6e2c6143d5ef687f&imgtype=0&src=http%3A%2F%2Fimage.999120.net%2Fhospital%2FnonePic.jpg");
+        }
         return modelAndView;
     }
 

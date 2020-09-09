@@ -167,11 +167,13 @@ The above copyright notice and this permission notice shall be included in all c
                             <div class="card">
                                 <div class="card-header card-header-text card-header-blue">
                                     <div class="card-text">
-                                        <h4 class="card-title"> 图片 </h4>
+                                        <h4 class="card-title">${termName}</h4>
                                     </div>
                                 </div>
-                                <div id="main1" style="width: 100%;height:400px;">
-
+                                <div class="card-body">
+                                    <div align="center">
+                                        <img class="img" src="${termImage}">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -179,11 +181,11 @@ The above copyright notice and this permission notice shall be included in all c
                         <div class="card">
                             <div class="card-header card-header-text card-header-blue">
                                 <div class="card-text">
-                                    <h4 class="card-title"> 文字介绍 </h4>
+                                    <h4 class="card-title">${termName}介绍</h4>
                                 </div>
                             </div>
-                            <div id="main" style="height: 100%;min-height:400px;">
-
+                            <div class="card-body">
+                                <div class="card-text">${termIntro}</div>
                             </div>
                         </div>
                     </div>

@@ -206,5 +206,11 @@
         WHERE demand_title = #{title} AND company_name = #{company};
     </select>
 
+    <select id="selectById4Intro" resultType="com.example.entity.Term">
+        SELECT id, term_name, term_intro, term_image
+        FROM explanation_info
+        WHERE id = #{id}
+    </select>
+
 
 </mapper>

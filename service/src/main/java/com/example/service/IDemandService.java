@@ -1,6 +1,7 @@
 package com.example.service;
 
 import com.example.entity.Plot;
+import com.example.entity.Term;
 import com.github.pagehelper.PageInfo;
 import com.example.entity.Demand;
 import com.example.vo.DemandVo;
@@ -52,8 +53,9 @@ public interface IDemandService {
     ResponseVo<PageInfo> searchByEs(String keyword, String categoryId, Integer pageNum, Integer pageSize,
                                     BigDecimal longitude, BigDecimal latitude, Integer order) throws IOException;
 
-    Demand searchByTitle4Info(String demandTitle, String companyName) throws IOException;
-
     List<Plot> plot();
 
+    Demand searchByTitle4Info(String demandTitle, String companyName) throws IOException;
+
+    Term searchById4Intro(Integer id) throws IOException;
 }

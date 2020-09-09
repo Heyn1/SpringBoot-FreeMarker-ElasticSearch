@@ -3,6 +3,7 @@ package com.example.service.impl;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.example.entity.Plot;
+import com.example.entity.Term;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.example.dao.DemandMapper;
@@ -197,5 +198,10 @@ public class DemandServiceImpl implements IDemandService {
         return demand;
     }
 
+    @Override
+    public Term searchById4Intro(Integer id) {
+        Term term = demandMapper.selectById4Intro(id);
+        return term;
+    }
 
 }
