@@ -13,21 +13,22 @@ The above copyright notice and this permission notice shall be included in all c
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon.png">
     <link rel="icon" type="image/png" href="/img/favicon.png">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>
         企业需求搜索
     </title>
-    <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+    <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport'/>
     <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
-    <link href="/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
+    <link href="/css/material-dashboard.css?v=2.1.2" rel="stylesheet"/>
     <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="/demo/demo.css" rel="stylesheet" />
+    <link href="/demo/demo.css" rel="stylesheet"/>
 
     <script>
         searchKeyword = function () {
@@ -40,15 +41,14 @@ The above copyright notice and this permission notice shall be included in all c
 <body class="">
 
 <div class="wrapper ">
-<#--    <div class="sidebar" data-color="blue" data-background-color="white" data-image="./img/sidebar-1.jpg">-->
-    <div class="sidebar" data-color="blue" data-background-color="white">
+    <div class="sidebar" data-color="blue" data-background-color="white" data-image="./img/sidebar-1.jpg">
         <!--
           Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
           Tip 2: you can also add an image using data-image tag
       -->
         <div class="logo"><a href="#" class="simple-text logo-normal">
-            科技大数据检索查询系统
-        </a></div>
+                科技大数据检索查询系统
+            </a></div>
         <div class="sidebar-wrapper">
             <ul class="nav">
                 <li class="nav-item ">
@@ -99,7 +99,7 @@ The above copyright notice and this permission notice shall be included in all c
                             <a class="nav-link" href="#">登陆</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="material-icons" >person</i></a>
+                            <a class="nav-link" href="#"><i class="material-icons">person</i></a>
                         </li>
                     </ul>
                 </div>
@@ -152,7 +152,7 @@ The above copyright notice and this permission notice shall be included in all c
                     <!--正在热搜-->
                     <div class="row">
                         <div class="col-md-3">
-                            <p class="text-blue pull-right " >正在热搜:</p>
+                            <p class="text-blue pull-right ">正在热搜:</p>
                         </div>
                         <div class="col-md-6">
                             <div class="row">
@@ -168,106 +168,106 @@ The above copyright notice and this permission notice shall be included in all c
                     <!--正在热搜-->
                 </div>
 
-                <div class="card ">
+                <div class="card">
                     <div class="card-header card-header-text card-header-blue">
                         <div class="card-text">
                             <h4 class="card-title ">需求分类趋势</h4>
                         </div>
                     </div>
-                    <div class="card-body" >
-                        <div  id="qushi" style="width: 100%;height:500px;">
+                    <div class="card-body">
+                        <div id="qushi" style="width: 100%;height:500px;">
 
                         </div>
                     </div>
                 </div>
 
-                <div class="card">
-                    <ul class="nav nav-pills nav-pills-primary" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active text-black" data-toggle="tab" href="#link1" role="tablist" aria-expanded="true" style="color:black">
-                                热门企业需求
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#link2" role="tablist" aria-expanded="false" style="color:black">
-                                热门需求关键词
-                            </a>
-                        </li>
-                    </ul>
+                <#--                <div class="card">-->
+                <#--                    <ul class="nav nav-pills nav-pills-primary" role="tablist">-->
+                <#--                        <li class="nav-item">-->
+                <#--                            <a class="nav-link active text-black" data-toggle="tab" href="#link1" role="tablist" aria-expanded="true" style="color:black">-->
+                <#--                                热门企业需求-->
+                <#--                            </a>-->
+                <#--                        </li>-->
+                <#--                        <li class="nav-item">-->
+                <#--                            <a class="nav-link" data-toggle="tab" href="#link2" role="tablist" aria-expanded="false" style="color:black">-->
+                <#--                                热门需求关键词-->
+                <#--                            </a>-->
+                <#--                        </li>-->
+                <#--                    </ul>-->
 
-                    <div class="tab-content tab-space">
-                        <div class="tab-pane active" id="link1" aria-expanded="true">
-                            <div class="card">
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th class="text-center">#</th>
-                                        <th>需求名称</th>
-                                        <th>企业名称</th>
-                                        <th>时间</th>
-                                        <th class="text-right">资金</th>
-                                        <!--                                           <th class="text-right">操作</th>-->
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <#if recommendList?? && (recommendList?size > 0)>
-                                        <#list recommendList as row>
-                                            <tr>
-                                                <th scope="row">${row.requireName !""}</th>
-                                                <td>${row.comapnyName !""}</td>
-                                                <td>${row.time !""}</td>
-                                                <td>${row.money !""}</td>
-                                            </tr>
-                                        </#list>
+                <#--                    <div class="tab-content tab-space">-->
+                <#--                        <div class="tab-pane active" id="link1" aria-expanded="true">-->
+                <#--                            <div class="card">-->
+                <#--                                <table class="table">-->
+                <#--                                    <thead>-->
+                <#--                                    <tr>-->
+                <#--                                        <th class="text-center">#</th>-->
+                <#--                                        <th>需求名称</th>-->
+                <#--                                        <th>企业名称</th>-->
+                <#--                                        <th>时间</th>-->
+                <#--                                        <th class="text-right">资金</th>-->
+                <#--                                        <!--                                           <th class="text-right">操作</th>&ndash;&gt;-->
+                <#--                                    </tr>-->
+                <#--                                    </thead>-->
+                <#--                                    <tbody>-->
+                <#--                                    <#if recommendList?? && (recommendList?size > 0)>-->
+                <#--                                        <#list recommendList as row>-->
+                <#--                                            <tr>-->
+                <#--                                                <th scope="row">${row.requireName !""}</th>-->
+                <#--                                                <td>${row.comapnyName !""}</td>-->
+                <#--                                                <td>${row.time !""}</td>-->
+                <#--                                                <td>${row.money !""}</td>-->
+                <#--                                            </tr>-->
+                <#--                                        </#list>-->
 
-                                    <#else>
-                                        <p>${message !""}</p>
-                                    </#if>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="link2" aria-expanded="false">
-                            <div class="card">
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th class="text-center">#</th>
-                                        <th>关键字</th>
-                                        <th>学科</th>
-                                        <th>统计时间</th>
-                                        <th class="text-right">热度</th>
-                                        <!--                                           <th class="text-right"></th>-->
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td class="text-center">1</td>
-                                        <td>神经活动模型</td>
-                                        <td>计算机</td>
-                                        <td>2020/04/01</td>
-                                        <td class="text-right">9,925</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">2</td>
-                                        <td>强度耦合</td>
-                                        <td>计算机</td>
-                                        <td>2020/04/01</td>
-                                        <td class="text-right">9,841</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">3</td>
-                                        <td>正则量子理论</td>
-                                        <td>数学</td>
-                                        <td>2020/04/01</td>
-                                        <td class="text-right">7,144</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <#--                                    <#else>-->
+                <#--                                        <p>${message !""}</p>-->
+                <#--                                    </#if>-->
+                <#--                                    </tbody>-->
+                <#--                                </table>-->
+                <#--                            </div>-->
+                <#--                        </div>-->
+                <#--                        <div class="tab-pane" id="link2" aria-expanded="false">-->
+                <#--                            <div class="card">-->
+                <#--                                <table class="table">-->
+                <#--                                    <thead>-->
+                <#--                                    <tr>-->
+                <#--                                        <th class="text-center">#</th>-->
+                <#--                                        <th>关键字</th>-->
+                <#--                                        <th>学科</th>-->
+                <#--                                        <th>统计时间</th>-->
+                <#--                                        <th class="text-right">热度</th>-->
+                <#--                                        <!--                                           <th class="text-right"></th>&ndash;&gt;-->
+                <#--                                    </tr>-->
+                <#--                                    </thead>-->
+                <#--                                    <tbody>-->
+                <#--                                    <tr>-->
+                <#--                                        <td class="text-center">1</td>-->
+                <#--                                        <td>神经活动模型</td>-->
+                <#--                                        <td>计算机</td>-->
+                <#--                                        <td>2020/04/01</td>-->
+                <#--                                        <td class="text-right">9,925</td>-->
+                <#--                                    </tr>-->
+                <#--                                    <tr>-->
+                <#--                                        <td class="text-center">2</td>-->
+                <#--                                        <td>强度耦合</td>-->
+                <#--                                        <td>计算机</td>-->
+                <#--                                        <td>2020/04/01</td>-->
+                <#--                                        <td class="text-right">9,841</td>-->
+                <#--                                    </tr>-->
+                <#--                                    <tr>-->
+                <#--                                        <td class="text-center">3</td>-->
+                <#--                                        <td>正则量子理论</td>-->
+                <#--                                        <td>数学</td>-->
+                <#--                                        <td>2020/04/01</td>-->
+                <#--                                        <td class="text-right">7,144</td>-->
+                <#--                                    </tr>-->
+                <#--                                    </tbody>-->
+                <#--                                </table>-->
+                <#--                            </div>-->
+                <#--                        </div>-->
+                <#--                    </div>-->
+                <#--                </div>-->
             </div>
         </div>
     </div>
@@ -291,7 +291,7 @@ The above copyright notice and this permission notice shall be included in all c
 <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
 <script src="./js/plugins/bootstrap-datetimepicker.min.js"></script>
 <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
-<#--<script src="./js/plugins/jquery.dataTables.min.js"></script>-->
+<script src="./js/plugins/jquery.dataTables.min.js"></script>
 <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
 <script src="./js/plugins/bootstrap-tagsinput.js"></script>
 <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
@@ -307,7 +307,7 @@ The above copyright notice and this permission notice shall be included in all c
 <!-- Library for adding dinamically elements -->
 <script src="./js/plugins/arrive.min.js"></script>
 <!--  Google Maps Plugin    -->
-<#--<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>-->
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 <!-- Chartist JS -->
 <script src="./js/plugins/chartist.min.js"></script>
 <!--  Notifications Plugin    -->
@@ -317,13 +317,10 @@ The above copyright notice and this permission notice shall be included in all c
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="./demo/demo.js"></script>
 <script src="./js/echarts.min.js"></script>
-<script src="./js/jquery.cookie.js"></script>
-<script src="http://api.map.baidu.com/api?v=2.0&ak=ol0KpqLuwSsAecB1gGPgOdRZeaqSofiP"></script>
-
 
 <script>
-    $(document).ready(function() {
-        $().ready(function() {
+    $(document).ready(function () {
+        $().ready(function () {
             $sidebar = $('.sidebar');
 
             $sidebar_img_container = $sidebar.find('.sidebar-background');
@@ -343,7 +340,7 @@ The above copyright notice and this permission notice shall be included in all c
 
             }
 
-            $('.fixed-plugin a').click(function(event) {
+            $('.fixed-plugin a').click(function (event) {
                 // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
                 if ($(this).hasClass('switch-trigger')) {
                     if (event.stopPropagation) {
@@ -354,7 +351,7 @@ The above copyright notice and this permission notice shall be included in all c
                 }
             });
 
-            $('.fixed-plugin .active-color span').click(function() {
+            $('.fixed-plugin .active-color span').click(function () {
                 $full_page_background = $('.full-page-background');
 
                 $(this).siblings().removeClass('active');
@@ -375,7 +372,7 @@ The above copyright notice and this permission notice shall be included in all c
                 }
             });
 
-            $('.fixed-plugin .background-color .badge').click(function() {
+            $('.fixed-plugin .background-color .badge').click(function () {
                 $(this).siblings().removeClass('active');
                 $(this).addClass('active');
 
@@ -386,7 +383,7 @@ The above copyright notice and this permission notice shall be included in all c
                 }
             });
 
-            $('.fixed-plugin .img-holder').click(function() {
+            $('.fixed-plugin .img-holder').click(function () {
                 $full_page_background = $('.full-page-background');
 
                 $(this).parent('li').siblings().removeClass('active');
@@ -396,7 +393,7 @@ The above copyright notice and this permission notice shall be included in all c
                 var new_image = $(this).find("img").attr('src');
 
                 if ($sidebar_img_container.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
-                    $sidebar_img_container.fadeOut('fast', function() {
+                    $sidebar_img_container.fadeOut('fast', function () {
                         $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
                         $sidebar_img_container.fadeIn('fast');
                     });
@@ -405,7 +402,7 @@ The above copyright notice and this permission notice shall be included in all c
                 if ($full_page_background.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
                     var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
 
-                    $full_page_background.fadeOut('fast', function() {
+                    $full_page_background.fadeOut('fast', function () {
                         $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
                         $full_page_background.fadeIn('fast');
                     });
@@ -424,7 +421,7 @@ The above copyright notice and this permission notice shall be included in all c
                 }
             });
 
-            $('.switch-sidebar-image input').change(function() {
+            $('.switch-sidebar-image input').change(function () {
                 $full_page_background = $('.full-page-background');
 
                 $input = $(this);
@@ -456,7 +453,7 @@ The above copyright notice and this permission notice shall be included in all c
                 }
             });
 
-            $('.switch-sidebar-mini input').change(function() {
+            $('.switch-sidebar-mini input').change(function () {
                 $body = $('body');
 
                 $input = $(this);
@@ -471,7 +468,7 @@ The above copyright notice and this permission notice shall be included in all c
 
                     $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar('destroy');
 
-                    setTimeout(function() {
+                    setTimeout(function () {
                         $('body').addClass('sidebar-mini');
 
                         md.misc.sidebar_mini_active = true;
@@ -479,12 +476,12 @@ The above copyright notice and this permission notice shall be included in all c
                 }
 
                 // we simulate the window Resize so the charts will get updated in realtime.
-                var simulateWindowResize = setInterval(function() {
+                var simulateWindowResize = setInterval(function () {
                     window.dispatchEvent(new Event('resize'));
                 }, 180);
 
                 // we stop the simulation of Window Resize after the animations are completed
-                setTimeout(function() {
+                setTimeout(function () {
                     clearInterval(simulateWindowResize);
                 }, 1000);
 
@@ -493,35 +490,17 @@ The above copyright notice and this permission notice shall be included in all c
     });
 </script>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         // Javascript method's body can be found in assets/js/demos.js
         md.initDashboardPageCharts();
 
     });
 </script>
 
-<script>
-    window.onload = function() {
-        console.log("write cookie")
-        var geolocation = new BMap.Geolocation();
-        geolocation.getCurrentPosition(function (r) {
-            if (this.getStatus() === BMAP_STATUS_SUCCESS) {
-                var longitude = r.point.lng;
-                var latitude = r.point.lat;
-                $.cookie("the_longitude", longitude);
-                $.cookie("the_latitude", latitude);
-                console.log("cookie done ")
-            } else {
-                alert('failed' + this.getStatus());
-            }
-        }, {enableHighAccuracy: true})
-    }
-</script>
-
 <script type="text/javascript">
-    var myChart3= echarts.init(document.getElementById('qushi'));
+    var myChart3 = echarts.init(document.getElementById('qushi'));
 
-    var url4='/echartshow4?subname';
+    var url4 = '/echartshow4?subname';
     console.log(url4);
 
     $.ajax({
@@ -529,10 +508,10 @@ The above copyright notice and this permission notice shall be included in all c
         url: '/chart',
         dataType: 'json',
         success: function (data) {
-            var category=[];
-            var dataser=[];
-            $.each(data,function (i,obj) {
-                var t=[];
+            var category = [];
+            var dataser = [];
+            $.each(data, function (i, obj) {
+                var t = [];
                 t.push(obj.dates);
                 t.push(obj.count);
                 t.push(obj.category);
@@ -553,8 +532,8 @@ The above copyright notice and this permission notice shall be included in all c
                         }
                     }
                 },
-                title:{
-                    text:"",
+                title: {
+                    text: "",
                     top: 100,
                 },
                 legend: {

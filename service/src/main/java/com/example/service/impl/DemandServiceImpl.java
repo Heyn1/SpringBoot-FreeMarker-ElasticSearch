@@ -3,6 +3,7 @@ package com.example.service.impl;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.example.entity.Plot;
+import com.example.entity.Term;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.example.dao.DemandMapper;
@@ -13,16 +14,9 @@ import com.example.vo.DemandVo;
 import com.example.vo.ResponseVo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.util.EntityUtils;
-import org.elasticsearch.action.search.SearchRequest;
-import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Request;
-import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.Response;
 import org.elasticsearch.client.RestHighLevelClient;
-import org.elasticsearch.common.unit.TimeValue;
-import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.search.SearchHit;
-import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,7 +25,6 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import static com.example.consts.OrderConst.*;
@@ -195,6 +188,16 @@ public class DemandServiceImpl implements IDemandService {
         return demands;
     }
 
+    @Override
+    public Demand searchByTitle4Info(String demandTitle, String companyName) throws IOException {
+        Demand demand = demandMapper.selectByTitle(demandTitle, companyName);
+        return demand;
+    }
 
+    @Override
+    public Term searchById4Intro(Integer id) {
+        Term term = demandMapper.selectById4Intro(id);
+        return term;
+    }
 
 }

@@ -200,5 +200,17 @@
         ORDER BY demand_category.category_id,DATE_FORMAT(demand_info.create_time,"%Y");
     </select>
 
+    <select id="selectByTitle" resultType="com.example.entity.Demand">
+        SELECT <include refid="search_distance"/>
+        FROM demand_info
+        WHERE demand_title = #{title} AND company_name = #{company};
+    </select>
+
+    <select id="selectById4Intro" resultType="com.example.entity.Term">
+        SELECT id, term_name, term_intro, term_image
+        FROM explanation_info
+        WHERE id = #{id}
+    </select>
+
 
 </mapper>

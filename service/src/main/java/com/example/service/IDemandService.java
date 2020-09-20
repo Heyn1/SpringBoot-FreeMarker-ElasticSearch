@@ -1,6 +1,7 @@
 package com.example.service;
 
 import com.example.entity.Plot;
+import com.example.entity.Term;
 import com.github.pagehelper.PageInfo;
 import com.example.entity.Demand;
 import com.example.vo.DemandVo;
@@ -12,10 +13,6 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public interface IDemandService {
-
-
-
-
     /**
      * @param categoryId 分类id
      * @param pageNum    页数
@@ -58,4 +55,7 @@ public interface IDemandService {
 
     List<Plot> plot();
 
+    Demand searchByTitle4Info(String demandTitle, String companyName) throws IOException;
+
+    Term searchById4Intro(Integer id) throws IOException;
 }

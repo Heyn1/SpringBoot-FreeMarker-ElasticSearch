@@ -2,6 +2,7 @@ package com.example.dao;
 
 import com.example.entity.Demand;
 import com.example.entity.Plot;
+import com.example.entity.Term;
 import org.apache.ibatis.annotations.Param;
 
 import java.math.BigDecimal;
@@ -31,4 +32,8 @@ public interface DemandMapper {
 
     List<Plot> selectPlotData();
 
+    Demand selectByTitle(@Param("title") String demandTitle,
+                         @Param("company") String companyName);
+
+    Term selectById4Intro(@Param("id") Integer id);
 }
