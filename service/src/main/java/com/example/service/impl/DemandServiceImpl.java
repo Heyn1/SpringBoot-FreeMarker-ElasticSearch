@@ -131,11 +131,7 @@ public class DemandServiceImpl implements IDemandService {
             jsonRequestObj.put("sort",new JSONArray());
             jsonRequestObj.getJSONArray("sort").add(new JSONObject());
             jsonRequestObj.getJSONArray("sort").getJSONObject(0).put("_score",new JSONObject());
-            if(order == 0){
-                jsonRequestObj.getJSONArray("sort").getJSONObject(0).getJSONObject("_score").put("order","desc");
-            }else{
-                jsonRequestObj.getJSONArray("sort").getJSONObject(0).getJSONObject("_score").put("order","asc");
-            }
+            jsonRequestObj.getJSONArray("sort").getJSONObject(0).getJSONObject("_score").put("order","desc");
         } else if (order.equals(ORDER_BY_CREDIT)) {
             jsonRequestObj.put("sort", new JSONObject());
             jsonRequestObj.getJSONObject("sort").put("credit", new JSONObject());

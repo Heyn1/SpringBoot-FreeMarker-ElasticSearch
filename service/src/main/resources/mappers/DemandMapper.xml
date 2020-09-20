@@ -195,7 +195,7 @@
         SELECT  demand_category.category as category,DATE_FORMAT(demand_info.create_time,"%Y") AS dates ,COUNT(*) AS count
 				FROM demand_info INNER JOIN demand_category
 				ON demand_info.category_id = demand_category.category_id
-				where demand_info.create_time between "2016-01-01" and "2020-05-01"
+				where demand_info.create_time between "2017-01-01" and "2020-05-01"
         GROUP BY category, DATE_FORMAT(demand_info.create_time,"%Y"), demand_category.category_id
         ORDER BY demand_category.category_id,DATE_FORMAT(demand_info.create_time,"%Y");
     </select>
