@@ -24,8 +24,8 @@ The above copyright notice and this permission notice shall be included in all c
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport'/>
     <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
     <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css"
-          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
+<#--    <link rel="stylesheet" type="text/css"-->
+<#--          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
     <link href="../css/material-dashboard.css?v=2.1.2" rel="stylesheet"/>
@@ -56,25 +56,25 @@ The above copyright notice and this permission notice shall be included in all c
                 <li class="nav-item ">
                     <!--  <a class="nav-link" href="./dashboard.html">-->
                     <a class="nav-link" href="#">
-                        <i class="material-icons">dashboard</i>
+<#--                        <i class="material-icons">dashboard</i>-->
                         <p>查询理论成果</p>
                     </a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link" href="#">
-                        <i class="material-icons">person</i>
+<#--                        <i class="material-icons">person</i>-->
                         <p>查询应用领域</p>
                     </a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="/index">
-                        <i class="material-icons">content_paste</i>
+<#--                        <i class="material-icons">content_paste</i>-->
                         <p>搜索企业需求</p>
                     </a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link" href="#">
-                        <i class="material-icons">library_books</i>
+<#--                        <i class="material-icons">library_books</i>-->
                         <p>推荐企业需求</p>
                     </a>
                 </li>
@@ -97,7 +97,9 @@ The above copyright notice and this permission notice shall be included in all c
                             <a class="nav-link" href="#">登陆</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="material-icons">person</i></a>
+                            <a class="nav-link" href="#">
+<#--                                <i class="material-icons">person</i>-->
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -126,15 +128,19 @@ The above copyright notice and this permission notice shall be included in all c
                     <!--搜索框那一栏-->
                     <div class="row">
                         <div class="col-md-3 dropdown ">
-                            <a href="#" class="btn btn-blue dropdown-toggle pull-right" data-toggle="dropdown">
-                                需求主题
-                                <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <button class="dropdown-item" type="button">关键词</button>
-                                <button class="dropdown-item" type="button">需求来源</button>
-                                <button class="dropdown-item" type="button">需求类型</button>
-                            </ul>
+<#--                            <a href="#" class="btn btn-blue dropdown-toggle pull-right" data-toggle="dropdown">-->
+<#--                                需求主题-->
+<#--                                <b class="caret"></b>-->
+<#--                            </a>-->
+<#--                            <ul class="dropdown-menu">-->
+<#--                                <button class="dropdown-item" type="button">关键词</button>-->
+<#--                                <button class="dropdown-item" type="button">需求来源</button>-->
+<#--                                <button class="dropdown-item" type="button">需求类型</button>-->
+<#--                            </ul>-->
+                            <select name="sources" id="sources" class="custom-select sources" placeholder="Source Type">
+                                <option value="require">需求主题</option>
+                                <option value="company">公司名称</option>
+                            </select>
                         </div>
                         <div class="col-md-9">
                             <form method="get" action="/search">
@@ -188,39 +194,51 @@ The above copyright notice and this permission notice shall be included in all c
                                     <li class="nav-item active">
                                         <a class="nav-link"
                                            href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=0">
-                                            综合 <i class="material-icons">south</i></a>
+                                            综合
+<#--                                            <i class="material-icons">south</i>-->
+                                        </a>
                                     </li>
                                 <#else >
                                     <li class="nav-item">
                                         <a class="nav-link"
                                            href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=0">
-                                            综合<i class="material-icons">south</i></a>
+                                            综合
+<#--                                            <i class="material-icons">south</i>-->
+                                        </a>
                                     </li>
                                 </#if>
                                 <#if order == 1>
                                     <li class="nav-item active">
                                         <a class="nav-link"
                                            href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=1">
-                                            相关度 <i class="material-icons">south</i></a>
+                                            相关度
+<#--                                            <i class="material-icons">south</i>-->
+                                        </a>
                                     </li>
                                 <#else >
                                     <li class="nav-item">
                                         <a class="nav-link"
                                            href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=1">
-                                            相关度<i class="material-icons">south</i></a>
+                                            相关度
+<#--                                            <i class="material-icons">south</i>-->
+                                        </a>
                                     </li>
                                 </#if>
                                 <#if order == 2>
                                     <li class="nav-item active">
                                         <a class="nav-link"
                                            href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=2">
-                                            时间 <i class="material-icons">south</i></a>
+                                            时间
+<#--                                            <i class="material-icons">south</i>-->
+                                        </a>
                                     </li>
                                 <#else >
                                     <li class="nav-item">
                                         <a class="nav-link"
                                            href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=2">
-                                            时间<i class="material-icons">south</i></a>
+                                            时间
+<#--                                            <i class="material-icons">south</i>-->
+                                        </a>
                                     </li>
                                 </#if>
 
@@ -228,26 +246,34 @@ The above copyright notice and this permission notice shall be included in all c
                                     <li class="nav-item active">
                                         <a class="nav-link"
                                            href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=3">
-                                            距离 <i class="material-icons">south</i></a>
+                                            距离
+<#--                                            <i class="material-icons">south</i>-->
+                                        </a>
                                     </li>
                                 <#else >
                                     <li class="nav-item">
                                         <a class="nav-link"
                                            href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=3">
-                                            距离<i class="material-icons">south</i></a>
+                                            距离
+<#--                                            <i class="material-icons">south</i>-->
+                                        </a>
                                     </li>
                                 </#if>
                                 <#if order == 4>
                                     <li class="nav-item active">
                                         <a class="nav-link"
                                            href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=4">
-                                            企业信用 <i class="material-icons">south</i></a>
+                                            企业信用
+<#--                                            <i class="material-icons">south</i>-->
+                                        </a>
                                     </li>
                                 <#else >
                                     <li class="nav-item">
                                         <a class="nav-link"
                                            href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=4">
-                                            企业信用<i class="material-icons">south</i></a>
+                                            企业信用
+<#--                                            <i class="material-icons">south</i>-->
+                                        </a>
                                     </li>
                                 </#if>
                             </ul>
@@ -650,15 +676,15 @@ The above copyright notice and this permission notice shall be included in all c
                                             itemStyle: {
                                                 color: 'rgb(255, 70, 131)'
                                             },
-                                            areaStyle: {
-                                                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                                    offset: 0,
-                                                    color: 'rgb(255, 158, 68)'
-                                                }, {
-                                                    offset: 1,
-                                                    color: 'rgb(255, 70, 131)'
-                                                }])
-                                            },
+                                            // areaStyle: {
+                                            //     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                            //         offset: 0,
+                                            //         color: 'rgb(255, 158, 68)'
+                                            //     }, {
+                                            //         offset: 1,
+                                            //         color: 'rgb(255, 70, 131)'
+                                            //     }])
+                                            // },
                                             data: yvalue
                                         }
                                     ]
@@ -762,10 +788,10 @@ The above copyright notice and this permission notice shall be included in all c
                         </li>
                         <#if result.data.isFirstPage==false>
                             <li class="page-item">
-                                <a class="page-link" href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}"> 第一页 </a>
+                                <a class="page-link" href="/search?function=${function}&keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}"> 第一页 </a>
                             </li>
                             <li class="page-item">
-                                <a class="page-link" href="/search?keyword=${keyword}&pageNum=${result.data.prePage}&pageSize=${result.data.pageSize?c}">上一页</a>
+                                <a class="page-link" href="/search?function=${function}&keyword=${keyword}&pageNum=${result.data.prePage}&pageSize=${result.data.pageSize?c}">上一页</a>
                             </li>
                         </#if>
 
@@ -783,17 +809,17 @@ The above copyright notice and this permission notice shall be included in all c
                             </#if>
                             <#if element != result.data.pageNum>
                                 <li class="page-item">
-                                    <a class="page-link" href="/search?keyword=${keyword}&pageNum=${element}&pageSize=${result.data.pageSize?c}">${element}</a>
+                                    <a class="page-link" href="/search?function=${function}&keyword=${keyword}&pageNum=${element}&pageSize=${result.data.pageSize?c}">${element}</a>
                                 </li>
                             </#if>
                         </#list>
 
                         <#if result.data.isLastPage==false>
                             <li class="page-item">
-                                <a class="page-link" href="/search?keyword=${keyword}&pageNum=${result.data.nextPage}&pageSize=${result.data.pageSize?c}">下一页</a>
+                                <a class="page-link" href="/search?function=${function}&keyword=${keyword}&pageNum=${result.data.nextPage}&pageSize=${result.data.pageSize?c}">下一页</a>
                             </li>
                             <li class="page-item">
-                                <a class="page-link" href="/search?keyword=${keyword}&pageNum=${result.data.pages}&pageSize=${result.data.pageSize?c}">最后一页</a>
+                                <a class="page-link" href="/search?function=${function}&keyword=${keyword}&pageNum=${result.data.pages}&pageSize=${result.data.pageSize?c}">最后一页</a>
                             </li>
                         </#if>
                     </ul>

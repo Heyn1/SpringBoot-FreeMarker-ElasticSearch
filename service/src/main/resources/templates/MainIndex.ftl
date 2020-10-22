@@ -22,8 +22,8 @@ The above copyright notice and this permission notice shall be included in all c
     </title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport'/>
     <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css"
-          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
+<#--    <link rel="stylesheet" type="text/css"-->
+<#--          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
     <link href="/css/material-dashboard.css?v=2.1.2" rel="stylesheet"/>
@@ -33,7 +33,13 @@ The above copyright notice and this permission notice shall be included in all c
     <script>
         searchKeyword = function () {
             var keyword = document.getElementById("search_keyword").value;
-            window.location.href = "/search?keyword=" + keyword;
+            var selectItem = document.getElementById("sources").value;
+            if (selectItem=="require") {
+                window.location.href = "/search?function=1&keyword=" + keyword;
+            }
+            else if (selectItem=="company") {
+                window.location.href = "/search?function=2&keyword=" + keyword;
+            }
         }
     </script>
 </head>
@@ -54,25 +60,25 @@ The above copyright notice and this permission notice shall be included in all c
                 <li class="nav-item ">
                     <!--                    <a class="nav-link" href="./dashboard.html">-->
                     <a class="nav-link" href="#">
-                        <i class="material-icons">dashboard</i>
+<#--                        <i class="material-icons">dashboard</i>-->
                         <p>查询理论成果</p>
                     </a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link" href="#">
-                        <i class="material-icons">person</i>
+<#--                        <i class="material-icons">person</i>-->
                         <p>查询应用领域</p>
                     </a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="#">
-                        <i class="material-icons">content_paste</i>
+<#--                        <i class="material-icons">content_paste</i>-->
                         <p>搜索企业需求</p>
                     </a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link" href="#">
-                        <i class="material-icons">library_books</i>
+<#--                        <i class="material-icons">library_books</i>-->
                         <p>推荐企业需求</p>
                     </a>
                 </li>
@@ -99,7 +105,9 @@ The above copyright notice and this permission notice shall be included in all c
                             <a class="nav-link" href="#">登陆</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="material-icons">person</i></a>
+                            <a class="nav-link" href="#">
+<#--                                <i class="material-icons">person</i>-->
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -128,16 +136,18 @@ The above copyright notice and this permission notice shall be included in all c
 
                     <!--搜索框那一栏-->
                     <div class="row">
-                        <div class="col-md-3 dropdown ">
-                            <a href="#" class="btn btn-blue dropdown-toggle pull-right" data-toggle="dropdown">
-                                需求主题
-                                <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <button class="dropdown-item" type="button">关键词</button>
-                                <button class="dropdown-item" type="button">需求来源</button>
-                                <button class="dropdown-item" type="button">需求类型</button>
-                            </ul>
+                        <div id="dropdown_select" class="col-md-3 dropdown">
+<#--                            <a href="#" class="btn btn-blue dropdown-toggle pull-right" data-toggle="dropdown">-->
+<#--                                需求主题-->
+<#--                                <b class="caret"></b>-->
+<#--                            </a>-->
+<#--                            <ul class="dropdown-menu">-->
+<#--                                <button class="dropdown-item" type="button">公司名称</button>-->
+<#--                            </ul>-->
+                            <select name="sources" id="sources" class="custom-select sources" placeholder="Source Type">
+                                <option value="require">需求主题</option>
+                                <option value="company">公司名称</option>
+                            </select>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
@@ -180,94 +190,6 @@ The above copyright notice and this permission notice shall be included in all c
                         </div>
                     </div>
                 </div>
-
-                <#--                <div class="card">-->
-                <#--                    <ul class="nav nav-pills nav-pills-primary" role="tablist">-->
-                <#--                        <li class="nav-item">-->
-                <#--                            <a class="nav-link active text-black" data-toggle="tab" href="#link1" role="tablist" aria-expanded="true" style="color:black">-->
-                <#--                                热门企业需求-->
-                <#--                            </a>-->
-                <#--                        </li>-->
-                <#--                        <li class="nav-item">-->
-                <#--                            <a class="nav-link" data-toggle="tab" href="#link2" role="tablist" aria-expanded="false" style="color:black">-->
-                <#--                                热门需求关键词-->
-                <#--                            </a>-->
-                <#--                        </li>-->
-                <#--                    </ul>-->
-
-                <#--                    <div class="tab-content tab-space">-->
-                <#--                        <div class="tab-pane active" id="link1" aria-expanded="true">-->
-                <#--                            <div class="card">-->
-                <#--                                <table class="table">-->
-                <#--                                    <thead>-->
-                <#--                                    <tr>-->
-                <#--                                        <th class="text-center">#</th>-->
-                <#--                                        <th>需求名称</th>-->
-                <#--                                        <th>企业名称</th>-->
-                <#--                                        <th>时间</th>-->
-                <#--                                        <th class="text-right">资金</th>-->
-                <#--                                        <!--                                           <th class="text-right">操作</th>&ndash;&gt;-->
-                <#--                                    </tr>-->
-                <#--                                    </thead>-->
-                <#--                                    <tbody>-->
-                <#--                                    <#if recommendList?? && (recommendList?size > 0)>-->
-                <#--                                        <#list recommendList as row>-->
-                <#--                                            <tr>-->
-                <#--                                                <th scope="row">${row.requireName !""}</th>-->
-                <#--                                                <td>${row.comapnyName !""}</td>-->
-                <#--                                                <td>${row.time !""}</td>-->
-                <#--                                                <td>${row.money !""}</td>-->
-                <#--                                            </tr>-->
-                <#--                                        </#list>-->
-
-                <#--                                    <#else>-->
-                <#--                                        <p>${message !""}</p>-->
-                <#--                                    </#if>-->
-                <#--                                    </tbody>-->
-                <#--                                </table>-->
-                <#--                            </div>-->
-                <#--                        </div>-->
-                <#--                        <div class="tab-pane" id="link2" aria-expanded="false">-->
-                <#--                            <div class="card">-->
-                <#--                                <table class="table">-->
-                <#--                                    <thead>-->
-                <#--                                    <tr>-->
-                <#--                                        <th class="text-center">#</th>-->
-                <#--                                        <th>关键字</th>-->
-                <#--                                        <th>学科</th>-->
-                <#--                                        <th>统计时间</th>-->
-                <#--                                        <th class="text-right">热度</th>-->
-                <#--                                        <!--                                           <th class="text-right"></th>&ndash;&gt;-->
-                <#--                                    </tr>-->
-                <#--                                    </thead>-->
-                <#--                                    <tbody>-->
-                <#--                                    <tr>-->
-                <#--                                        <td class="text-center">1</td>-->
-                <#--                                        <td>神经活动模型</td>-->
-                <#--                                        <td>计算机</td>-->
-                <#--                                        <td>2020/04/01</td>-->
-                <#--                                        <td class="text-right">9,925</td>-->
-                <#--                                    </tr>-->
-                <#--                                    <tr>-->
-                <#--                                        <td class="text-center">2</td>-->
-                <#--                                        <td>强度耦合</td>-->
-                <#--                                        <td>计算机</td>-->
-                <#--                                        <td>2020/04/01</td>-->
-                <#--                                        <td class="text-right">9,841</td>-->
-                <#--                                    </tr>-->
-                <#--                                    <tr>-->
-                <#--                                        <td class="text-center">3</td>-->
-                <#--                                        <td>正则量子理论</td>-->
-                <#--                                        <td>数学</td>-->
-                <#--                                        <td>2020/04/01</td>-->
-                <#--                                        <td class="text-right">7,144</td>-->
-                <#--                                    </tr>-->
-                <#--                                    </tbody>-->
-                <#--                                </table>-->
-                <#--                            </div>-->
-                <#--                        </div>-->
-                <#--                    </div>-->
-                <#--                </div>-->
             </div>
         </div>
     </div>

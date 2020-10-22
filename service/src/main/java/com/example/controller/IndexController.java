@@ -62,7 +62,8 @@ public class IndexController {
                                @RequestParam(required = false, defaultValue = "10") Integer pageSize,
                                @RequestParam(required = false, defaultValue = "116.23") BigDecimal longitude,
                                @RequestParam(required = false, defaultValue = "40.22") BigDecimal latitude,
-                               @RequestParam(required = false, defaultValue = "1") Integer order) throws IOException {
+                               @RequestParam(required = false, defaultValue = "1") Integer order,
+                               @RequestParam(required = false, defaultValue = "1") Integer function) throws IOException {
 
 
         ModelAndView modelAndView = new ModelAndView("SearchByKeyword");
@@ -72,8 +73,8 @@ public class IndexController {
         /**
          * 这部分是es搜索，再采取再MySQL中取值的方式
          */
-        ResponseVo<PageInfo> result = demandService.searchByEs(keyword, category, pageNum, pageSize, longitude, latitude, order);
-        List<Demand> resultHotSpot = demandService.searchByEs4HotSpot(keyword,category, order, latitude, longitude);
+        ResponseVo<PageInfo> result = demandService.searchByEs(keyword, category, pageNum, pageSize, longitude, latitude, order, function);
+        List<Demand> resultHotSpot = demandService.searchByEs4HotSpot(keyword,category, order, latitude, longitude, function);
         List<String> resultTimeStamp = new ArrayList<>();
         List<String> resultCategory = new ArrayList<>();
         SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
@@ -94,6 +95,7 @@ public class IndexController {
         modelAndView.addObject("order", order);
         modelAndView.addObject("longitude", longitude);
         modelAndView.addObject("latitude", latitude);
+        modelAndView.addObject("function", function);
         return modelAndView;
     }
 

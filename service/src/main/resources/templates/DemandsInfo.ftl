@@ -105,7 +105,7 @@ The above copyright notice and this permission notice shall be included in all c
             <!-- End Navbar -->
             <div class="content_NoMargin">
                 <div>
-                    <div style="width:60%;float:left;">
+                    <div>
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="card">
@@ -162,33 +162,33 @@ The above copyright notice and this permission notice shall be included in all c
                         </div>
                     </div>
 
-                    <div class="col-md-12" style="width:40%;float:right;">
-                        <div>
-                            <div class="card">
-                                <div class="card-header card-header-text card-header-blue">
-                                    <div class="card-text">
-                                        <h4 class="card-title">${termName}</h4>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div align="center">
-                                        <img class="img" src="${termImage}">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<#--                    <div class="col-md-12" style="width:40%;float:right;">-->
+<#--                        <div>-->
+<#--                            <div class="card">-->
+<#--                                <div class="card-header card-header-text card-header-blue">-->
+<#--                                    <div class="card-text">-->
+<#--                                        <h4 class="card-title">${termName}</h4>-->
+<#--                                    </div>-->
+<#--                                </div>-->
+<#--                                <div class="card-body">-->
+<#--                                    <div align="center">-->
+<#--                                        <img class="img" src="${termImage}">-->
+<#--                                    </div>-->
+<#--                                </div>-->
+<#--                            </div>-->
+<#--                        </div>-->
 
-                        <div class="card">
-                            <div class="card-header card-header-text card-header-blue">
-                                <div class="card-text">
-                                    <h4 class="card-title">${termName}介绍</h4>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="card-text">${termIntro}</div>
-                            </div>
-                        </div>
-                    </div>
+<#--                        <div class="card">-->
+<#--                            <div class="card-header card-header-text card-header-blue">-->
+<#--                                <div class="card-text">-->
+<#--                                    <h4 class="card-title">${termName}介绍</h4>-->
+<#--                                </div>-->
+<#--                            </div>-->
+<#--                            <div class="card-body">-->
+<#--                                <div class="card-text">${termIntro}</div>-->
+<#--                            </div>-->
+<#--                        </div>-->
+<#--                    </div>-->
                 </div>
             </div>
 

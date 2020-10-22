@@ -78,7 +78,7 @@ public class DemandServiceImpl implements IDemandService {
 
     @Override
     public List<Integer> searchByEsPreStep(String keyword, String categoryId, Integer order,
-                                           BigDecimal latitude, BigDecimal longitude) throws IOException {
+                                           BigDecimal latitude, BigDecimal longitude, Integer function) throws IOException {
         Request request = new Request("GET","/demand_with_location/_search");
         JSONObject jsonRequestObj = new JSONObject();
         jsonRequestObj.put("_source","*");
@@ -109,8 +109,16 @@ public class DemandServiceImpl implements IDemandService {
         int zeroIndex = 0;
         jsonRequestObj.getJSONObject("query").getJSONObject("function_score").getJSONObject("query").getJSONObject("bool")
                 .getJSONArray("should").getJSONObject(zeroIndex).put("match",new JSONObject());
-        jsonRequestObj.getJSONObject("query").getJSONObject("function_score").getJSONObject("query").getJSONObject("bool")
-                .getJSONArray("should").getJSONObject(zeroIndex).getJSONObject("match").put("demand_title", keyword);
+        switch (function) {
+            case 1:
+                jsonRequestObj.getJSONObject("query").getJSONObject("function_score").getJSONObject("query").getJSONObject("bool")
+                        .getJSONArray("should").getJSONObject(zeroIndex).getJSONObject("match").put("demand_title", keyword);
+                break;
+            case 2:
+                jsonRequestObj.getJSONObject("query").getJSONObject("function_score").getJSONObject("query").getJSONObject("bool")
+                        .getJSONArray("should").getJSONObject(zeroIndex).getJSONObject("match").put("company_name", keyword);
+                break;
+        }
 
 
         //排序字段
@@ -155,8 +163,8 @@ public class DemandServiceImpl implements IDemandService {
 
     @Override
     public ResponseVo<PageInfo> searchByEs(String keyword,String categoryId, Integer pageNum, Integer pageSize,
-                                           BigDecimal longitude, BigDecimal latitude, Integer order) throws IOException {
-        List<Integer> demandIdList = searchByEsPreStep(keyword, categoryId, order, longitude, latitude);
+                                           BigDecimal longitude, BigDecimal latitude, Integer order, Integer function) throws IOException {
+        List<Integer> demandIdList = searchByEsPreStep(keyword, categoryId, order, longitude, latitude, function);
         if (demandIdList.size() == 0) {
             return ResponseVo.success(new PageInfo<>());
         }
@@ -177,8 +185,8 @@ public class DemandServiceImpl implements IDemandService {
     }
 
     @Override
-    public List<Demand> searchByEs4HotSpot(String keyword, String categoryId, Integer order, BigDecimal latitude, BigDecimal longitude) throws IOException {
-        List<Integer> demandIdList = searchByEsPreStep(keyword,categoryId,order,latitude,longitude);
+    public List<Demand> searchByEs4HotSpot(String keyword, String categoryId, Integer order, BigDecimal latitude, BigDecimal longitude, Integer function) throws IOException {
+        List<Integer> demandIdList = searchByEsPreStep(keyword,categoryId,order,latitude,longitude, function);
         if (demandIdList.size() == 0) {
             return new ArrayList<Demand>();
         }

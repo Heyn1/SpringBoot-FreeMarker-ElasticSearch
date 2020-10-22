@@ -31,7 +31,7 @@ public interface IDemandService {
      */
     ResponseVo<PageInfo> searchByKeyword(String keyWord, Integer pageNum, Integer pageSize);
 
-    List<Demand> searchByEs4HotSpot(String keyword, String categoryId, Integer order, BigDecimal latitude, BigDecimal longitude) throws IOException;
+    List<Demand> searchByEs4HotSpot(String keyword, String categoryId, Integer order, BigDecimal latitude, BigDecimal longitude, Integer function) throws IOException;
 
 
     /**
@@ -40,7 +40,7 @@ public interface IDemandService {
      * @return list,内容为检索到的记录的主键
      * @throws IOException IO异常
      */
-    List<Integer> searchByEsPreStep(String keyword, String categoryId, Integer order, BigDecimal latitude, BigDecimal longitude) throws IOException;
+    List<Integer> searchByEsPreStep(String keyword, String categoryId, Integer order, BigDecimal latitude, BigDecimal longitude, Integer function) throws IOException;
 
     /**
      * 通过es搜索的第二个阶段,在mysql中查询需要的数据
@@ -51,7 +51,7 @@ public interface IDemandService {
      * @throws IOException IO异常
      */
     ResponseVo<PageInfo> searchByEs(String keyword, String categoryId, Integer pageNum, Integer pageSize,
-                                    BigDecimal longitude, BigDecimal latitude, Integer order) throws IOException;
+                                    BigDecimal longitude, BigDecimal latitude, Integer order, Integer function) throws IOException;
 
     List<Plot> plot();
 
