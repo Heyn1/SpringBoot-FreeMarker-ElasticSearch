@@ -30,10 +30,13 @@ The above copyright notice and this permission notice shall be included in all c
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="/demo/demo.css" rel="stylesheet"/>
 
+    <script src="./js/core/jquery.min.js"></script>
+    <script src="./js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <script src="https://wow.techbrood.com/libs/jquery/jquery-1.11.1.min.js"></script>
     <script>
         searchKeyword = function () {
             var keyword = document.getElementById("search_keyword").value;
-            var selectItem = document.getElementById("sources").value;
+            var selectItem = document.getElementById("selectPointOfInterest").value;
             if (selectItem=="require") {
                 window.location.href = "/search?function=1&keyword=" + keyword;
             }
@@ -144,10 +147,13 @@ The above copyright notice and this permission notice shall be included in all c
 <#--                            <ul class="dropdown-menu">-->
 <#--                                <button class="dropdown-item" type="button">公司名称</button>-->
 <#--                            </ul>-->
-                            <select name="sources" id="sources" class="custom-select sources" placeholder="Source Type">
-                                <option value="require">需求主题</option>
-                                <option value="company">公司名称</option>
-                            </select>
+
+                            <label id="lblSelect" style="position: absolute; left: 140px;">
+                                <select name="sources" id="selectPointOfInterest" title="Select points of interest nearby">
+                                    <option value="require">需求主题</option>
+                                    <option value="company">公司名称</option>
+                                </select>
+                            </label>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
@@ -196,10 +202,8 @@ The above copyright notice and this permission notice shall be included in all c
 </div>
 
 <!--   Core JS Files   -->
-<script src="./js/core/jquery.min.js"></script>
 <script src="./js/core/popper.min.js"></script>
 <script src="./js/core/bootstrap-material-design.min.js"></script>
-<script src="./js/plugins/perfect-scrollbar.jquery.min.js"></script>
 <!-- Plugin for the momentJs  -->
 <script src="./js/plugins/moment.min.js"></script>
 <!--  Plugin for Sweet Alert -->
@@ -411,6 +415,7 @@ The above copyright notice and this permission notice shall be included in all c
         });
     });
 </script>
+
 <script>
     $(document).ready(function () {
         // Javascript method's body can be found in assets/js/demos.js

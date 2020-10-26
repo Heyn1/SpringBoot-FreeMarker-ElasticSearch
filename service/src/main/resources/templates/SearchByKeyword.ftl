@@ -37,6 +37,17 @@ The above copyright notice and this permission notice shall be included in all c
             // var keyword = document.getElementById("search_keyword").value;
             window.location.href = "/demandinfo";
         }
+        searchKeyword = function () {
+            var keyword = document.getElementById("search_keyword").value;
+            var selectItem = document.getElementById("selectPointOfInterest").value;
+            if (selectItem=="require") {
+                window.location.href = "/search?function=1&keyword=" + keyword;
+            }
+            else if (selectItem=="company") {
+                window.location.href = "/search?function=2&keyword=" + keyword;
+            }
+        }
+        console.log("hey");
     </script>
 </head>
 
@@ -137,25 +148,26 @@ The above copyright notice and this permission notice shall be included in all c
 <#--                                <button class="dropdown-item" type="button">需求来源</button>-->
 <#--                                <button class="dropdown-item" type="button">需求类型</button>-->
 <#--                            </ul>-->
-                            <select name="sources" id="sources" class="custom-select sources" placeholder="Source Type">
-                                <option value="require">需求主题</option>
-                                <option value="company">公司名称</option>
-                            </select>
+                            <label id="lblSelect" style="position: absolute; left: 140px;">
+                                <select name="sources" id="selectPointOfInterest" title="Select points of interest nearby">
+                                    <option value="require">需求主题</option>
+                                    <option value="company">公司名称</option>
+                                </select>
+                            </label>
                         </div>
                         <div class="col-md-9">
-                            <form method="get" action="/search">
-                                <div class="row">
+                            <div class="row">
                                     <div class="col-md-8">
                                         <div class="form-group">
-                                            <input id="keyword" name="keyword" type="text" class="form-control"
+                                            <input id="search_keyword" name="search_keyword" type="text" class="form-control"
                                                    placeholder="">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <button class="btn btn-blue" type="submit">搜索一下</button>
+                                        <button class="btn btn-blue" type="submit" onclick="searchKeyword()">搜索一下</button>
                                     </div>
                                 </div>
-                                <div class="row">
+                            <div class="row">
                                     <div class="col-md-9">
                                         <div class="row">
                                             <#list category as item>
@@ -173,7 +185,6 @@ The above copyright notice and this permission notice shall be included in all c
                                         </div>
                                     </div>
                                 </div>
-                            </form>
                         </div>
                     </div>
 
