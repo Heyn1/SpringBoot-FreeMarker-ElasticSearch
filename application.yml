@@ -1,0 +1,31 @@
+#configure html
+spring:
+  freemarker:
+    suffix: .ftl
+    template-loader-path: classpath:/templates/
+    cache: true
+    charset: UTF-8
+    check-template-location: true
+    content-type: text/html
+    expose-request-attributes: true
+    expose-session-attributes: true
+    request-context-attribute: request
+    expose-spring-macro-helpers: false
+  datasource:
+#    url: jdbc:mysql://localhost:3306/company?useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://localhost:3306/demand?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis:
+  mapper-locations: classpath:mappers/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+server:
+  port: 9007
+  tomcat:
+    connection-timeout: 10
+    uri-encoding: UTF-8
+elasticsearch:
+  ip: 9200

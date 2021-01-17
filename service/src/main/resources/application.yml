@@ -23,7 +23,7 @@ mybatis:
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 server:
-  port: 8080
+  port: 8085
   tomcat:
     connection-timeout: 10
     uri-encoding: UTF-8

@@ -31,6 +31,8 @@ public interface IDemandService {
      */
     ResponseVo<PageInfo> searchByKeyword(String keyWord, Integer pageNum, Integer pageSize);
 
+    ResponseVo<PageInfo> searchByCompany(String Company, Integer pageNum, Integer pageSize);
+
     List<Demand> searchByEs4HotSpot(String keyword, String categoryId, Integer order, BigDecimal latitude, BigDecimal longitude, Integer function) throws IOException;
 
 

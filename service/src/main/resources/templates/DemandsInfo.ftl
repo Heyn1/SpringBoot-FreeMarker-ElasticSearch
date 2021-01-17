@@ -22,11 +22,12 @@ The above copyright notice and this permission notice shall be included in all c
         企业需求搜索
     </title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport'/>
-    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+<#--    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>-->
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>
     <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css"
-          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+<#--    <link rel="stylesheet" type="text/css"-->
+<#--          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>-->
+<#--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">-->
     <!-- CSS Files -->
     <link href="../css/material-dashboard.css?v=2.1.2" rel="stylesheet"/>
     <!-- CSS Just for demo purpose, don't include it in your project -->
@@ -55,26 +56,34 @@ The above copyright notice and this permission notice shall be included in all c
                     <li class="nav-item ">
                         <!--  <a class="nav-link" href="./dashboard.html">-->
                         <a class="nav-link" href="#">
-                            <i class="material-icons">dashboard</i>
-                            <p>查询理论成果</p>
+<#--                            <i class="material-icons">dashboard</i>-->
+<#--                            <p>查询理论成果</p>-->
+                            <embed src="img/dashboard-24px.svg" type="image/svg+xml" style="vertical-align: middle;"/>
+                            <p style="display: inline; text-align: center; margin-left: 18px">查询理论成果</p>
                         </a>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link" href="#">
-                            <i class="material-icons">person</i>
-                            <p>查询应用领域</p>
+<#--                            <i class="material-icons">person</i>-->
+<#--                            <p>查询应用领域</p>-->
+                            <embed src="img/person-24px.svg" type="image/svg+xml" style="vertical-align: middle;"/>
+                            <p style="display: inline; text-align: center; margin-left: 18px">查询应用领域</p>
                         </a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="/index">
-                            <i class="material-icons">content_paste</i>
-                            <p>搜索企业需求</p>
+<#--                            <i class="material-icons">content_paste</i>-->
+<#--                            <p>搜索企业需求</p>-->
+                            <embed src="img/content_paste-24px.svg" type="image/svg+xml" style="vertical-align: middle;"/>
+                            <p style="display: inline; text-align: center; margin-left: 18px">搜索企业需求</p>
                         </a>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link" href="#">
-                            <i class="material-icons">library_books</i>
-                            <p>推荐企业需求</p>
+<#--                            <i class="material-icons">library_books</i>-->
+<#--                            <p>推荐企业需求</p>-->
+                            <embed src="img/library_books-24px.svg" type="image/svg+xml" style="vertical-align: middle;"/>
+                            <p style="display: inline; text-align: center; margin-left: 18px">推荐企业需求</p>
                         </a>
                     </li>
                 </ul>
@@ -96,7 +105,10 @@ The above copyright notice and this permission notice shall be included in all c
                                 <a class="nav-link" href="#">登陆</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="material-icons">person</i></a>
+                                <a class="nav-link" href="#">
+<#--                                    <i class="material-icons">person</i>-->
+                                    <embed src="img/person-24px-top.svg" type="image/svg+xml" style="vertical-align: middle;"/>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -234,7 +246,7 @@ The above copyright notice and this permission notice shall be included in all c
             <!-- Material Dashboard DEMO methods, don't include it in your project! -->
             <script src="http://api.map.baidu.com/api?v=2.0&ak=ol0KpqLuwSsAecB1gGPgOdRZeaqSofiP"></script>
             <script src="./demo/demo.js"></script>
-            <script src="./js/echarts.min.js"></script>
+<#--            <script src="./js/echarts.min.js"></script>-->
 
             <script>
                 $(document).ready(function () {

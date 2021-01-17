@@ -171,6 +171,14 @@
         where demand_title like #{pattern,jdbcType=VARCHAR}
     </select>
 
+    <select id="selectByCompany" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <bind name="pattern" value="'%' + company_name + '%'"/>
+        select
+        <include refid="Base_Column_List"/>
+        from demand_info
+        where company_name like #{pattern,jdbcType=VARCHAR}
+    </select>
+
     <select id="selectByIdList" resultMap="BaseResultMap">
         select
         <include refid="search_distance"/>,
@@ -211,6 +219,7 @@
         FROM explanation_info
         WHERE id = #{id}
     </select>
+
 
 
 </mapper>

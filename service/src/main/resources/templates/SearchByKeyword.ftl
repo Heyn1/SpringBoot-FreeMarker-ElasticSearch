@@ -22,11 +22,12 @@ The above copyright notice and this permission notice shall be included in all c
         企业需求搜索
     </title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport'/>
-    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+    <#--    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>-->
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>
     <!--     Fonts and icons     -->
 <#--    <link rel="stylesheet" type="text/css"-->
 <#--          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <#--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">-->
     <!-- CSS Files -->
     <link href="../css/material-dashboard.css?v=2.1.2" rel="stylesheet"/>
     <!-- CSS Just for demo purpose, don't include it in your project -->
@@ -65,28 +66,36 @@ The above copyright notice and this permission notice shall be included in all c
         <div class="sidebar-wrapper">
             <ul class="nav">
                 <li class="nav-item ">
-                    <!--  <a class="nav-link" href="./dashboard.html">-->
+                    <#--                      <a class="nav-link" href="./dashboard.html">-->
                     <a class="nav-link" href="#">
-<#--                        <i class="material-icons">dashboard</i>-->
-                        <p>查询理论成果</p>
+                        <#--&lt;#&ndash;                        <i class="material-icons">dashboard</i>&ndash;&gt;-->
+                        <#--                        <p>查询理论成果</p>-->
+                        <embed src="img/dashboard-24px.svg" type="image/svg+xml" style="vertical-align: middle;"/>
+                        <p style="display: inline; text-align: center; margin-left: 18px">查询理论成果</p>
                     </a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link" href="#">
 <#--                        <i class="material-icons">person</i>-->
-                        <p>查询应用领域</p>
+                        <#--                        <p>查询应用领域</p>-->
+                        <embed src="img/person-24px.svg" type="image/svg+xml" style="vertical-align: middle;"/>
+                        <p style="display: inline; text-align: center; margin-left: 18px">查询应用领域</p>
                     </a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="/index">
 <#--                        <i class="material-icons">content_paste</i>-->
-                        <p>搜索企业需求</p>
+                        <#--                        <p>搜索企业需求</p>-->
+                        <embed src="img/content_paste-24px.svg" type="image/svg+xml" style="vertical-align: middle;"/>
+                        <p style="display: inline; text-align: center; margin-left: 18px">搜索企业需求</p>
                     </a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link" href="#">
 <#--                        <i class="material-icons">library_books</i>-->
-                        <p>推荐企业需求</p>
+                        <#--                        <p>推荐企业需求</p>-->
+                        <embed src="img/library_books-24px.svg" type="image/svg+xml" style="vertical-align: middle;"/>
+                        <p style="display: inline; text-align: center; margin-left: 18px">推荐企业需求</p>
                     </a>
                 </li>
             </ul>
@@ -110,6 +119,8 @@ The above copyright notice and this permission notice shall be included in all c
                         <li class="nav-item">
                             <a class="nav-link" href="#">
 <#--                                <i class="material-icons">person</i>-->
+                                <embed src="img/person-24px-top.svg" type="image/svg+xml"
+                                       style="vertical-align: middle;"/>
                             </a>
                         </li>
                     </ul>
@@ -160,7 +171,7 @@ The above copyright notice and this permission notice shall be included in all c
                                     <div class="col-md-8">
                                         <div class="form-group">
                                             <input id="search_keyword" name="search_keyword" type="text" class="form-control"
-                                                   placeholder="">
+                                                   placeholder="" value="${keyword}">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -170,18 +181,30 @@ The above copyright notice and this permission notice shall be included in all c
                             <div class="row">
                                     <div class="col-md-9">
                                         <div class="row">
-                                            <#list category as item>
+                                            <#list resultBoxCategory as item>
                                                 <div class="form-check">
                                                     <label class="form-check-label">
                                                         <input class="form-check-input" type="checkbox" name="category"
-                                                               id="check" value=${item.category}>
-                                                        ${item.category} &nbsp; &nbsp;
+                                                               id="check" value="${item}">
+                                                        ${item}
                                                         <span class="form-check-sign">
-                                                        <span class="check"></span>
+                                                            <span class="check"></span>
                                                         </span>
                                                     </label>
                                                 </div>
                                             </#list>
+                                            <#--                                            <#list category as item>-->
+                                            <#--                                                <div class="form-check">-->
+                                            <#--                                                    <label class="form-check-label">-->
+                                            <#--                                                        <input class="form-check-input" type="checkbox" name="category"-->
+                                            <#--                                                               id="check" value=${item.category}>-->
+                                            <#--                                                        ${item.category} &nbsp; &nbsp;-->
+                                            <#--                                                        <span class="form-check-sign">-->
+                                            <#--                                                        <span class="check"></span>-->
+                                            <#--                                                        </span>-->
+                                            <#--                                                    </label>-->
+                                            <#--                                                </div>-->
+                                            <#--                                            </#list>-->
                                         </div>
                                     </div>
                                 </div>
@@ -204,7 +227,7 @@ The above copyright notice and this permission notice shall be included in all c
                                 <#if order == 0>
                                     <li class="nav-item active">
                                         <a class="nav-link"
-                                           href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=0">
+                                           href="/search?keyword=${keyword}&pageNum=1&pageSize=${resultDemandInfo.data.pageSize?c}&order=0">
                                             综合
 <#--                                            <i class="material-icons">south</i>-->
                                         </a>
@@ -212,7 +235,7 @@ The above copyright notice and this permission notice shall be included in all c
                                 <#else >
                                     <li class="nav-item">
                                         <a class="nav-link"
-                                           href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=0">
+                                           href="/search?keyword=${keyword}&pageNum=1&pageSize=${resultDemandInfo.data.pageSize?c}&order=0">
                                             综合
 <#--                                            <i class="material-icons">south</i>-->
                                         </a>
@@ -221,7 +244,7 @@ The above copyright notice and this permission notice shall be included in all c
                                 <#if order == 1>
                                     <li class="nav-item active">
                                         <a class="nav-link"
-                                           href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=1">
+                                           href="/search?keyword=${keyword}&pageNum=1&pageSize=${resultDemandInfo.data.pageSize?c}&order=1">
                                             相关度
 <#--                                            <i class="material-icons">south</i>-->
                                         </a>
@@ -229,7 +252,7 @@ The above copyright notice and this permission notice shall be included in all c
                                 <#else >
                                     <li class="nav-item">
                                         <a class="nav-link"
-                                           href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=1">
+                                           href="/search?keyword=${keyword}&pageNum=1&pageSize=${resultDemandInfo.data.pageSize?c}&order=1">
                                             相关度
 <#--                                            <i class="material-icons">south</i>-->
                                         </a>
@@ -238,7 +261,7 @@ The above copyright notice and this permission notice shall be included in all c
                                 <#if order == 2>
                                     <li class="nav-item active">
                                         <a class="nav-link"
-                                           href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=2">
+                                           href="/search?keyword=${keyword}&pageNum=1&pageSize=${resultDemandInfo.data.pageSize?c}&order=2">
                                             时间
 <#--                                            <i class="material-icons">south</i>-->
                                         </a>
@@ -246,7 +269,7 @@ The above copyright notice and this permission notice shall be included in all c
                                 <#else >
                                     <li class="nav-item">
                                         <a class="nav-link"
-                                           href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=2">
+                                           href="/search?keyword=${keyword}&pageNum=1&pageSize=${resultDemandInfo.data.pageSize?c}&order=2">
                                             时间
 <#--                                            <i class="material-icons">south</i>-->
                                         </a>
@@ -256,7 +279,7 @@ The above copyright notice and this permission notice shall be included in all c
                                 <#if order == 3>
                                     <li class="nav-item active">
                                         <a class="nav-link"
-                                           href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=3">
+                                           href="/search?keyword=${keyword}&pageNum=1&pageSize=${resultDemandInfo.data.pageSize?c}&order=3">
                                             距离
 <#--                                            <i class="material-icons">south</i>-->
                                         </a>
@@ -264,7 +287,7 @@ The above copyright notice and this permission notice shall be included in all c
                                 <#else >
                                     <li class="nav-item">
                                         <a class="nav-link"
-                                           href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=3">
+                                           href="/search?keyword=${keyword}&pageNum=1&pageSize=${resultDemandInfo.data.pageSize?c}&order=3">
                                             距离
 <#--                                            <i class="material-icons">south</i>-->
                                         </a>
@@ -273,7 +296,7 @@ The above copyright notice and this permission notice shall be included in all c
                                 <#if order == 4>
                                     <li class="nav-item active">
                                         <a class="nav-link"
-                                           href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=4">
+                                           href="/search?keyword=${keyword}&pageNum=1&pageSize=${resultDemandInfo.data.pageSize?c}&order=4">
                                             企业信用
 <#--                                            <i class="material-icons">south</i>-->
                                         </a>
@@ -281,7 +304,7 @@ The above copyright notice and this permission notice shall be included in all c
                                 <#else >
                                     <li class="nav-item">
                                         <a class="nav-link"
-                                           href="/search?keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}&order=4">
+                                           href="/search?keyword=${keyword}&pageNum=1&pageSize=${resultDemandInfo.data.pageSize?c}&order=4">
                                             企业信用
 <#--                                            <i class="material-icons">south</i>-->
                                         </a>
@@ -295,8 +318,8 @@ The above copyright notice and this permission notice shall be included in all c
 
             <div>
                 <div style="width:70%;float:left;">
-                    <#if result.data.size != 0>
-                        <#list result.data.list as item>
+                    <#if resultDemandInfo.data.size != 0>
+                        <#list resultDemandInfo.data.list as item>
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -348,7 +371,6 @@ The above copyright notice and this permission notice shall be included in all c
 
                 <div class="col-md-12" style="width:30%;float:right;">
                     <div>
-
                         <div class="card">
                             <div class="card-header card-header-text card-header-blue">
                                 <div class="card-text">
@@ -356,356 +378,6 @@ The above copyright notice and this permission notice shall be included in all c
                                 </div>
                             </div>
                             <div id="main1" style="width: 100%;height:400px;"></div>
-                            <script type="text/javascript">
-                                // 基于准备好的dom，初始化echarts实例
-                                var myChart = echarts.init(document.getElementById('main1'));
-
-                                // 指定图表的配置项和数据
-                                var obj = {}
-
-                                <#list resultTimeStamp as item>
-                                if (obj['${item}'])
-                                    obj['${item}']++
-                                else
-                                    obj['${item}'] = 1
-                                </#list>
-
-                                var base = +new Date(1968, 9, 3);
-                                var oneDay = 24 * 3600 * 1000;
-                                var date = [];
-
-                                var data = [Math.random() * 300];
-
-                                function itostring(a) {
-                                    switch (a) {
-                                        case 1:
-                                            return '01'
-                                        case 2:
-                                            return '02'
-                                        case 3:
-                                            return '03'
-                                        case 4:
-                                            return '04'
-                                        case 5:
-                                            return '05'
-                                        case 6:
-                                            return '06'
-                                        case 7:
-                                            return '07'
-                                        case 8:
-                                            return '08'
-                                        case 9:
-                                            return '09'
-                                        case 10:
-                                            return '10'
-                                        case 11:
-                                            return '11'
-                                        case 12:
-                                            return '12'
-                                        case 13:
-                                            return '13'
-                                        case 14:
-                                            return '14'
-                                        case 15:
-                                            return '15'
-                                        case 16:
-                                            return '16'
-                                        case 17:
-                                            return '17'
-                                        case 18:
-                                            return '18'
-                                        case 19:
-                                            return '19'
-                                        case 20:
-                                            return '20'
-                                        case 21:
-                                            return '21'
-                                        case 22:
-                                            return '22'
-                                        case 23:
-                                            return '23'
-                                        case 24:
-                                            return '24'
-                                        case 25:
-                                            return '25'
-                                        case 26:
-                                            return '26'
-                                        case 27:
-                                            return '27'
-                                        case 28:
-                                            return '28'
-                                        case 29:
-                                            return '29'
-                                        case 30:
-                                            return '30'
-                                        case 31:
-                                            return '31'
-                                        case 2005:
-                                            return '2005'
-                                        case 2006:
-                                            return '2006'
-                                        case 2007:
-                                            return '2007'
-                                        case 2008:
-                                            return '2008'
-                                        case 2009:
-                                            return '2009'
-                                        case 2010:
-                                            return '2010'
-                                        case 2011:
-                                            return '2011'
-                                        case 2012:
-                                            return '2012'
-                                        case 2013:
-                                            return '2013'
-                                        case 2014:
-                                            return '2014'
-                                        case 2015:
-                                            return '2015'
-                                        case 2016:
-                                            return '2016'
-                                        case 2017:
-                                            return '2017'
-                                        case 2018:
-                                            return '2018'
-                                        case 2019:
-                                            return '2019'
-                                        case 2020:
-                                            return '2020'
-                                        case 2021:
-                                            return '2021'
-                                        case 2022:
-                                            return '2022'
-                                    }
-                                }
-
-                                var arr = []
-                                for (var key in obj) {
-                                    arr.push(key)
-                                }
-                                arr = arr.sort()
-                                var newobj = {}
-
-                                // Accurate to day
-                                // for (i = 0; i < arr.length - 1; i++) {
-                                //     var start = arr[i]
-                                //     var end = arr[i + 1]
-                                //     var cur = start
-                                //
-                                //     while (cur != end) {
-                                //         var hotvalue = obj[start]
-                                //         for (j = 1; j <= 2; j++) {
-                                //             if (i - j >= 0)
-                                //                 hotvalue += obj[arr[i - j]]
-                                //             if (i + j < arr.length)
-                                //                 hotvalue += obj[arr[i + j]]
-                                //         }
-                                //         newobj[cur] = hotvalue
-                                //         var year = cur.substr(0, 4)
-                                //         var month = cur.substr(5, 2)
-                                //         var day = cur.substr(8, 2)
-                                //         switch (month) {
-                                //             case '01':
-                                //                 if (day == '31') {
-                                //                     day = '01'
-                                //                     month = '02'
-                                //                 }
-                                //                 else {
-                                //                     day = itostring(parseInt(day) + 1)
-                                //                 }
-                                //                 break;
-                                //             case '02':
-                                //                 if (day == '28') {
-                                //                     day = '01'
-                                //                     month = '03'
-                                //                 }
-                                //                 else {
-                                //                     day = itostring(parseInt(day) + 1)
-                                //                 }
-                                //                 break;
-                                //             case '03':
-                                //                 if (day == '31') {
-                                //                     day = '01'
-                                //                     month = '04'
-                                //                 }
-                                //                 else {
-                                //                     day = itostring(parseInt(day) + 1)
-                                //                 }
-                                //                 break;
-                                //             case '04':
-                                //                 if (day == '30') {
-                                //                     day = '01'
-                                //                     month = '05'
-                                //                 }
-                                //                 else {
-                                //                     day = itostring(parseInt(day) + 1)
-                                //                 }
-                                //                 break;
-                                //             case '05':
-                                //                 if (day == '31') {
-                                //                     day = '01'
-                                //                     month = '06'
-                                //                 }
-                                //                 else {
-                                //                     day = itostring(parseInt(day) + 1)
-                                //                 }
-                                //                 break;
-                                //             case '06':
-                                //                 if (day == '30') {
-                                //                     day = '01'
-                                //                     month = '07'
-                                //                 }
-                                //                 else {
-                                //                     day = itostring(parseInt(day) + 1)
-                                //                 }
-                                //                 break;
-                                //             case '07':
-                                //                 if (day == '31') {
-                                //                     day = '01'
-                                //                     month = '08'
-                                //                 }
-                                //                 else {
-                                //                     day = itostring(parseInt(day) + 1)
-                                //                 }
-                                //                 break;
-                                //             case '08':
-                                //                 if (day == '31') {
-                                //                     day = '01'
-                                //                     month = '09'
-                                //                 }
-                                //                 else {
-                                //                     day = itostring(parseInt(day) + 1)
-                                //                 }
-                                //                 break;
-                                //             case '09':
-                                //                 if (day == '30') {
-                                //                     day = '01'
-                                //                     month = '10'
-                                //                 }
-                                //                 else {
-                                //                     day = itostring(parseInt(day) + 1)
-                                //                 }
-                                //                 break;
-                                //             case '10':
-                                //                 if (day == '31') {
-                                //                     day = '01'
-                                //                     month = '11'
-                                //                 }
-                                //                 else {
-                                //                     day = itostring(parseInt(day) + 1)
-                                //                 }
-                                //                 break;
-                                //             case '11':
-                                //                 if (day == '30') {
-                                //                     day = '01'
-                                //                     month = '12'
-                                //                 }
-                                //                 else {
-                                //                     day = itostring(parseInt(day) + 1)
-                                //                 }
-                                //                 break;
-                                //             case '12':
-                                //                 if (day == '31') {
-                                //                     year = itostring(parseInt(year) + 1)
-                                //                     day = '01'
-                                //                     month = '01'
-                                //                 }
-                                //                 else {
-                                //                     day = itostring(parseInt(day) + 1)
-                                //                 }
-                                //                 break;
-                                //         }
-                                //         cur = year + '-' + month + '-' + day
-                                //     }
-                                //     // var tmp = arr[i]
-                                //     // newobj[tmp] = obj[tmp]
-                                // }
-
-                                // Accurate to month
-                                for (i = 0; i < arr.length; i++) {
-                                    if (newobj[arr[i].substr(0, 7)])
-                                        newobj[arr[i].substr(0, 7)] += obj[arr[i]]
-                                    else
-                                        newobj[arr[i].substr(0, 7)] = obj[arr[i]]
-                                }
-
-                                var xvalue = []
-                                var yvalue = []
-
-                                for (var i in newobj) {
-                                    xvalue.push(i)
-                                    yvalue.push(newobj[i])
-                                }
-
-                                option = {
-                                    tooltip: {
-                                        trigger: 'axis',
-                                        position: function (pt) {
-                                            return [pt[0], '10%'];
-                                        }
-                                    },
-                                    xAxis: {
-                                        type: 'category',
-                                        boundaryGap: false,
-                                        axisLabel: {
-                                            show: true,
-                                            interval: 2,
-                                            rotate: 60
-                                        },
-                                        data: xvalue
-                                    },
-                                    yAxis: {
-                                        type: 'value',
-                                        boundaryGap: [0, '100%'],
-                                        min: 0,
-                                        max: 20
-                                    },
-                                    dataZoom: [{
-                                        type: 'inside',
-                                        start: 0,
-                                        end: 10
-                                    }, {
-                                        start: 0,
-                                        end: 10,
-                                        handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
-                                        handleSize: '80%',
-                                        handleStyle: {
-                                            color: '#fff',
-                                            shadowBlur: 3,
-                                            shadowColor: 'rgba(0, 0, 0, 0.6)',
-                                            shadowOffsetX: 2,
-                                            shadowOffsetY: 2
-                                        }
-                                    }],
-                                    series: [
-                                        {
-                                            name: '热度数据',
-                                            type: 'line',
-                                            smooth: true,
-                                            symbol: 'none',
-                                            sampling: 'average',
-                                            itemStyle: {
-                                                color: 'rgb(255, 70, 131)'
-                                            },
-                                            // areaStyle: {
-                                            //     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                            //         offset: 0,
-                                            //         color: 'rgb(255, 158, 68)'
-                                            //     }, {
-                                            //         offset: 1,
-                                            //         color: 'rgb(255, 70, 131)'
-                                            //     }])
-                                            // },
-                                            data: yvalue
-                                        }
-                                    ]
-
-                                };
-
-                                // 使用刚指定的配置项和数据显示图表。
-                                myChart.setOption(option);
-                            </script>
-
                         </div>
                     </div>
 
@@ -716,98 +388,33 @@ The above copyright notice and this permission notice shall be included in all c
                             </div>
                         </div>
                         <div id="main" style="height: 100%;min-height:400px;"></div>
-                        <script type="text/javascript">
-                            // 基于准备好的dom，初始化ECharts实例
-                            var myChart = echarts.init(document.getElementById('main'));
-                            var app = {};
-                            option = null;
-                            // 指定图表的配置项和数据
-
-                            var data1 = []
-                            var data2 = []
-                            var obj = {}
-                            <#list resultCategory as item>
-                            if (obj['${item}'])
-                                obj['${item}']++
-                            else
-                                obj['${item}'] = 1
-                            </#list>
-
-                            for (i = 0; i < 5; i++) {
-                                var name
-                                var value = 0
-                                for (var key in obj) {
-                                    if (value < obj[key]) {
-                                        name = key
-                                        value = obj[key]
-                                    }
-                                }
-                                var tmp = {}
-                                tmp['value'] = value
-                                tmp['name'] = name
-                                data1.push(name)
-                                data2.push(tmp)
-                                obj[name] = 0
-                            }
-
-                            var option = {
-                                tooltip: {
-                                    trigger: 'item',
-                                    formatter: "{a} <br/>{b} : {c} ({d}%)"
-                                },
-                                legend: {
-                                    orient: 'vertical',
-                                    left: 'left',
-                                    data: data1
-                                },
-                                series: [
-                                    {
-                                        name: '领域分布',
-                                        type: 'pie',
-                                        radius: '55%',
-                                        center: ['50%', '60%'],
-                                        data: data2,
-                                        itemStyle: {
-                                            emphasis: {
-                                                shadowBlur: 10,
-                                                shadowOffsetX: 0,
-                                                shadowColor: 'rgba(0, 0, 0, 0.5)'
-                                            }
-                                        }
-                                    }
-                                ]
-                            };
-
-                            app.currentIndex = -1;
-
-                            if (option && typeof option === "object") {
-                                myChart.setOption(option, true);
-                            }
-                        </script>
                     </div>
                 </div>
             </div>
 
         </div>
 
-        <#if result.data.size != 0>
+        <#if resultDemandInfo.data.size != 0>
             <div style="clear:both;">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center">
                         <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1"> 共${result.data.total}条 </a>
+                            <a class="page-link" href="#" tabindex="-1"> 共${resultDemandInfo.data.total}条 </a>
                         </li>
-                        <#if result.data.isFirstPage==false>
+                        <#if resultDemandInfo.data.isFirstPage==false>
                             <li class="page-item">
-                                <a class="page-link" href="/search?function=${function}&keyword=${keyword}&pageNum=1&pageSize=${result.data.pageSize?c}"> 第一页 </a>
+                                <a class="page-link"
+                                   href="/search?function=${function}&keyword=${keyword}&pageNum=1&pageSize=${resultDemandInfo.data.pageSize?c}">
+                                    第一页 </a>
                             </li>
                             <li class="page-item">
-                                <a class="page-link" href="/search?function=${function}&keyword=${keyword}&pageNum=${result.data.prePage}&pageSize=${result.data.pageSize?c}">上一页</a>
+                                <a class="page-link"
+                                   href="/search?function=${function}&keyword=${keyword}&pageNum=${resultDemandInfo.data.prePage}&pageSize=${resultDemandInfo.data.pageSize?c}">上一页</a>
                             </li>
                         </#if>
 
-                        <#list result.data.navigatepageNums as element>
-                            <#if element == result.data.pageNum>
+                        <#list resultDemandInfo.data.navigatepageNums as element>
+                            <#if element == resultDemandInfo.data.pageNum>
                                 <li class="page-item active">
                                     <span class="page-link">
                                         ${element}
@@ -818,19 +425,22 @@ The above copyright notice and this permission notice shall be included in all c
 <#--                                    <a class="page-link" href="/search?keyword=${keyword}&pageNum=${element}&pageSize=${result.data.pageSize?c}">${element}</a>-->
                                 </li>
                             </#if>
-                            <#if element != result.data.pageNum>
+                            <#if element != resultDemandInfo.data.pageNum>
                                 <li class="page-item">
-                                    <a class="page-link" href="/search?function=${function}&keyword=${keyword}&pageNum=${element}&pageSize=${result.data.pageSize?c}">${element}</a>
+                                    <a class="page-link"
+                                       href="/search?function=${function}&keyword=${keyword}&pageNum=${element}&pageSize=${resultDemandInfo.data.pageSize?c}">${element}</a>
                                 </li>
                             </#if>
                         </#list>
 
-                        <#if result.data.isLastPage==false>
+                        <#if resultDemandInfo.data.isLastPage==false>
                             <li class="page-item">
-                                <a class="page-link" href="/search?function=${function}&keyword=${keyword}&pageNum=${result.data.nextPage}&pageSize=${result.data.pageSize?c}">下一页</a>
+                                <a class="page-link"
+                                   href="/search?function=${function}&keyword=${keyword}&pageNum=${resultDemandInfo.data.nextPage}&pageSize=${resultDemandInfo.data.pageSize?c}">下一页</a>
                             </li>
                             <li class="page-item">
-                                <a class="page-link" href="/search?function=${function}&keyword=${keyword}&pageNum=${result.data.pages}&pageSize=${result.data.pageSize?c}">最后一页</a>
+                                <a class="page-link"
+                                   href="/search?function=${function}&keyword=${keyword}&pageNum=${resultDemandInfo.data.pages}&pageSize=${resultDemandInfo.data.pageSize?c}">最后一页</a>
                             </li>
                         </#if>
                     </ul>
@@ -921,7 +531,7 @@ The above copyright notice and this permission notice shall be included in all c
         <!-- Material Dashboard DEMO methods, don't include it in your project! -->
         <script src="http://api.map.baidu.com/api?v=2.0&ak=ol0KpqLuwSsAecB1gGPgOdRZeaqSofiP"></script>
         <script src="./demo/demo.js"></script>
-        <script src="./js/echarts.min.js"></script>
+        <#--        <script src="./js/echarts.min.js"></script>-->
 
         <script>
             $(document).ready(function () {
@@ -956,11 +566,428 @@ The above copyright notice and this permission notice shall be included in all c
                     }
                 }, {enableHighAccuracy: true})
             }
-
-
         </script>
 
+        <script type="text/javascript">
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('main1'));
 
+            // 指定图表的配置项和数据
+            var obj = {}
+
+            <#list resultTimeStamp as item>
+            if (obj['${item}'])
+                obj['${item}']++
+            else
+                obj['${item}'] = 1
+            </#list>
+
+            var base = +new Date(1968, 9, 3);
+            var oneDay = 24 * 3600 * 1000;
+            var date = [];
+
+            var data = [Math.random() * 300];
+
+            function itostring(a) {
+                switch (a) {
+                    case 1:
+                        return '01'
+                    case 2:
+                        return '02'
+                    case 3:
+                        return '03'
+                    case 4:
+                        return '04'
+                    case 5:
+                        return '05'
+                    case 6:
+                        return '06'
+                    case 7:
+                        return '07'
+                    case 8:
+                        return '08'
+                    case 9:
+                        return '09'
+                    case 10:
+                        return '10'
+                    case 11:
+                        return '11'
+                    case 12:
+                        return '12'
+                    case 13:
+                        return '13'
+                    case 14:
+                        return '14'
+                    case 15:
+                        return '15'
+                    case 16:
+                        return '16'
+                    case 17:
+                        return '17'
+                    case 18:
+                        return '18'
+                    case 19:
+                        return '19'
+                    case 20:
+                        return '20'
+                    case 21:
+                        return '21'
+                    case 22:
+                        return '22'
+                    case 23:
+                        return '23'
+                    case 24:
+                        return '24'
+                    case 25:
+                        return '25'
+                    case 26:
+                        return '26'
+                    case 27:
+                        return '27'
+                    case 28:
+                        return '28'
+                    case 29:
+                        return '29'
+                    case 30:
+                        return '30'
+                    case 31:
+                        return '31'
+                    case 2005:
+                        return '2005'
+                    case 2006:
+                        return '2006'
+                    case 2007:
+                        return '2007'
+                    case 2008:
+                        return '2008'
+                    case 2009:
+                        return '2009'
+                    case 2010:
+                        return '2010'
+                    case 2011:
+                        return '2011'
+                    case 2012:
+                        return '2012'
+                    case 2013:
+                        return '2013'
+                    case 2014:
+                        return '2014'
+                    case 2015:
+                        return '2015'
+                    case 2016:
+                        return '2016'
+                    case 2017:
+                        return '2017'
+                    case 2018:
+                        return '2018'
+                    case 2019:
+                        return '2019'
+                    case 2020:
+                        return '2020'
+                    case 2021:
+                        return '2021'
+                    case 2022:
+                        return '2022'
+                }
+            }
+
+            var arr = []
+            for (var key in obj) {
+                arr.push(key)
+            }
+            arr = arr.sort()
+            var newobj = {}
+
+            // Accurate to day
+            // for (i = 0; i < arr.length - 1; i++) {
+            //     var start = arr[i]
+            //     var end = arr[i + 1]
+            //     var cur = start
+            //
+            //     while (cur != end) {
+            //         var hotvalue = obj[start]
+            //         for (j = 1; j <= 2; j++) {
+            //             if (i - j >= 0)
+            //                 hotvalue += obj[arr[i - j]]
+            //             if (i + j < arr.length)
+            //                 hotvalue += obj[arr[i + j]]
+            //         }
+            //         newobj[cur] = hotvalue
+            //         var year = cur.substr(0, 4)
+            //         var month = cur.substr(5, 2)
+            //         var day = cur.substr(8, 2)
+            //         switch (month) {
+            //             case '01':
+            //                 if (day == '31') {
+            //                     day = '01'
+            //                     month = '02'
+            //                 }
+            //                 else {
+            //                     day = itostring(parseInt(day) + 1)
+            //                 }
+            //                 break;
+            //             case '02':
+            //                 if (day == '28') {
+            //                     day = '01'
+            //                     month = '03'
+            //                 }
+            //                 else {
+            //                     day = itostring(parseInt(day) + 1)
+            //                 }
+            //                 break;
+            //             case '03':
+            //                 if (day == '31') {
+            //                     day = '01'
+            //                     month = '04'
+            //                 }
+            //                 else {
+            //                     day = itostring(parseInt(day) + 1)
+            //                 }
+            //                 break;
+            //             case '04':
+            //                 if (day == '30') {
+            //                     day = '01'
+            //                     month = '05'
+            //                 }
+            //                 else {
+            //                     day = itostring(parseInt(day) + 1)
+            //                 }
+            //                 break;
+            //             case '05':
+            //                 if (day == '31') {
+            //                     day = '01'
+            //                     month = '06'
+            //                 }
+            //                 else {
+            //                     day = itostring(parseInt(day) + 1)
+            //                 }
+            //                 break;
+            //             case '06':
+            //                 if (day == '30') {
+            //                     day = '01'
+            //                     month = '07'
+            //                 }
+            //                 else {
+            //                     day = itostring(parseInt(day) + 1)
+            //                 }
+            //                 break;
+            //             case '07':
+            //                 if (day == '31') {
+            //                     day = '01'
+            //                     month = '08'
+            //                 }
+            //                 else {
+            //                     day = itostring(parseInt(day) + 1)
+            //                 }
+            //                 break;
+            //             case '08':
+            //                 if (day == '31') {
+            //                     day = '01'
+            //                     month = '09'
+            //                 }
+            //                 else {
+            //                     day = itostring(parseInt(day) + 1)
+            //                 }
+            //                 break;
+            //             case '09':
+            //                 if (day == '30') {
+            //                     day = '01'
+            //                     month = '10'
+            //                 }
+            //                 else {
+            //                     day = itostring(parseInt(day) + 1)
+            //                 }
+            //                 break;
+            //             case '10':
+            //                 if (day == '31') {
+            //                     day = '01'
+            //                     month = '11'
+            //                 }
+            //                 else {
+            //                     day = itostring(parseInt(day) + 1)
+            //                 }
+            //                 break;
+            //             case '11':
+            //                 if (day == '30') {
+            //                     day = '01'
+            //                     month = '12'
+            //                 }
+            //                 else {
+            //                     day = itostring(parseInt(day) + 1)
+            //                 }
+            //                 break;
+            //             case '12':
+            //                 if (day == '31') {
+            //                     year = itostring(parseInt(year) + 1)
+            //                     day = '01'
+            //                     month = '01'
+            //                 }
+            //                 else {
+            //                     day = itostring(parseInt(day) + 1)
+            //                 }
+            //                 break;
+            //         }
+            //         cur = year + '-' + month + '-' + day
+            //     }
+            //     // var tmp = arr[i]
+            //     // newobj[tmp] = obj[tmp]
+            // }
+
+            // Accurate to month
+            for (i = 0; i < arr.length; i++) {
+                if (newobj[arr[i].substr(0, 7)])
+                    newobj[arr[i].substr(0, 7)] += obj[arr[i]]
+                else
+                    newobj[arr[i].substr(0, 7)] = obj[arr[i]]
+            }
+
+            var xvalue = []
+            var yvalue = []
+
+            for (var i in newobj) {
+                xvalue.push(i)
+                yvalue.push(newobj[i])
+            }
+
+            option = {
+                tooltip: {
+                    trigger: 'axis',
+                    position: function (pt) {
+                        return [pt[0], '10%'];
+                    }
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    axisLabel: {
+                        show: true,
+                        interval: 2,
+                        rotate: 60
+                    },
+                    data: xvalue
+                },
+                yAxis: {
+                    type: 'value',
+                    boundaryGap: [0, '100%'],
+                    min: 0,
+                    max: 20
+                },
+                dataZoom: [{
+                    type: 'inside',
+                    start: 0,
+                    end: 10
+                }, {
+                    start: 0,
+                    end: 10,
+                    handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                    handleSize: '80%',
+                    handleStyle: {
+                        color: '#fff',
+                        shadowBlur: 3,
+                        shadowColor: 'rgba(0, 0, 0, 0.6)',
+                        shadowOffsetX: 2,
+                        shadowOffsetY: 2
+                    }
+                }],
+                series: [
+                    {
+                        name: '热度数据',
+                        type: 'line',
+                        smooth: true,
+                        symbol: 'none',
+                        sampling: 'average',
+                        itemStyle: {
+                            color: 'rgb(255, 70, 131)'
+                        },
+                        // areaStyle: {
+                        //     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        //         offset: 0,
+                        //         color: 'rgb(255, 158, 68)'
+                        //     }, {
+                        //         offset: 1,
+                        //         color: 'rgb(255, 70, 131)'
+                        //     }])
+                        // },
+                        data: yvalue
+                    }
+                ]
+
+            };
+
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        </script>
+
+        <script type="text/javascript">
+            // 基于准备好的dom，初始化ECharts实例
+            var myChart = echarts.init(document.getElementById('main'));
+            var app = {};
+            option = null;
+            // 指定图表的配置项和数据
+
+            var data1 = []
+            var data2 = []
+            var obj = {}
+            <#list resultCategory as item>
+            if (obj['${item}'])
+                obj['${item}']++
+            else
+                obj['${item}'] = 1
+            </#list>
+
+            for (i = 0; i < 5; i++) {
+                var name
+                var value = 0
+                for (var key in obj) {
+                    if (value < obj[key]) {
+                        name = key
+                        value = obj[key]
+                    }
+                }
+                var tmp = {}
+                tmp['value'] = value
+                tmp['name'] = name
+                data1.push(name)
+                data2.push(tmp)
+                obj[name] = 0
+            }
+
+            var option = {
+                tooltip: {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                legend: {
+                    orient: 'vertical',
+                    left: 'left',
+                    data: data1
+                },
+                series: [
+                    {
+                        name: '领域分布',
+                        type: 'pie',
+                        radius: '55%',
+                        center: ['50%', '60%'],
+                        data: data2,
+                        itemStyle: {
+                            emphasis: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ]
+            };
+
+            app.currentIndex = -1;
+
+            if (option && typeof option === "object") {
+                myChart.setOption(option, true);
+            }
+        </script>
+    </div>
+</div>
 </body>
 
 </html>

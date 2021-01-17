@@ -77,6 +77,23 @@ public class DemandServiceImpl implements IDemandService {
     }
 
     @Override
+    public ResponseVo<PageInfo> searchByCompany(String Comapny, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Demand> demandList = demandMapper.selectByCompany(Comapny);
+        List<DemandVo> demandVoList = demandList.stream()
+                .map(e -> {
+                    DemandVo demandVo = new DemandVo();
+                    BeanUtils.copyProperties(e, demandVo);
+                    return demandVo;
+                })
+                .collect(Collectors.toList());
+
+        PageInfo pageInfo = new PageInfo<>(demandList);
+        pageInfo.setList(demandVoList);
+        return ResponseVo.success(pageInfo);
+    }
+
+    @Override
     public List<Integer> searchByEsPreStep(String keyword, String categoryId, Integer order,
                                            BigDecimal latitude, BigDecimal longitude, Integer function) throws IOException {
         Request request = new Request("GET","/demand_with_location/_search");

@@ -51,12 +51,13 @@ select#selectTravelCity:focus {box-shadow: 0 0 2px 1px #404040;}
 /*SELECT W/DOWN-ARROW*/
 select#selectPointOfInterest
 {
-  width                    : 110pt;
-  height                   : 35pt;
+  width                    : 100pt;
+  height                   : 30pt;
   line-height              : 40pt;
   padding-right            : 20pt;
   text-indent              : 4pt;
   text-align               : center;
+  text-align-last          : center;
   vertical-align           : middle;
   box-shadow               : inset 0 0 3px #606060;
   border                   : 1px solid #acacac;
@@ -67,7 +68,7 @@ select#selectPointOfInterest
   -moz-appearance          : none;
   appearance               : none;
   font-family              : Arial,  Calibri, Tahoma, Verdana;
-  font-size                : 12px;
+  font-size                : 15px;
   font-weight              : 400;
   font-stretch             : expanded;
   color                    : #3e7fbd;

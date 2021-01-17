@@ -22,9 +22,10 @@ The above copyright notice and this permission notice shall be included in all c
     </title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport'/>
     <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="/css/font.css" />
 <#--    <link rel="stylesheet" type="text/css"-->
 <#--          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+<#--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">-->
     <!-- CSS Files -->
     <link href="/css/material-dashboard.css?v=2.1.2" rel="stylesheet"/>
     <!-- CSS Just for demo purpose, don't include it in your project -->
@@ -32,7 +33,8 @@ The above copyright notice and this permission notice shall be included in all c
 
     <script src="./js/core/jquery.min.js"></script>
     <script src="./js/plugins/perfect-scrollbar.jquery.min.js"></script>
-    <script src="https://wow.techbrood.com/libs/jquery/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>
+<#--    <script src="https://wow.techbrood.com/libs/jquery/jquery-1.11.1.min.js"></script>-->
     <script>
         searchKeyword = function () {
             var keyword = document.getElementById("search_keyword").value;
@@ -61,28 +63,35 @@ The above copyright notice and this permission notice shall be included in all c
         <div class="sidebar-wrapper">
             <ul class="nav">
                 <li class="nav-item ">
-                    <!--                    <a class="nav-link" href="./dashboard.html">-->
                     <a class="nav-link" href="#">
 <#--                        <i class="material-icons">dashboard</i>-->
-                        <p>查询理论成果</p>
+<#--                        <img src="img/dashboard-24px.svg" alt="" style="vertical-align: middle"> -->
+                        <embed src="img/dashboard-24px.svg" type="image/svg+xml" style="vertical-align: middle;"/>
+                        <p style="display: inline; text-align: center; margin-left: 18px">查询理论成果</p>
                     </a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link" href="#">
 <#--                        <i class="material-icons">person</i>-->
-                        <p>查询应用领域</p>
+<#--                        <p>查询应用领域</p>-->
+                        <embed src="img/person-24px.svg" type="image/svg+xml" style="vertical-align: middle;"/>
+                        <p style="display: inline; text-align: center; margin-left: 18px">查询应用领域</p>
                     </a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="#">
 <#--                        <i class="material-icons">content_paste</i>-->
-                        <p>搜索企业需求</p>
+<#--                        <p>搜索企业需求</p>-->
+                        <embed src="img/content_paste-24px.svg" type="image/svg+xml" style="vertical-align: middle;"/>
+                        <p style="display: inline; text-align: center; margin-left: 18px">搜索企业需求</p>
                     </a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link" href="#">
 <#--                        <i class="material-icons">library_books</i>-->
-                        <p>推荐企业需求</p>
+<#--                        <p>推荐企业需求</p>-->
+                        <embed src="img/library_books-24px.svg" type="image/svg+xml" style="vertical-align: middle;"/>
+                        <p style="display: inline; text-align: center; margin-left: 18px">推荐企业需求</p>
                     </a>
                 </li>
             </ul>
@@ -110,6 +119,7 @@ The above copyright notice and this permission notice shall be included in all c
                         <li class="nav-item">
                             <a class="nav-link" href="#">
 <#--                                <i class="material-icons">person</i>-->
+                                <embed src="img/person-24px-top.svg" type="image/svg+xml" style="vertical-align: middle;"/>
                             </a>
                         </li>
                     </ul>
@@ -233,7 +243,7 @@ The above copyright notice and this permission notice shall be included in all c
 <!-- Library for adding dinamically elements -->
 <script src="./js/plugins/arrive.min.js"></script>
 <!--  Google Maps Plugin    -->
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+<#--<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>-->
 <!-- Chartist JS -->
 <script src="./js/plugins/chartist.min.js"></script>
 <!--  Notifications Plugin    -->
@@ -242,7 +252,7 @@ The above copyright notice and this permission notice shall be included in all c
 <script src="./js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="./demo/demo.js"></script>
-<script src="./js/echarts.min.js"></script>
+<#--<script src="./js/echarts.min.js"></script>-->
 
 <script>
     $(document).ready(function () {
@@ -425,7 +435,13 @@ The above copyright notice and this permission notice shall be included in all c
 </script>
 
 <script type="text/javascript">
+    var start = Date.parse(new Date());
+    console.log("start: " + start);
+
     var myChart3 = echarts.init(document.getElementById('qushi'));
+
+    var init = Date.parse(new Date());
+    console.log("init: " + (init - start));
 
     var url4 = '/echartshow4?subname';
     console.log(url4);
@@ -447,6 +463,10 @@ The above copyright notice and this permission notice shall be included in all c
             });
             // console.log(category);
             // console.log(dataser);
+
+            var search = Date.parse(new Date());
+            console.log("search: " + (search - init));
+
             option = {
                 tooltip: {
                     trigger: 'axis',
@@ -501,12 +521,17 @@ The above copyright notice and this permission notice shall be included in all c
                         },
                         data: dataser,
                         label: {
-                            show: false
-                        },
+                            normal: {
+                                show: false
+                            }
+                        }
                     }
                 ]
             };
             myChart3.setOption(option);
+
+            var print = Date.parse(new Date());
+            console.log("print: " + (print - search));
         }
     });
 

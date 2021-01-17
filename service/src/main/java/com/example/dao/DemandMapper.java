@@ -25,6 +25,8 @@ public interface DemandMapper {
 
     List<Demand> selectByKeyWord(String keyWord);
 
+    List<Demand> selectByCompany(String company);
+
     List<Demand> selectByIdList(@Param("list") List idList,
                                 @Param("longitude") BigDecimal longitude,
                                 @Param("latitude") BigDecimal latitude,

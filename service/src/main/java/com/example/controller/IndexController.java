@@ -21,8 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @Slf4j
@@ -74,6 +73,11 @@ public class IndexController {
          * 这部分是es搜索，再采取再MySQL中取值的方式
          */
         ResponseVo<PageInfo> result = demandService.searchByEs(keyword, category, pageNum, pageSize, longitude, latitude, order, function);
+
+        ResponseVo<PageInfo> resultDemandInfo = demandService.searchByKeyword(keyword, pageNum, pageSize);
+        if (function == 2) {
+            resultDemandInfo = demandService.searchByCompany(keyword, pageNum, pageSize);
+        }
         List<Demand> resultHotSpot = demandService.searchByEs4HotSpot(keyword,category, order, latitude, longitude, function);
         List<String> resultTimeStamp = new ArrayList<>();
         List<String> resultCategory = new ArrayList<>();
@@ -87,10 +91,34 @@ public class IndexController {
                 }
             }
         }
+        List<String> tmp = resultCategory;
+        Map<String, Integer> count = new HashMap<>();
+        for (String str : tmp) {
+            if (count.containsKey(str)) {
+                count.put(str, count.get(str) + 1);
+            }
+            else {
+                count.put(str, 1);
+            }
+        }
+        Comparator<Map.Entry<String, Integer>> cmp = new Comparator<Map.Entry<String, Integer>>() {
+            @Override
+            public int compare(Map.Entry<String, Integer> stringIntegerEntry, Map.Entry<String, Integer> t1) {
+                return t1.getValue() - stringIntegerEntry.getValue();
+            }
+        };
+        List<Map.Entry<String, Integer>> myList = new ArrayList<>(count.entrySet());
+        Collections.sort(myList, cmp);
+        List<String> resultBoxCategory = new ArrayList<>();
+        for (int i = 0; i < myList.size(); i++) {
+            resultBoxCategory.add(myList.get(i).getKey());
+        }
         modelAndView.addObject("result", result);
+        modelAndView.addObject("resultDemandInfo", resultDemandInfo);
         modelAndView.addObject("keyword", keyword);
         modelAndView.addObject("resultTimeStamp", resultTimeStamp);
         modelAndView.addObject("resultCategory", resultCategory);
+        modelAndView.addObject("resultBoxCategory", resultBoxCategory);
         modelAndView.addObject("formKeyword", keyword);
         modelAndView.addObject("order", order);
         modelAndView.addObject("longitude", longitude);
